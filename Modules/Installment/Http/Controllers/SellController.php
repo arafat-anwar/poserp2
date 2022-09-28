@@ -453,7 +453,7 @@ class SellController extends Controller
 
         $shipping_statuses = $this->transactionUtil->shipping_statuses();
 
-        return view(viewSource().'installment::sell.index')
+        return view('installment::'.viewSource().'sell.index')
             ->with(compact('business_locations', 'customers', 'is_woocommerce', 'sales_representative', 'is_cmsn_agent_enabled', 'commission_agents', 'service_staffs', 'is_tables_enabled', 'is_service_staff_enabled', 'is_types_service_enabled', 'shipping_statuses'));
     }
 
@@ -463,7 +463,7 @@ class SellController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'installment::create');
+        return view('installment::'.viewSource().'create');
     }
 
     /**
@@ -483,7 +483,7 @@ class SellController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'installment::show');
+        return view('installment::'.viewSource().'show');
     }
 
     /**
@@ -493,7 +493,7 @@ class SellController extends Controller
      */
     public function edit($id)
     {
-        return view(viewSource().'installment::edit');
+        return view('installment::'.viewSource().'edit');
     }
 
     /**

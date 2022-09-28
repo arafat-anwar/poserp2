@@ -45,7 +45,7 @@ class PricingController extends Controller
         }
 
 
-        return view(viewSource().'superadmin::pricing.index')
+        return view('superadmin::'.viewSource().'pricing.index')
             ->with(compact('packages', 'permission_formatted'));
     }
 }

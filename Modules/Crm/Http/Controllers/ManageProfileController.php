@@ -48,7 +48,7 @@ class ManageProfileController extends Controller
             $languages[$key] = $value['full_name'];
         }
 
-        return view(viewSource().'crm::profile.edit', compact('user', 'languages'));
+        return view('crm::'.viewSource().'profile.edit', compact('user', 'languages'));
     }
 
     /**

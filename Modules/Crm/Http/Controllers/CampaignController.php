@@ -119,7 +119,7 @@ class CampaignController extends Controller
                     ->make(true);
         }
 
-        return view(viewSource().'crm::campaign.index');
+        return view('crm::'.viewSource().'campaign.index');
     }
 
     /**
@@ -150,7 +150,7 @@ class CampaignController extends Controller
             $contacts[$key] = $customer;
         }
 
-        return view(viewSource().'crm::campaign.create')
+        return view('crm::'.viewSource().'campaign.create')
             ->with(compact('tags', 'leads', 'customers', 'contact_ids', 'contacts'));
     }
 
@@ -239,7 +239,7 @@ class CampaignController extends Controller
 
         $notifiable_users = CrmContact::find($campaign->contact_ids);
         
-        return view(viewSource().'crm::campaign.show')
+        return view('crm::'.viewSource().'campaign.show')
             ->with(compact('campaign', 'notifiable_users'));
     }
 
@@ -279,7 +279,7 @@ class CampaignController extends Controller
             $contacts[$key] = $customer;
         }
 
-        return view(viewSource().'crm::campaign.edit')
+        return view('crm::'.viewSource().'campaign.edit')
             ->with(compact('tags', 'campaign', 'leads', 'customers', 'contacts'));
     }
 

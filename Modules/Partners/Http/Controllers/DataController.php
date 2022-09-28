@@ -131,11 +131,11 @@ class DataController extends Controller
 
     public function index()
     {
-        return view(viewSource().'partners::index');
+        return view('partners::'.viewSource().'index');
     }
     public function create()
     {
-        return view(viewSource().'partners::create');
+        return view('partners::'.viewSource().'create');
     }
 
     /**
@@ -155,7 +155,7 @@ class DataController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'partners::show');
+        return view('partners::'.viewSource().'show');
     }
 
     /**
@@ -165,7 +165,7 @@ class DataController extends Controller
      */
     public function edit($id)
     {
-        return view(viewSource().'partners::edit');
+        return view('partners::'.viewSource().'edit');
     }
 
     /**

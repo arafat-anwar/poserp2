@@ -21,7 +21,7 @@ class TaskCommentController extends Controller
      */
     public function index()
     {
-        return view(viewSource().'project::index');
+        return view('project::'.viewSource().'index');
     }
 
     /**
@@ -30,7 +30,7 @@ class TaskCommentController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'project::create');
+        return view('project::'.viewSource().'create');
     }
 
     /**
@@ -114,7 +114,7 @@ class TaskCommentController extends Controller
      */
     public function show()
     {
-        return view(viewSource().'project::show');
+        return view('project::'.viewSource().'show');
     }
 
     /**
@@ -123,7 +123,7 @@ class TaskCommentController extends Controller
      */
     public function edit()
     {
-        return view(viewSource().'project::edit');
+        return view('project::'.viewSource().'edit');
     }
 
     /**

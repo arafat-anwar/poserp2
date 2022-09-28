@@ -47,7 +47,7 @@ class InventoryController extends Controller
             ->get();
 
 
-        return view(viewSource().'inventory::index',['transactions'=>$transactions]);
+        return view('inventory::'.viewSource().'index',['transactions'=>$transactions]);
     }
 
     /**
@@ -56,7 +56,7 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'inventory::create');
+        return view('inventory::'.viewSource().'create');
     }
 
     /**
@@ -76,7 +76,7 @@ class InventoryController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'inventory::show');
+        return view('inventory::'.viewSource().'show');
     }
 
     /**
@@ -86,7 +86,7 @@ class InventoryController extends Controller
      */
     public function edit($id)
     {
-        return view(viewSource().'inventory::edit');
+        return view('inventory::'.viewSource().'edit');
     }
 
     /**

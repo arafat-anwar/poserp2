@@ -39,7 +39,7 @@ class PageController extends Controller
 
         $pages = SuperadminFrontendPage::orderBy('menu_order', 'asc')->get();
 
-        return view(viewSource().'superadmin::pages.index')
+        return view('superadmin::'.viewSource().'pages.index')
             ->with(compact('pages'));
     }
 
@@ -49,7 +49,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'superadmin::pages.create');
+        return view('superadmin::'.viewSource().'pages.create');
     }
 
     /**
@@ -99,7 +99,7 @@ class PageController extends Controller
         $page = SuperadminFrontendPage::where('slug', $slug)->first();
 
         if (!empty($page)) {
-            return view(viewSource().'superadmin::pages.show')->with(compact('page'));
+            return view('superadmin::'.viewSource().'pages.show')->with(compact('page'));
         } else {
             abort(404);
         }
@@ -112,7 +112,7 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = SuperadminFrontendPage::findOrFail($id);
-        return view(viewSource().'superadmin::pages.edit')->with(compact('page'));
+        return view('superadmin::'.viewSource().'pages.edit')->with(compact('page'));
     }
 
     /**

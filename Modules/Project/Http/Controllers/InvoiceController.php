@@ -140,7 +140,7 @@ class InvoiceController extends Controller
                         ->make(true);
         }
 
-        return view(viewSource().'project::invoice.index');
+        return view('project::'.viewSource().'invoice.index');
     }
 
     /**
@@ -170,7 +170,7 @@ class InvoiceController extends Controller
         $statuses = ProjectTransaction::invoiceStatuses();
         $discount_types = ProjectTransaction::discountTypes();
 
-        return view(viewSource().'project::invoice.create')
+        return view('project::'.viewSource().'invoice.create')
             ->with(compact('customers', 'invoice_schemes', 'default_scheme', 'project', 'statuses', 'discount_types', 'taxes', 'tax_attributes', 'business_locations'));
     }
 
@@ -265,7 +265,7 @@ class InvoiceController extends Controller
                     ->with('contact', 'invoiceLines', 'invoiceLines.tax', 'project', 'payment_lines')
                     ->findOrFail($id);
                                 
-            return view(viewSource().'project::invoice.show')
+            return view('project::'.viewSource().'invoice.show')
                 ->with(compact('transaction'));
         }
     }
@@ -297,7 +297,7 @@ class InvoiceController extends Controller
         $statuses = ProjectTransaction::invoiceStatuses();
         $discount_types = ProjectTransaction::discountTypes();
         $business_locations = BusinessLocation::forDropdown($business_id);
-        return view(viewSource().'project::invoice.edit')
+        return view('project::'.viewSource().'invoice.edit')
             ->with(compact('project', 'customers', 'statuses', 'discount_types', 'transaction', 'taxes', 'tax_attributes', 'business_locations'));
     }
 

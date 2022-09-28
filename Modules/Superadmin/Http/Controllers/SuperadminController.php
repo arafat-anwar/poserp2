@@ -44,7 +44,7 @@ class SuperadminController extends BaseController
 
 
         $total=Business::count('id');
-        return view(viewSource().'superadmin::superadmin.index')
+        return view('superadmin::'.viewSource().'superadmin.index')
             ->with(compact(
                 'date_filters',
                 'not_subscribed',
@@ -111,6 +111,6 @@ class SuperadminController extends BaseController
 
     function change_business(){
         $businesses=Business::pluck('name','id');
-        return view(viewSource().'superadmin::changebusiness.index',['businesses'=>$businesses]);
+        return view('superadmin::'.viewSource().'changebusiness.index',['businesses'=>$businesses]);
     }
 }

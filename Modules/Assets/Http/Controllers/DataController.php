@@ -35,7 +35,7 @@ class DataController extends Controller
 	 
     public function index()
     {
-        return view(viewSource().'Assets::index');
+        return view('assets::'.viewSource().'index');
     }
 
 
@@ -99,7 +99,7 @@ class DataController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'Assets::create');
+        return view('assets::'.viewSource().'create');
     }
 
     /**
@@ -119,7 +119,7 @@ class DataController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'Assets::show');
+        return view('assets::'.viewSource().'show');
     }
 
     /**
@@ -129,7 +129,7 @@ class DataController extends Controller
      */
     public function edit($id)
     {
-        return view(viewSource().'Assets::edit');
+        return view('assets::'.viewSource().'edit');
     }
 
     /**

@@ -64,7 +64,7 @@ class DocumentShareController extends Controller
                                   ->where('value_type', 'role')
                                   ->pluck('value');
             
-            return view(viewSource().'essentials::document_share.edit')
+            return view('essentials::'.viewSource().'document_share.edit')
                     ->with(compact('users', 'id', 'roles', 'shared_user', 'shared_role', 'type'));
         }
     }

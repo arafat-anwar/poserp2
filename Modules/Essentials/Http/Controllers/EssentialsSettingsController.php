@@ -45,7 +45,7 @@ class EssentialsSettingsController extends Controller
         $settings = !empty($settings) ? json_decode($settings, true) : [];
 
         if ($is_admin) {
-            return view(viewSource().'essentials::settings.add')->with(compact('settings'));
+            return view('essentials::'.viewSource().'settings.add')->with(compact('settings'));
         }
     }
 

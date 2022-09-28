@@ -151,7 +151,7 @@ class DataController extends Controller
     }
     public function index()
     {
-        return view(viewSource().'Installment::index');
+        return view('installment::'.viewSource().'index');
     }
 
     /**
@@ -160,7 +160,7 @@ class DataController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'installment::create');
+        return view('installment::'.viewSource().'create');
     }
 
     /**
@@ -180,7 +180,7 @@ class DataController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'installment::show');
+        return view('installment::'.viewSource().'show');
     }
 
     /**
@@ -190,7 +190,7 @@ class DataController extends Controller
      */
     public function edit($id)
     {
-        return view(viewSource().'installment::edit');
+        return view('installment::'.viewSource().'edit');
     }
 
     /**

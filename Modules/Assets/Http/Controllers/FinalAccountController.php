@@ -70,7 +70,7 @@ class FinalAccountController extends Controller
 
 
 
-        return view(viewSource().'Assets::finalaccount.index',['Assets'=>$Assets,'totalshare'=>$totalshare,'totalval'=>$totalval]);
+        return view('assets::'.viewSource().'finalaccount.index',['Assets'=>$Assets,'totalshare'=>$totalshare,'totalval'=>$totalval]);
     }
 
     /**
@@ -81,7 +81,7 @@ class FinalAccountController extends Controller
     {
         $business_id = request()->session()->get('user.business_id');
         $totalshare=partner::where('business_id', $business_id)->sum('share');
-        return view(viewSource().'Assets::finalaccount.create',['totalshare'=>$totalshare]);
+        return view('assets::'.viewSource().'finalaccount.create',['totalshare'=>$totalshare]);
     }
     public function store(Request $request)
     {
@@ -120,7 +120,7 @@ class FinalAccountController extends Controller
 
     public function show($id)
     {
-        return view(viewSource().'Assets::finalaccount.create');
+        return view('assets::'.viewSource().'finalaccount.create');
     }
 
     /**
@@ -137,7 +137,7 @@ class FinalAccountController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $data=businessprofit::findorfail($id);
 
-        return view(viewSource().'Assets::finalaccount.edit',['data'=>$data]);
+        return view('assets::'.viewSource().'finalaccount.edit',['data'=>$data]);
     }
 
     /**
@@ -237,13 +237,13 @@ class FinalAccountController extends Controller
         return $output;
     }
     public function Assets(){
-        return view(viewSource().'Assets::Assets');
+        return view('assets::'.viewSource().'Assets');
     }
 
     public function Assets_pay(){
-        return view(viewSource().'Assets::Assets_pay');
+        return view('assets::'.viewSource().'Assets_pay');
     }
     public function Assets_set(){
-        return view(viewSource().'Assets::Assets_set');
+        return view('assets::'.viewSource().'Assets_set');
     }
 }

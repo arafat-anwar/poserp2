@@ -14,7 +14,7 @@ class ChartOfAccountsController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $accounts=chartofaccount::where('business_id',$business_id)
             ->where('parent_id','=',0)->get();
-       return view(viewSource().'chartofaccounts::index',['accounts'=>$accounts]);
+       return view('chartofaccounts::'.viewSource().'index',['accounts'=>$accounts]);
     }
 
     public function addacount(){
@@ -22,7 +22,7 @@ class ChartOfAccountsController extends Controller
         $accounts=chartofaccount::where('business_id',$business_id)
                                   ->where('type','=',0)->get();
 
-        return view(viewSource().'chartofaccounts::accounts.create',['accounts'=>$accounts]);
+        return view('chartofaccounts::'.viewSource().'accounts.create',['accounts'=>$accounts]);
     }
 
     public function saveacount(Request $request){

@@ -158,7 +158,7 @@ class PurchaseController extends Controller
         }
 
         $orderStatuses = $this->productUtil->orderStatuses();
-        return view(viewSource().'crm::purchase.index')
+        return view('crm::'.viewSource().'purchase.index')
             ->with(compact('orderStatuses'));
     }
 }

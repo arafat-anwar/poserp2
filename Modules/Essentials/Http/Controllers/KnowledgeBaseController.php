@@ -52,7 +52,7 @@ class KnowledgeBaseController extends Controller
                                     })
                                     ->get();
 
-        return view(viewSource().'essentials::knowledge_base.index')->with(compact('knowledge_bases'));
+        return view('essentials::'.viewSource().'knowledge_base.index')->with(compact('knowledge_bases'));
     }
 
     /**
@@ -76,7 +76,7 @@ class KnowledgeBaseController extends Controller
             $users =  User::forDropdown($business_id, false);
         }
 
-        return view(viewSource().'essentials::knowledge_base.create')
+        return view('essentials::'.viewSource().'knowledge_base.create')
                     ->with(compact('parent', 'users'));
     }
 
@@ -167,7 +167,7 @@ class KnowledgeBaseController extends Controller
                                     ->find($section->parent_id);
         }
 
-        return view(viewSource().'essentials::knowledge_base.show')->with(compact('kb_object', 'knowledge_base', 'section_id', 'article_id', 'users'));
+        return view('essentials::'.viewSource().'knowledge_base.show')->with(compact('kb_object', 'knowledge_base', 'section_id', 'article_id', 'users'));
     }
 
     /**
@@ -192,7 +192,7 @@ class KnowledgeBaseController extends Controller
             $users =  User::forDropdown($business_id, false);
         }
 
-        return view(viewSource().'essentials::knowledge_base.edit')->with(compact('kb', 'users'));
+        return view('essentials::'.viewSource().'knowledge_base.edit')->with(compact('kb', 'users'));
     }
 
     /**

@@ -41,7 +41,7 @@ class ReportController extends Controller
             abort(403, 'Unauthorized action.');
         }
         
-        return view(viewSource().'project::reports.index');
+        return view('project::'.viewSource().'reports.index');
     }
 
     /**
@@ -134,7 +134,7 @@ class ReportController extends Controller
         $employees = ProjectUser::forDropdown($business_id, false);
         $projects = Project::projectDropdown($business_id);
 
-        return view(viewSource().'project::reports.employee_timelog')
+        return view('project::'.viewSource().'reports.employee_timelog')
             ->with(compact('projects', 'employees'));
     }
 
@@ -202,7 +202,7 @@ class ReportController extends Controller
         //data for filters
         $projects = Project::projectDropdown($business_id);
 
-        return view(viewSource().'project::reports.project_timelog')
+        return view('project::'.viewSource().'reports.project_timelog')
             ->with(compact('projects'));
     }
 }

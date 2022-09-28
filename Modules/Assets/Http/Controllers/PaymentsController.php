@@ -19,7 +19,7 @@ class PaymentsController extends Controller
     {
         $business_id=auth()->user()->business_id;
         $Assets=partner::forDropdown($business_id);
-        return view(viewSource().'Assets::payments.index',['Assets'=>$Assets]);
+        return view('assets::'.viewSource().'payments.index',['Assets'=>$Assets]);
     }
 
 
@@ -80,7 +80,7 @@ class PaymentsController extends Controller
     {
         $business_id=auth()->user()->business_id;
         $Assets=partner::forDropdown($business_id);
-        return view(viewSource().'Assets::payments.create',['Assets'=>$Assets]);
+        return view('assets::'.viewSource().'payments.create',['Assets'=>$Assets]);
     }
 
     /**
@@ -127,7 +127,7 @@ class PaymentsController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'Assets::show');
+        return view('assets::'.viewSource().'show');
     }
 
     /**
@@ -140,7 +140,7 @@ class PaymentsController extends Controller
         $data=payment::select('partner_payments.*','Assets.name')
             ->leftjoin('Assets','partner_payments.partner_id','=','Assets.id')
             ->find($id);
-        return view(viewSource().'Assets::payments.edit',['data'=>$data]);
+        return view('assets::'.viewSource().'payments.edit',['data'=>$data]);
     }
 
     /**

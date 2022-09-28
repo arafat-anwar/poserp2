@@ -76,7 +76,7 @@ class EssentialsAllowanceAndDeductionController extends Controller
                 ->make(true);
         }
 
-        return view(viewSource().'essentials::allowance_deduction.index');
+        return view('essentials::'.viewSource().'allowance_deduction.index');
     }
 
     /**
@@ -93,7 +93,7 @@ class EssentialsAllowanceAndDeductionController extends Controller
 
         $users = User::forDropdown($business_id, false);
 
-        return view(viewSource().'essentials::allowance_deduction.create')->with(compact('users'));
+        return view('essentials::'.viewSource().'allowance_deduction.create')->with(compact('users'));
     }
 
     /**
@@ -143,7 +143,7 @@ class EssentialsAllowanceAndDeductionController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        return view(viewSource().'essentials::show');
+        return view('essentials::'.viewSource().'show');
     }
 
     /**
@@ -170,7 +170,7 @@ class EssentialsAllowanceAndDeductionController extends Controller
 
         $applicable_date = !empty($allowance->applicable_date) ? $this->essentialsUtil->format_date($allowance->applicable_date) : null;
 
-        return view(viewSource().'essentials::allowance_deduction.edit')
+        return view('essentials::'.viewSource().'allowance_deduction.edit')
                 ->with(compact('allowance', 'users', 'selected_users', 'applicable_date'));
     }
 

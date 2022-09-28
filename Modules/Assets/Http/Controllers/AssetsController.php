@@ -99,7 +99,7 @@ class AssetsController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id,true);
 
-       return view(viewSource().'assets::assets.index',['business_locations'=>$business_locations,'price'=>$price,'curentprice'=>$curentprice]);
+       return view('assets::'.viewSource().'assets.index',['business_locations'=>$business_locations,'price'=>$price,'curentprice'=>$curentprice]);
     }
 
     /**
@@ -114,7 +114,7 @@ class AssetsController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $business_locations = BusinessLocation::forDropdown($business_id);
         $accounts =Account::forDropdown($business_id, true, false, true);
-        return view(viewSource().'assets::assets.create',['business_locations'=>$business_locations,'accounts'=>$accounts]);
+        return view('assets::'.viewSource().'assets.create',['business_locations'=>$business_locations,'accounts'=>$accounts]);
     }
 
     /**
@@ -176,7 +176,7 @@ class AssetsController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'Assets::show');
+        return view('assets::'.viewSource().'show');
     }
 
     /**
@@ -200,7 +200,7 @@ class AssetsController extends Controller
         else
             $asset=new Asset();
         //dd($asset);
-      return view(viewSource().'assets::assets.edit',['asset'=>$asset,'business_locations'=>$business_locations,'accounts'=>$accounts,'id'=>$id]);
+      return view('assets::'.viewSource().'assets.edit',['asset'=>$asset,'business_locations'=>$business_locations,'accounts'=>$accounts,'id'=>$id]);
     }
 
     /**

@@ -14,7 +14,7 @@ class EssentialsController extends Controller
      */
     public function index()
     {
-        return view(viewSource().'essentials::index');
+        return view('essentials::'.viewSource().'index');
     }
 
     /**
@@ -23,7 +23,7 @@ class EssentialsController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'essentials::create');
+        return view('essentials::'.viewSource().'create');
     }
 
     /**
@@ -41,7 +41,7 @@ class EssentialsController extends Controller
      */
     public function show()
     {
-        return view(viewSource().'essentials::show');
+        return view('essentials::'.viewSource().'show');
     }
 
     /**
@@ -50,7 +50,7 @@ class EssentialsController extends Controller
      */
     public function edit()
     {
-        return view(viewSource().'essentials::edit');
+        return view('essentials::'.viewSource().'edit');
     }
 
     /**

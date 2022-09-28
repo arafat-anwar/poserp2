@@ -81,7 +81,7 @@ class ContactBookingController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id, false, false, true, false);
 
-        return view(viewSource().'crm::booking.index', compact('business_locations'));
+        return view('crm::'.viewSource().'booking.index', compact('business_locations'));
     }
 
     /**
@@ -90,7 +90,7 @@ class ContactBookingController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'crm::create');
+        return view('crm::'.viewSource().'create');
     }
 
     /**
@@ -161,7 +161,7 @@ class ContactBookingController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'crm::show');
+        return view('crm::'.viewSource().'show');
     }
 
     /**
@@ -171,7 +171,7 @@ class ContactBookingController extends Controller
      */
     public function edit($id)
     {
-        return view(viewSource().'crm::edit');
+        return view('crm::'.viewSource().'edit');
     }
 
     /**

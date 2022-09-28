@@ -97,7 +97,7 @@ class SuperadminSettingsController extends BaseController
 
         $cron_job_command = $this->businessUtil->getCronJobCommand();
 
-        return view(viewSource().'superadmin::superadmin_settings.edit')
+        return view('superadmin::'.viewSource().'superadmin_settings.edit')
             ->with(compact(
                 'currencies',
                 'settings',

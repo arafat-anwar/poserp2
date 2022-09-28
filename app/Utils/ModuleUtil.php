@@ -194,7 +194,7 @@ class ModuleUtil extends Util
             if (request()->wantsJson()) {
                 return $response_array;
             } else {
-                return view(viewSource().'superadmin::subscription.subscription_expired_modal');
+                return view('superadmin::'.viewSource().'subscription.subscription_expired_modal');
             }
         } else {
             if (is_null($redirect_url)) {
@@ -367,7 +367,7 @@ class ModuleUtil extends Util
                         ];
                     return $response_array;
                 } else {
-                    return view(viewSource().'superadmin::subscription.max_location_modal');
+                    return view('superadmin::'.viewSource().'subscription.max_location_modal');
                 }
             }
         } elseif ($type == 'users') {

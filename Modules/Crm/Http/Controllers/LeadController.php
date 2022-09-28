@@ -290,7 +290,7 @@ class LeadController extends Controller
 
         $users = User::forDropdown($business_id, false, false, false, true);
 
-        return view(viewSource().'crm::lead.index')
+        return view('crm::'.viewSource().'lead.index')
             ->with(compact('sources', 'life_stages', 'lead_view', 'users'));
     }
 
@@ -396,7 +396,7 @@ class LeadController extends Controller
 
         $contact_view_tabs = $this->moduleUtil->getModuleData('get_contact_view_tabs');
 
-        return view(viewSource().'crm::lead.show')
+        return view('crm::'.viewSource().'lead.show')
             ->with(compact('contact', 'leads', 'contact_view_tabs'));
     }
 

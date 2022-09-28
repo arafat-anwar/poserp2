@@ -211,6 +211,6 @@ class SellController extends Controller
                 ->make(true);
         }
 
-        return view(viewSource().'crm::sell.index');
+        return view('crm::'.viewSource().'sell.index');
     }
 }

@@ -41,7 +41,7 @@ class ReportController extends Controller
 
         $statuses = Schedule::statusDropdown();
 
-        return view(viewSource().'crm::reports.index')->with(compact('statuses'));
+        return view('crm::'.viewSource().'reports.index')->with(compact('statuses'));
     }
 
     /**
@@ -157,7 +157,7 @@ class ReportController extends Controller
                             ->orderBy('converted_on', 'desc')
                             ->get();
 
-            return view(viewSource().'crm::reports.leads_to_customer_details')
+            return view('crm::'.viewSource().'reports.leads_to_customer_details')
                     ->with(compact('contacts'));
         }
 

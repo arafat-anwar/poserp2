@@ -91,7 +91,7 @@ class ShiftController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'essentials::create');
+        return view('essentials::'.viewSource().'create');
     }
 
     /**
@@ -145,7 +145,7 @@ class ShiftController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'essentials::show');
+        return view('essentials::'.viewSource().'show');
     }
 
     /**
@@ -166,7 +166,7 @@ class ShiftController extends Controller
 
         $days = $this->moduleUtil->getDays();
 
-        return view(viewSource().'essentials::attendance.shift_modal')->with(compact('shift', 'days'));
+        return view('essentials::'.viewSource().'attendance.shift_modal')->with(compact('shift', 'days'));
     }
 
     /**
@@ -255,7 +255,7 @@ class ShiftController extends Controller
             }
         }
 
-        return view(viewSource().'essentials::attendance.add_shift_users')
+        return view('essentials::'.viewSource().'attendance.add_shift_users')
                 ->with(compact('shift', 'users', 'user_shifts'));
     }
 

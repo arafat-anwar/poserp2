@@ -176,7 +176,7 @@ class InstallController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'inventory::create');
+        return view('inventory::'.viewSource().'create');
     }
 
     /**
@@ -196,7 +196,7 @@ class InstallController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'inventory::show');
+        return view('inventory::'.viewSource().'show');
     }
 
     /**
@@ -206,7 +206,7 @@ class InstallController extends Controller
      */
     public function edit($id)
     {
-        return view(viewSource().'inventory::edit');
+        return view('inventory::'.viewSource().'edit');
     }
 
     /**

@@ -121,7 +121,7 @@ class ContactLoginController extends Controller
                 $contacts = CrmContact::contactsDropdownForLogin($business_id);
             }
 
-            return view(viewSource().'crm::contact_login.create')
+            return view('crm::'.viewSource().'contact_login.create')
                 ->with(compact('crm_contact_id', 'contacts'));
         }
     }
@@ -202,7 +202,7 @@ class ContactLoginController extends Controller
                         ->where('crm_contact_id', $crm_contact_id)
                         ->findOrFail($id);
 
-            return view(viewSource().'crm::contact_login.edit')
+            return view('crm::'.viewSource().'contact_login.edit')
                 ->with(compact('user', 'contacts'));
         }
     }
@@ -300,7 +300,7 @@ class ContactLoginController extends Controller
 
         $business_id = request()->session()->get('user.business_id');
         $contacts = CrmContact::contactsDropdownForLogin($business_id, true);
-        return view(viewSource().'crm::contact_login.all_contacts_login')
+        return view('crm::'.viewSource().'contact_login.all_contacts_login')
             ->with(compact('contacts'));
     }
 }

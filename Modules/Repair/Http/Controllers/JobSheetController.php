@@ -322,7 +322,7 @@ class JobSheetController extends Controller
             $is_user_service_staff = true;
         }
 
-        return view(viewSource().'repair::job_sheet.index')
+        return view('repair::'.viewSource().'job_sheet.index')
             ->with(compact('business_locations', 'customers', 'status_dropdown', 'service_staffs', 'is_user_service_staff'));
     }
 
@@ -358,7 +358,7 @@ class JobSheetController extends Controller
             $technecians = $this->commonUtil->serviceStaffDropdown($business_id);
         }
 
-        return view(viewSource().'repair::job_sheet.create')
+        return view('repair::'.viewSource().'job_sheet.create')
             ->with(compact('repair_statuses', 'device_models', 'brands', 'devices', 'default_status', 'technecians', 'business_locations', 'types', 'customer_groups', 'walk_in_customer', 'repair_settings'));
     }
 
@@ -471,7 +471,7 @@ class JobSheetController extends Controller
         $business = Business::find($business_id);
         $repair_settings = json_decode($business->repair_settings, true);
         
-        return view(viewSource().'repair::job_sheet.show')
+        return view('repair::'.viewSource().'job_sheet.show')
             ->with(compact('job_sheet', 'repair_settings'));
     }
     public function print_slim($id)
@@ -501,7 +501,7 @@ class JobSheetController extends Controller
         $business = Business::find($business_id);
         $repair_settings = json_decode($business->repair_settings, true);
         $receipt_details=[];
-        return view(viewSource().'repair::job_sheet.print_slim')
+        return view('repair::'.viewSource().'job_sheet.print_slim')
             ->with(compact('job_sheet', 'repair_settings','receipt_details'));
     }
     /**
@@ -538,7 +538,7 @@ class JobSheetController extends Controller
             $technecians = $this->commonUtil->serviceStaffDropdown($business_id);
         }
 
-        return view(viewSource().'repair::job_sheet.edit')
+        return view('repair::'.viewSource().'job_sheet.edit')
             ->with(compact('job_sheet', 'repair_statuses', 'device_models', 'brands', 'devices', 'default_status', 'technecians', 'types', 'customer_groups', 'repair_settings'));
     }
 
@@ -669,7 +669,7 @@ class JobSheetController extends Controller
 
             $status_dropdown = RepairStatus::forDropdown($business_id, true);
             $status_template_tags = $this->repairUtil->getRepairStatusTemplateTags();
-            return view(viewSource().'repair::job_sheet.partials.edit_status')
+            return view('repair::'.viewSource().'job_sheet.partials.edit_status')
                 ->with(compact('job_sheet', 'status_dropdown', 'status_template_tags'));
         }
     }

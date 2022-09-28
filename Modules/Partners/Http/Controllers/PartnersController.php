@@ -36,7 +36,7 @@ class PartnersController extends Controller
         $business_data=Business::where('id','=',$business_id)->first();
 
 
-       return view(viewSource().'partners::partners.index',['partners'=>$partners,'totalshare'=>$totalshare,'totalcapital'=>$totalcapital,'business_data'=>$business_data]);
+       return view('partners::'.viewSource().'partners.index',['partners'=>$partners,'totalshare'=>$totalshare,'totalcapital'=>$totalcapital,'business_data'=>$business_data]);
     }
 
     /**
@@ -48,7 +48,7 @@ class PartnersController extends Controller
         if (!auth()->user()->can('partner.payment_edit')) {
             abort(403, 'Unauthorized action.');
         }
-      return view(viewSource().'partners::partners.create');
+      return view('partners::'.viewSource().'partners.create');
     }
 
     /**
@@ -106,7 +106,7 @@ class PartnersController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'partners::show');
+        return view('partners::'.viewSource().'show');
     }
 
     /**
@@ -122,7 +122,7 @@ class PartnersController extends Controller
         }
         $partner= partner::find($id);
         //dd($asset);
-        return view(viewSource().'partners::partners.edit',['partner'=>$partner]);
+        return view('partners::'.viewSource().'partners.edit',['partner'=>$partner]);
     }
 
     /**
@@ -181,13 +181,13 @@ class PartnersController extends Controller
         return $output;
     }
     public function partners(){
-        return view(viewSource().'partners::partners');
+        return view('partners::'.viewSource().'partners');
     }
 
     public function partners_pay(){
-        return view(viewSource().'partners::partners_pay');
+        return view('partners::'.viewSource().'partners_pay');
     }
     public function partners_set(){
-        return view(viewSource().'partners::partners_set');
+        return view('partners::'.viewSource().'partners_set');
     }
 }

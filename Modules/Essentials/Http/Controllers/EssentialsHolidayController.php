@@ -107,7 +107,7 @@ class EssentialsHolidayController extends Controller
 
         $locations = BusinessLocation::forDropdown($business_id);
 
-        return view(viewSource().'essentials::holiday.index')->with(compact('locations', 'is_admin'));
+        return view('essentials::'.viewSource().'holiday.index')->with(compact('locations', 'is_admin'));
     }
 
     /**
@@ -125,7 +125,7 @@ class EssentialsHolidayController extends Controller
 
         $locations = BusinessLocation::forDropdown($business_id);
 
-        return view(viewSource().'essentials::holiday.create')->with(compact('locations'));
+        return view('essentials::'.viewSource().'holiday.create')->with(compact('locations'));
     }
 
     /**
@@ -170,7 +170,7 @@ class EssentialsHolidayController extends Controller
      */
     public function show()
     {
-        return view(viewSource().'essentials::show');
+        return view('essentials::'.viewSource().'show');
     }
 
     /**
@@ -191,7 +191,7 @@ class EssentialsHolidayController extends Controller
 
         $locations = BusinessLocation::forDropdown($business_id);
 
-        return view(viewSource().'essentials::holiday.edit')->with(compact('locations', 'holiday'));
+        return view('essentials::'.viewSource().'holiday.edit')->with(compact('locations', 'holiday'));
     }
 
     /**

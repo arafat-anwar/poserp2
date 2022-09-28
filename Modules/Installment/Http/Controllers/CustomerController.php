@@ -41,7 +41,7 @@ class CustomerController extends Controller
         $systems->prepend(__('messages.please_select'), '');
         $customers=Contact::where('business_id','=',$business_id)->where('type','!=','supplier')->pluck('name','id');
         $customers->prepend(__('messages.please_select'), '');
-    return view(viewSource().'installment::customer.index',['customers'=>$customers,'systems'=>$systems]);
+    return view('installment::'.viewSource().'customer.index',['customers'=>$customers,'systems'=>$systems]);
     }
 
     public function getLedger()
@@ -216,7 +216,7 @@ class CustomerController extends Controller
 
 
 
-      return view(viewSource().'installment::customer.create',['systems'=>$systems,'contact_id'=>$request->id,'transaction'=>$transaction,'total'=> $total,'total_paid'=>$total_paid]);
+      return view('installment::'.viewSource().'customer.create',['systems'=>$systems,'contact_id'=>$request->id,'transaction'=>$transaction,'total'=> $total,'total_paid'=>$total_paid]);
   }
 
 
@@ -227,7 +227,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'installment::create');
+        return view('installment::'.viewSource().'create');
     }
 
     /**
@@ -247,7 +247,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'installment::show');
+        return view('installment::'.viewSource().'show');
     }
 
     /**
@@ -257,7 +257,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        return view(viewSource().'installment::edit');
+        return view('installment::'.viewSource().'edit');
     }
 
     /**
@@ -317,7 +317,7 @@ public function contacts(){
         ->pluck('name','contacts.id');
 
     $customers->prepend(__('messages.all'), '');
-        return view(viewSource().'installment::customer.contacts',['customers'=>$customers]);
+        return view('installment::'.viewSource().'customer.contacts',['customers'=>$customers]);
 }
 
 public function contactwithinstallment(Request $request){

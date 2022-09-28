@@ -171,7 +171,7 @@ class ToDoController extends Controller
             $users = User::forDropdown($business_id, false);
         }
 
-        return view(viewSource().'essentials::todo.index')->with(compact('users', 'task_statuses', 'priorities'));
+        return view('essentials::'.viewSource().'todo.index')->with(compact('users', 'task_statuses', 'priorities'));
     }
 
     /**
@@ -193,7 +193,7 @@ class ToDoController extends Controller
         $task_statuses = ToDo::getTaskStatus();
         $priorities = ToDo::getTaskPriorities();
 
-        return view(viewSource().'essentials::todo.create')->with(compact('users', 'task_statuses', 'priorities'));
+        return view('essentials::'.viewSource().'todo.create')->with(compact('users', 'task_statuses', 'priorities'));
     }
 
     /**
@@ -238,7 +238,7 @@ class ToDoController extends Controller
         $task_statuses = ToDo::getTaskStatus();
         $priorities = ToDo::getTaskPriorities();
 
-        return view(viewSource().'essentials::todo.view')->with(compact(
+        return view('essentials::'.viewSource().'todo.view')->with(compact(
             'todo',
             'users',
             'task_statuses',
@@ -280,7 +280,7 @@ class ToDoController extends Controller
         $task_statuses = ToDo::getTaskStatus();
         $priorities = ToDo::getTaskPriorities();
 
-        return view(viewSource().'essentials::todo.edit')->with(compact('users', 'todo', 'task_statuses', 'priorities'));
+        return view('essentials::'.viewSource().'todo.edit')->with(compact('users', 'todo', 'task_statuses', 'priorities'));
     }
 
     /**

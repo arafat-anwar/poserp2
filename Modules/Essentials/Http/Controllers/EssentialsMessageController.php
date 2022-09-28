@@ -63,7 +63,7 @@ class EssentialsMessageController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id);
 
-        return view(viewSource().'essentials::messages.index')
+        return view('essentials::'.viewSource().'messages.index')
                 ->with(compact('messages', 'business_locations'));
     }
 
@@ -222,6 +222,6 @@ class EssentialsMessageController extends Controller
         }
         $messages = $query->get();
 
-        return view(viewSource().'essentials::messages.recent_messages')->with(compact('messages'));
+        return view('essentials::'.viewSource().'messages.recent_messages')->with(compact('messages'));
     }
 }

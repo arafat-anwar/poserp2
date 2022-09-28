@@ -117,7 +117,7 @@ class DataController extends Controller
     }
     public function index()
     {
-        return view(viewSource().'chartofaccounts::index');
+        return view('chartofaccounts::'.viewSource().'index');
     }
 
     /**
@@ -126,7 +126,7 @@ class DataController extends Controller
      */
     public function create()
     {
-        return view(viewSource().'chartofaccounts::create');
+        return view('chartofaccounts::'.viewSource().'create');
     }
 
     /**
@@ -146,7 +146,7 @@ class DataController extends Controller
      */
     public function show($id)
     {
-        return view(viewSource().'chartofaccounts::show');
+        return view('chartofaccounts::'.viewSource().'show');
     }
 
     /**
@@ -156,7 +156,7 @@ class DataController extends Controller
      */
     public function edit($id)
     {
-        return view(viewSource().'chartofaccounts::edit');
+        return view('chartofaccounts::'.viewSource().'edit');
     }
 
     /**

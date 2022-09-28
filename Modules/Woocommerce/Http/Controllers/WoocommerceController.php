@@ -122,7 +122,7 @@ class WoocommerceController extends Controller
         }
         
 
-        return view(viewSource().'woocommerce::woocommerce.index')
+        return view('woocommerce::'.viewSource().'woocommerce.index')
                 ->with(compact('tax_rates', 'woocommerce_tax_rates', 'alerts'));
     }
 
@@ -176,7 +176,7 @@ class WoocommerceController extends Controller
 
         $cron_job_command = $this->moduleUtil->getCronJobCommand();
 
-        return view(viewSource().'woocommerce::woocommerce.api_settings')
+        return view('woocommerce::'.viewSource().'woocommerce.api_settings')
                 ->with(compact('default_settings', 'locations', 'price_groups', 'module_version', 'cron_job_command', 'business'));
     }
 
@@ -521,7 +521,7 @@ class WoocommerceController extends Controller
                 ->make(true);
         }
 
-        return view(viewSource().'woocommerce::woocommerce.sync_log');
+        return view('woocommerce::'.viewSource().'woocommerce.sync_log');
     }
 
     /**
@@ -541,7 +541,7 @@ class WoocommerceController extends Controller
                                             ->find($id);
             $log_details = json_decode($log->details);
             
-            return view(viewSource().'woocommerce::woocommerce.partials.log_details')
+            return view('woocommerce::'.viewSource().'woocommerce.partials.log_details')
                     ->with(compact('log_details'));
         }
     }

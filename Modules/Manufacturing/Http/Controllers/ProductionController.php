@@ -117,7 +117,7 @@ class ProductionController extends Controller
                 ->make(true);
         }
 
-        return view(viewSource().'manufacturing::production.index');
+        return view('manufacturing::'.viewSource().'production.index');
     }
 
     /**
@@ -135,7 +135,7 @@ class ProductionController extends Controller
 
         $recipe_dropdown = MfgRecipe::forDropdown($business_id);
 
-        return view(viewSource().'manufacturing::production.create')
+        return view('manufacturing::'.viewSource().'production.create')
                 ->with(compact('business_locations', 'recipe_dropdown'));
     }
 
@@ -402,7 +402,7 @@ class ProductionController extends Controller
             $total_production_cost = $this->transactionUtil->calc_percentage($total_ingredients_price, $production_purchase->mfg_production_cost);
         }
 
-        return view(viewSource().'manufacturing::production.show')->with(compact('production_purchase', 'production_sell', 'purchase_line', 'ingredients', 'unit_name', 'quantity', 'quantity_wasted', 'actual_quantity', 'total_production_cost'));
+        return view('manufacturing::'.viewSource().'production.show')->with(compact('production_purchase', 'production_sell', 'purchase_line', 'ingredients', 'unit_name', 'quantity', 'quantity_wasted', 'actual_quantity', 'total_production_cost'));
     }
 
     /**
@@ -528,7 +528,7 @@ class ProductionController extends Controller
 
         $manufacturing_settings = $this->mfgUtil->getSettings($business_id);
 
-        return view(viewSource().'manufacturing::production.edit')->with(compact('production_purchase', 'production_sell', 'business_locations', 'recipe_dropdown', 'ingredients', 'business_details', 'pos_settings', 'sub_units', 'quantity', 'quantity_wasted', 'actual_quantity', 'recipe', 'unit_name', 'sub_unit_id', 'total_production_cost', 'manufacturing_settings'));
+        return view('manufacturing::'.viewSource().'production.edit')->with(compact('production_purchase', 'production_sell', 'business_locations', 'recipe_dropdown', 'ingredients', 'business_details', 'pos_settings', 'sub_units', 'quantity', 'quantity_wasted', 'actual_quantity', 'recipe', 'unit_name', 'sub_unit_id', 'total_production_cost', 'manufacturing_settings'));
     }
 
     /**
@@ -786,6 +786,6 @@ class ProductionController extends Controller
         }
 
         $business_locations = BusinessLocation::forDropdown($business_id, true);
-        return view(viewSource().'manufacturing::production.report')->with(compact('business_locations'));
+        return view('manufacturing::'.viewSource().'production.report')->with(compact('business_locations'));
     }
 }

@@ -128,7 +128,7 @@ class AttendanceController extends Controller
 
         $days = $this->moduleUtil->getDays();
 
-        return view(viewSource().'essentials::attendance.index')
+        return view('essentials::'.viewSource().'attendance.index')
             ->with(compact('is_admin', 'is_employee_allowed', 'clock_in', 'employees', 'days'));
     }
 
@@ -147,7 +147,7 @@ class AttendanceController extends Controller
 
         $employees = User::forDropdown($business_id, false);
 
-        return view(viewSource().'essentials::attendance.create')->with(compact('employees'));
+        return view('essentials::'.viewSource().'attendance.create')->with(compact('employees'));
     }
 
     /**
@@ -224,7 +224,7 @@ class AttendanceController extends Controller
                                     ->with(['employee'])
                                     ->find($id);
 
-        return view(viewSource().'essentials::attendance.edit')->with(compact('attendance'));
+        return view('essentials::'.viewSource().'attendance.edit')->with(compact('attendance'));
     }
 
     /**
@@ -524,7 +524,7 @@ class AttendanceController extends Controller
                 }
             }
         }
-        return view(viewSource().'essentials::attendance.attendance_by_shift_data')->with(compact('attendance_by_shift'));
+        return view('essentials::'.viewSource().'attendance.attendance_by_shift_data')->with(compact('attendance_by_shift'));
     }
 
 
@@ -565,7 +565,7 @@ class AttendanceController extends Controller
                     'date' => $data->clock_in_date
                 ];
         }
-        return view(viewSource().'essentials::attendance.attendance_by_date_data')->with(compact('attendance_by_date'));
+        return view('essentials::'.viewSource().'attendance.attendance_by_date_data')->with(compact('attendance_by_date'));
     }
 
     /**
@@ -711,6 +711,6 @@ class AttendanceController extends Controller
                     ->where('eus.start_date', '<=', \Carbon::now()->format('Y-m-d'))
                     ->pluck('essentials_shifts.name', 'essentials_shifts.id');
 
-        return view(viewSource().'essentials::attendance.attendance_row')->with(compact('attendance', 'shifts', 'user'));
+        return view('essentials::'.viewSource().'attendance.attendance_row')->with(compact('attendance', 'shifts', 'user'));
     }
 }
