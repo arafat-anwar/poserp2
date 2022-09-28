@@ -19,11 +19,11 @@ mhamcloud is a Accounts ERP which allow you to provide you to POSapplications.
 
 Step 1:
 
-`` git clone git@github.com:zillurcse/mhamcloud.git ``
+`` git clone git@github.com:arafat-anwar/poserp2.git ``
 
 Step 2:
 
-`` cd  mhamcloud``
+`` cd  poserp2``
 
 Step 3:
 
@@ -31,7 +31,7 @@ Step 3:
 
 Step 4:
 
-`` php artisan migrate --seed ``
+`` include database manualy ``
 
 Step 5:
 
