@@ -97,5 +97,7 @@ return [
     'customer_note' => 'Customer note',
     'table_report' => 'Table Report',
     'service_staff_report' => 'Service Staff Report',
+    'restaurant_managment' => 'Restaurant Management',
+    'restaurant_department' => 'Restaurant Department',
 
 ];
