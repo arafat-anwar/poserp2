@@ -179,120 +179,120 @@
                 border-top-style: solid;
                 border-top-width: medium;
                 border-radius: 10px 10px 0px 0px;">
-    <div class="row">
+{{--    <div class="row">--}}
 
-            <div class="col-lg-2 ">
-                <a href="/pos/create" class="cont" >
-                    <h2><i class="fas fa-dollar-sign"></i></h2>
-                    <h3>@lang('lang_v1.cashier')   </h3>
+{{--            <div class="col-lg-2 ">--}}
+{{--                <a href="/pos/create" class="cont" >--}}
+{{--                    <h2><i class="fas fa-dollar-sign"></i></h2>--}}
+{{--                    <h3>@lang('lang_v1.cashier')   </h3>--}}
 
-                </a>
-                </div>
-
-
-
-        <div class="col-lg-2">
-            <a href="/sells" class="cont" >
-                <h2><i class="fa fa-registered"></i></h2>
-                <h3>@lang('lang_v1.sells')  </h3>
-            </a>
-        </div>
-
-        <div class="col-lg-2">
-            <a href="/reports/product-sell-return-report" class="cont" >
-                <h2><i class="fa fa-undo-alt"></i></h2>
-                <h3>@lang('lang_v1.sell_return')  </h3>
-            </a>
-        </div>
+{{--                </a>--}}
+{{--                </div>--}}
 
 
-            <div class="col-lg-2">
-                <a href="/purchases" class="cont" >
-                    <h2><i class="fa fa-cart-plus"></i></h2>
-                    <h3> @lang('lang_v1.purchases') </h3>
-                </a>
-            </div>
 
-        <div class="col-lg-2">
-            <a href="/reports/product-purchase-report" class="cont" >
-                <h2><i class="fa fa-undo-alt"></i></h2>
-                <h3> @lang('lang_v1.purchase_return') </h3>
-            </a>
-        </div>
+{{--        <div class="col-lg-2">--}}
+{{--            <a href="/sells" class="cont" >--}}
+{{--                <h2><i class="fa fa-registered"></i></h2>--}}
+{{--                <h3>@lang('lang_v1.sells')  </h3>--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
-    </div>
-        <div class="row">
-            <div class="col-lg-2">
-                <a href="/products" class="cont" >
-                    <h2><i class="fa fas fa-cubes"></i></h2>
-                    <h3>@lang('lang_v1.list_products')   </h3>
-                </a>
-            </div>
-
-            <div class="col-lg-2">
-                <a href="/contacts?type=customer" class="cont" >
-                    <h2><i class="fa fas fa-address-book"></i></h2>
-                    <h3>  @lang('lang_v1.customers')</h3>
-                </a>
-            </div>
-
-            <div class="col-lg-2">
-                <a href="/contacts?type=supplier" class="cont" >
-                    <h2><i class="fa fas fa-address-book"></i></h2>
-                    <h3>@lang('lang_v1.suppliers')   </h3>
-                </a>
-            </div>
-            <div class="col-lg-2">
-                <a href="/users" class="cont" >
-                    <h2><i class="fa fas fa-users"></i></h2>
-                    <h3>@lang('lang_v1.users')   </h3>
-                </a>
-            </div>
-            <div class="col-lg-2">
-                <a href="/expenses" class="cont" >
-                    <h2><i class="fa fa-truck"></i></h2>
-                    <h3>@lang('lang_v1.expense')   </h3>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-              <div class="col-lg-2">
-                <a href="/repair/dashboard" class="cont" >
-                    <h2><i class="fa fas fa-wrench"></i></h2>
-                    <h3>   @lang('lang_v1.repair')</h3>
-                </a>
-            </div>
-
-            <div class="col-lg-2">
-                <a href="manufacturing/recipe" class="cont" >
-                    <h2><i class="fa fas fa-industry"></i></h2>
-                    <h3>@lang('lang_v1.manufacturing')   </h3>
-                </a>
-            </div>
-
-            <div class="col-lg-2">
-                <a href="reports/stock-report" class="cont" >
-                    <h2><i class="fa fas fa-chart-bar"></i></h2>
-                    <h3>@lang('report.stock_report')   </h3>
-                </a>
-            </div>
+{{--        <div class="col-lg-2">--}}
+{{--            <a href="/reports/product-sell-return-report" class="cont" >--}}
+{{--                <h2><i class="fa fa-undo-alt"></i></h2>--}}
+{{--                <h3>@lang('lang_v1.sell_return')  </h3>--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
 
-            <div class="col-lg-2">
-                <a href="reports/product-sell-report" class="cont" >
-                    <h2><i class="fa fas fa-shopping-bag"></i></h2>
-                    <h3>@lang('lang_v1.product_sell_day')   </h3>
-                </a>
-            </div>
-            <div class="col-lg-2">
-                <a href="eports/product-purchase-report" class="cont" >
-                    <h2><i class="fa fas fa-shopping-bag"></i></h2>
-                    <h3>@lang('lang_v1.product_purchas_day')   </h3>
-                </a>
-            </div>
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="/purchases" class="cont" >--}}
+{{--                    <h2><i class="fa fa-cart-plus"></i></h2>--}}
+{{--                    <h3> @lang('lang_v1.purchases') </h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
 
-        </div>
- <br><br>
+{{--        <div class="col-lg-2">--}}
+{{--            <a href="/reports/product-purchase-report" class="cont" >--}}
+{{--                <h2><i class="fa fa-undo-alt"></i></h2>--}}
+{{--                <h3> @lang('lang_v1.purchase_return') </h3>--}}
+{{--            </a>--}}
+{{--        </div>--}}
+
+{{--    </div>--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="/products" class="cont" >--}}
+{{--                    <h2><i class="fa fas fa-cubes"></i></h2>--}}
+{{--                    <h3>@lang('lang_v1.list_products')   </h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="/contacts?type=customer" class="cont" >--}}
+{{--                    <h2><i class="fa fas fa-address-book"></i></h2>--}}
+{{--                    <h3>  @lang('lang_v1.customers')</h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="/contacts?type=supplier" class="cont" >--}}
+{{--                    <h2><i class="fa fas fa-address-book"></i></h2>--}}
+{{--                    <h3>@lang('lang_v1.suppliers')   </h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="/users" class="cont" >--}}
+{{--                    <h2><i class="fa fas fa-users"></i></h2>--}}
+{{--                    <h3>@lang('lang_v1.users')   </h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="/expenses" class="cont" >--}}
+{{--                    <h2><i class="fa fa-truck"></i></h2>--}}
+{{--                    <h3>@lang('lang_v1.expense')   </h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="row">--}}
+{{--              <div class="col-lg-2">--}}
+{{--                <a href="/repair/dashboard" class="cont" >--}}
+{{--                    <h2><i class="fa fas fa-wrench"></i></h2>--}}
+{{--                    <h3>   @lang('lang_v1.repair')</h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="manufacturing/recipe" class="cont" >--}}
+{{--                    <h2><i class="fa fas fa-industry"></i></h2>--}}
+{{--                    <h3>@lang('lang_v1.manufacturing')   </h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="reports/stock-report" class="cont" >--}}
+{{--                    <h2><i class="fa fas fa-chart-bar"></i></h2>--}}
+{{--                    <h3>@lang('report.stock_report')   </h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+
+
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="reports/product-sell-report" class="cont" >--}}
+{{--                    <h2><i class="fa fas fa-shopping-bag"></i></h2>--}}
+{{--                    <h3>@lang('lang_v1.product_sell_day')   </h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-2">--}}
+{{--                <a href="eports/product-purchase-report" class="cont" >--}}
+{{--                    <h2><i class="fa fas fa-shopping-bag"></i></h2>--}}
+{{--                    <h3>@lang('lang_v1.product_purchas_day')   </h3>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+
+{{--        </div>--}}
+{{-- <br><br>--}}
 
         <br>
         <div class="row">

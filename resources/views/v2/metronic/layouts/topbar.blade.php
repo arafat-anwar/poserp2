@@ -140,7 +140,11 @@
 						<!--begin::Username-->
 						<div class="d-flex flex-column">
 							<div class="fw-bold d-flex align-items-center fs-5">{{ Auth::User()->first_name }} {{ Auth::User()->last_name }}
-							<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span></div>
+							@if($is_admin)
+								<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Supper Admin</span></div>
+							@else
+								<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Business</span></div>
+							@endif
 							@if(Auth::User()->email)
 							<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::User()->email }}</a>
 							@else

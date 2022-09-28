@@ -257,9 +257,8 @@ class HomeController extends Controller
                             ->with(['contact', 'table'])
                             ->limit(10)
                             ->get();
-
-
-        return view('home.metronic-index', compact('transaction_sub_type','transactions','expenses','date_filters', 'widgets', 'all_locations'));
+        $is_admin = auth()->user()->can('admin.access');
+        return view('home.metronic-index', compact('transaction_sub_type','transactions','expenses','date_filters', 'widgets', 'all_locations', 'is_admin'));
         return view('home.index', compact('transaction_sub_type','transactions','expenses','date_filters', 'widgets', 'all_locations'));
     }
 

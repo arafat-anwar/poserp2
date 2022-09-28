@@ -12,9 +12,9 @@
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content="" />
-	<meta property="og:url" content="https://keenthemes.com/metronic" />
-	<meta property="og:site_name" content="Keenthemes | Metronic" />
-	<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+	<meta property="og:url" content="#" />
+	<meta property="og:site_name" content=#" />
+	<link rel="canonical" href="#" />
 	
 	<!--begin::Fonts-->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
