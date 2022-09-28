@@ -41,7 +41,7 @@ class LedgerController extends Controller
         $contact = Contact::where('business_id', $business_id)
                     ->find($crm_contact_id);
 
-        return view('crm::ledger.index')
+        return view(viewSource().'crm::ledger.index')
                ->with(compact('contact'));
     }
 
@@ -70,7 +70,7 @@ class LedgerController extends Controller
             $mpdf->Output();
         }
 
-        return view('contact.ledger')
+        return view(viewSource().'contact.ledger')
             ->with(compact('ledger_details', 'contact'));
     }
 }

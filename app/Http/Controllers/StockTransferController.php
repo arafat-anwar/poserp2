@@ -138,7 +138,7 @@ class StockTransferController extends Controller
                 ->make(true);
         }
 
-        return view('stock_transfer.index')->with(compact('statuses'));
+        return view(viewSource().'stock_transfer.index')->with(compact('statuses'));
     }
 
     /**
@@ -163,7 +163,7 @@ class StockTransferController extends Controller
 
         $statuses = $this->stockTransferStatuses();
 
-        return view('stock_transfer.create')
+        return view(viewSource().'stock_transfer.create')
                 ->with(compact('business_locations', 'statuses'));
     }
 
@@ -378,7 +378,7 @@ class StockTransferController extends Controller
            ->latest()
            ->get();
 
-        return view('stock_transfer.show')
+        return view(viewSource().'stock_transfer.show')
                 ->with(compact('sell_transfer', 'location_details', 'lot_n_exp_enabled', 'statuses', 'activities'));
     }
 
@@ -599,7 +599,7 @@ class StockTransferController extends Controller
             $products[] = $product;
         }
 
-        return view('stock_transfer.edit')
+        return view(viewSource().'stock_transfer.edit')
                 ->with(compact('sell_transfer', 'purchase_transfer', 'business_locations', 'statuses', 'products'));
     }
 

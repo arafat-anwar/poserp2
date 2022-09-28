@@ -42,7 +42,7 @@ class InstallController extends Controller
 
         $action_url = action('\Modules\Manufacturing\Http\Controllers\InstallController@install');
 
-        return view('install.install-module')
+        return view(viewSource().'install.install-module')
             ->with(compact('action_url'));
     }
 

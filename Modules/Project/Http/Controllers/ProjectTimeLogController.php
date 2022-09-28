@@ -126,7 +126,7 @@ class ProjectTimeLogController extends Controller
                 ->make(true);
         }
 
-        return view('project::time_logs.index');
+        return view(viewSource().'project::time_logs.index');
     }
 
     /**
@@ -153,7 +153,7 @@ class ProjectTimeLogController extends Controller
 
         $added_from = request()->input('added_from');
 
-        return view('project::time_logs.create')
+        return view(viewSource().'project::time_logs.create')
             ->with(compact('project_tasks', 'project_id', 'project_members', 'is_lead_or_admin', 'added_from', 'task_id'));
     }
 
@@ -220,7 +220,7 @@ class ProjectTimeLogController extends Controller
      */
     public function show()
     {
-        return view('project::show');
+        return view(viewSource().'project::show');
     }
 
     /**
@@ -245,7 +245,7 @@ class ProjectTimeLogController extends Controller
             $is_lead_or_admin = true;
         }
 
-        return view('project::time_logs.edit')
+        return view(viewSource().'project::time_logs.edit')
             ->with(compact('project_tasks', 'project_task_time_log', 'is_lead_or_admin', 'project_members'));
     }
 

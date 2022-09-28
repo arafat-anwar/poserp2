@@ -1,9 +1,7 @@
 @inject('request', 'Illuminate\Http\Request')
 <!-- Main Header -->
-
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
 <style>
-
-                                                                                                          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
   @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
 </style>
 <style>
@@ -97,6 +95,12 @@ strong {
         @endif
 
         <div class="btn-group">
+          @if(frontendVersion() == 1)
+            <a class="btn btn-success btn-flat pull-left m-8 btn-sm mt-10" href="{{ url('switch-frontend-version?version=v2') }}"><i class="fas fa-code-branch"></i>&nbsp;V1</a>
+          @else
+            <a class="btn btn-success btn-flat pull-left m-8 btn-sm mt-10" href="{{ url('switch-frontend-version?version=v1') }}"><i class="fas fa-code-branch"></i>&nbsp;V2</a>
+          @endif
+
           <button id="header_shortcut_dropdown" type="button" class="btn btn-success dropdown-toggle btn-flat pull-left m-8 btn-sm mt-10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-plus-circle fa-lg"></i>
           </button>

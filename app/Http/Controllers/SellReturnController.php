@@ -245,7 +245,7 @@ class SellReturnController extends Controller
 
         $sales_representative = User::forDropdown($business_id, false, false, true);
 
-        return view('sell_return.index')->with(compact('business_locations', 'customers', 'sales_representative'));
+        return view(viewSource().'sell_return.index')->with(compact('business_locations', 'customers', 'sales_representative'));
     }
 
     /**
@@ -269,7 +269,7 @@ class SellReturnController extends Controller
     //     $business_locations = BusinessLocation::forDropdown($business_id);
     //     //$walk_in_customer = $this->contactUtil->getWalkInCustomer($business_id);
 
-    //     return view('sell_return.create')
+    //     return view(viewSource().'sell_return.create')
     //         ->with(compact('business_locations'));
     // }
 
@@ -303,7 +303,7 @@ class SellReturnController extends Controller
             $sell->sell_lines[$key]->formatted_qty = $this->transactionUtil->num_f($value->quantity, false, null, true);
         }
 
-        return view('sell_return.add')
+        return view(viewSource().'sell_return.add')
             ->with(compact('sell'));
     }
 
@@ -427,7 +427,7 @@ class SellReturnController extends Controller
            ->latest()
            ->get();
 
-        return view('sell_return.show')
+        return view(viewSource().'sell_return.show')
             ->with(compact('sell', 'sell_taxes', 'total_discount', 'activities'));
     }
 

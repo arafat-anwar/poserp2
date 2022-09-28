@@ -118,7 +118,7 @@ class SellPosController extends Controller
         $shipping_statuses = $this->transactionUtil->shipping_statuses();
         $is_admin = $this->isAdmin();
 
-        return view('sale_pos.index')->with(compact('business_locations', 'customers','is_admin', 'sales_representative', 'is_cmsn_agent_enabled', 'commission_agents', 'service_staffs', 'is_tables_enabled', 'is_service_staff_enabled', 'is_types_service_enabled', 'shipping_statuses'));
+        return view(viewSource().'sale_pos.index')->with(compact('business_locations', 'customers','is_admin', 'sales_representative', 'is_cmsn_agent_enabled', 'commission_agents', 'service_staffs', 'is_tables_enabled', 'is_service_staff_enabled', 'is_types_service_enabled', 'shipping_statuses'));
     }
 
     /**
@@ -233,7 +233,7 @@ class SellPosController extends Controller
         $invoice_schemes = InvoiceScheme::forDropdown($business_id);
         $default_invoice_schemes = InvoiceScheme::getDefault($business_id);
         $is_direct_sale = false;
-        return view('sale_pos.create')
+        return view(viewSource().'sale_pos.create')
             ->with(compact(
                 'business_locations',
                 'bl_attributes',
@@ -1044,7 +1044,7 @@ class SellPosController extends Controller
 
         $invoice_layouts = InvoiceLayout::forDropdown($business_id);
 
-        return view('sale_pos.edit')
+        return view(viewSource().'sale_pos.edit')
             ->with(compact('business_details', 'taxes', 'payment_types', 'walk_in_customer', 'sell_details', 'transaction', 'payment_lines', 'location_printer_type', 'shortcuts', 'commission_agent', 'categories', 'pos_settings', 'change_return', 'types', 'customer_groups', 'brands', 'accounts', 'waiters', 'redeem_details', 'edit_price', 'edit_discount', 'shipping_statuses', 'warranties', 'sub_type', 'pos_module_data', 'invoice_schemes', 'default_invoice_schemes', 'invoice_layouts', 'featured_products'));
     }
 
@@ -1555,7 +1555,7 @@ class SellPosController extends Controller
             $accounts = Account::forDropdown($business_id, true, false, true);
         }
 
-        return view('sale_pos.partials.payment_row')
+        return view(viewSource().'sale_pos.partials.payment_row')
             ->with(compact('payment_types', 'row_index', 'removable', 'payment_line', 'accounts'));
     }
 
@@ -1616,7 +1616,7 @@ class SellPosController extends Controller
 
         $is_admin = $this->isAdmin();
 //        dd($is_admin);
-        return view('sale_pos.partials.recent_transactions')
+        return view(viewSource().'sale_pos.partials.recent_transactions')
             ->with(compact('transactions','is_admin', 'transaction_sub_type'));
     }
 
@@ -1792,7 +1792,7 @@ class SellPosController extends Controller
 
             $show_prices = !empty($pos_settings['show_pricing_on_product_sugesstion']);
 
-            return view('sale_pos.partials.product_list')
+            return view(viewSource().'sale_pos.partials.product_list')
                 ->with(compact('products', 'allowed_group_prices', 'show_prices'));
         }
     }
@@ -1815,7 +1815,7 @@ class SellPosController extends Controller
                 ->findorfail($id);
             $url = $this->transactionUtil->getInvoiceUrl($id, $business_id);
 
-            return view('sale_pos.partials.invoice_url_modal')
+            return view(viewSource().'sale_pos.partials.invoice_url_modal')
                 ->with(compact('transaction', 'url'));
         }
     }
@@ -1837,7 +1837,7 @@ class SellPosController extends Controller
             $receipt = $this->receiptContent($transaction->business_id, $transaction->location_id, $transaction->id, 'browser', false, true, $invoice_layout_id, $token_user);
 
             $title = $transaction->business->name . ' | ' . $transaction->invoice_no;
-            return view('sale_pos.partials.show_invoice')
+            return view(viewSource().'sale_pos.partials.show_invoice')
                 ->with(compact('receipt', 'title'));
         } else {
             die(__("messages.something_went_wrong"));
@@ -1996,7 +1996,7 @@ class SellPosController extends Controller
 
             return $datatable;
         }
-        return view('sale_pos.subscriptions');
+        return view(viewSource().'sale_pos.subscriptions');
     }
 
     /**
@@ -2316,7 +2316,7 @@ class SellPosController extends Controller
         $featured_products = $location->getFeaturedProducts();
 
         if (!empty($featured_products)) {
-            return view('sale_pos.partials.featured_products')->with(compact('featured_products'));
+            return view(viewSource().'sale_pos.partials.featured_products')->with(compact('featured_products'));
         } else {
             return '';
         }

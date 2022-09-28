@@ -76,7 +76,7 @@ class SubscriptionController extends BaseController
 
         $intervals = ['days' => __('lang_v1.days'), 'months' => __('lang_v1.months'), 'years' => __('lang_v1.years')];
 
-        return view('superadmin::subscription.index')
+        return view(viewSource().'superadmin::subscription.index')
             ->with(compact('packages', 'active', 'nexts', 'waiting', 'permission_formatted', 'intervals'));
     }
 
@@ -158,7 +158,7 @@ class SubscriptionController extends BaseController
 
             $offline_payment_details = System::getProperty('offline_payment_details');
 
-            return view('superadmin::subscription.pay')
+            return view(viewSource().'superadmin::subscription.pay')
                 ->with(compact('package', 'gateways', 'system_currency', 'layout', 'user', 'offline_payment_details'));
         } catch (\Exception $e) {
             DB::rollBack();
@@ -538,7 +538,7 @@ class SubscriptionController extends BaseController
             $system[$setting['key']] = $setting['value'];
         }
 
-        return view('superadmin::subscription.show_subscription_modal')
+        return view(viewSource().'superadmin::subscription.show_subscription_modal')
             ->with(compact('subscription', 'system'));
     }
 

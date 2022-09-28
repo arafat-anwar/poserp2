@@ -44,7 +44,7 @@ class InstallController extends Controller
 
         $action_url = action('\Modules\Inventory\Http\Controllers\InstallController@install');
 
-        return view('install.install-module')
+        return view(viewSource().'install.install-module')
             ->with(compact('action_url'));
     }
 
@@ -176,7 +176,7 @@ class InstallController extends Controller
      */
     public function create()
     {
-        return view('inventory::create');
+        return view(viewSource().'inventory::create');
     }
 
     /**
@@ -196,7 +196,7 @@ class InstallController extends Controller
      */
     public function show($id)
     {
-        return view('inventory::show');
+        return view(viewSource().'inventory::show');
     }
 
     /**
@@ -206,7 +206,7 @@ class InstallController extends Controller
      */
     public function edit($id)
     {
-        return view('inventory::edit');
+        return view(viewSource().'inventory::edit');
     }
 
     /**

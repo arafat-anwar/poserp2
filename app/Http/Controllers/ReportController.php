@@ -77,11 +77,11 @@ class ReportController extends Controller
 
             // $data['closing_stock'] = $data['closing_stock'] - $data['total_sell_return'];
 
-            return view('report.partials.profit_loss_details', compact('data'))->render();
+            return view(viewSource().'report.partials.profit_loss_details', compact('data'))->render();
         }
 
         $business_locations = BusinessLocation::forDropdown($business_id, true);
-        return view('report.profit_loss', compact('business_locations'));
+        return view(viewSource().'report.profit_loss', compact('business_locations'));
     }
 
     /**
@@ -143,7 +143,7 @@ class ReportController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.purchase_sell')
+        return view(viewSource().'report.purchase_sell')
                     ->with(compact('business_locations'));
     }
 
@@ -248,7 +248,7 @@ class ReportController extends Controller
             'supplier' => __('report.supplier')
         ];
 
-        return view('report.contact')
+        return view(viewSource().'report.contact')
         ->with(compact('customer_group', 'types'));
     }
 
@@ -298,7 +298,7 @@ class ReportController extends Controller
             if ($for == 'view_product' && !empty(request()->input('product_id'))) {
                 $product_stock_details = $products;
 
-                return view('product.partials.product_stock_details')->with(compact('product_stock_details'));
+                return view(viewSource().'product.partials.product_stock_details')->with(compact('product_stock_details'));
             }
 
             $datatable =  Datatables::of($products)
@@ -443,7 +443,7 @@ class ReportController extends Controller
                             ->pluck('short_name', 'id');
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.stock_report')
+        return view(viewSource().'report.stock_report')
             ->with(compact('categories', 'brands', 'units', 'business_locations', 'show_manufacturing_data'));
     }
 
@@ -511,7 +511,7 @@ class ReportController extends Controller
                         ->groupBy('v.id')
                         ->get();
 
-            return view('report.stock_details')
+            return view(viewSource().'report.stock_details')
                         ->with(compact('product_details'));
         }
     }
@@ -740,7 +740,7 @@ class ReportController extends Controller
 
         $tax_report_tabs = $this->moduleUtil->getModuleData('getTaxReportViewTabs');
 
-        return view('report.tax_report')
+        return view(viewSource().'report.tax_report')
             ->with(compact('business_locations', 'taxes', 'tax_report_tabs'));
     }
 
@@ -784,7 +784,7 @@ class ReportController extends Controller
                             ->pluck('short_name', 'id');
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.trending_products')
+        return view(viewSource().'report.trending_products')
                     ->with(compact( 'categories', 'brands', 'units', 'business_locations'));
     }
 
@@ -824,7 +824,7 @@ class ReportController extends Controller
                             ->pluck('short_name', 'id');
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.less_trending_products')
+        return view(viewSource().'report.less_trending_products')
                     ->with(compact( 'categories', 'brands', 'units', 'business_locations'));
     }
 
@@ -874,7 +874,7 @@ class ReportController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.expense_report')
+        return view(viewSource().'report.expense_report')
                     ->with(compact( 'categories', 'business_locations', 'expenses'));
     }
 
@@ -922,7 +922,7 @@ class ReportController extends Controller
         }
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.stock_adjustment_report')
+        return view(viewSource().'report.stock_adjustment_report')
                     ->with(compact('business_locations'));
     }
 
@@ -1019,7 +1019,7 @@ class ReportController extends Controller
 
         $users = User::forDropdown($business_id, false);
 
-        return view('report.register_report')
+        return view(viewSource().'report.register_report')
                     ->with(compact('users'));
     }
 
@@ -1038,7 +1038,7 @@ class ReportController extends Controller
         $users = User::allUsersDropdown($business_id, false);
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.sales_representative')
+        return view(viewSource().'report.sales_representative')
                 ->with(compact('users', 'business_locations'));
     }
 
@@ -1323,7 +1323,7 @@ class ReportController extends Controller
             \Carbon::now()->addYear()->format('Y-m-d') => __('report.expiring_in_1_year')
         ];
 
-        return view('report.stock_expiry_report')
+        return view(viewSource().'report.stock_expiry_report')
                 ->with(compact('categories', 'brands', 'units', 'business_locations', 'view_stock_filter'));
     }
 
@@ -1365,7 +1365,7 @@ class ReportController extends Controller
                 }
             }
 
-            return view('report.partials.stock_expiry_edit_modal')
+            return view(viewSource().'report.partials.stock_expiry_edit_modal')
                 ->with(compact('purchase_line'));
         }
     }
@@ -1485,7 +1485,7 @@ class ReportController extends Controller
         $customer_group = CustomerGroup::forDropdown($business_id, false, true);
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.customer_group')
+        return view(viewSource().'report.customer_group')
             ->with(compact('customer_group', 'business_locations'));
     }
 
@@ -1600,7 +1600,7 @@ class ReportController extends Controller
         $business_locations = BusinessLocation::forDropdown($business_id);
         $suppliers = Contact::suppliersDropdown($business_id);
 
-        return view('report.product_purchase_report')
+        return view(viewSource().'report.product_purchase_report')
             ->with(compact('business_locations', 'suppliers'));
     }
 
@@ -1748,7 +1748,7 @@ class ReportController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id);
         $customers = Contact::customersDropdown($business_id);
-        return view('report.product_sell_report')
+        return view(viewSource().'report.product_sell_report')
             ->with(compact('business_locations', 'customers'));
     }
 //sell for return
@@ -1876,7 +1876,7 @@ class ReportController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id);
         $customers = Contact::customersDropdown($business_id);
-        return view('report.product_sell_return_report')
+        return view(viewSource().'report.product_sell_return_report')
             ->with(compact('business_locations', 'customers'));
     }
 
@@ -2156,7 +2156,7 @@ class ReportController extends Controller
                             ->pluck('short_name', 'id');
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.lot_report')
+        return view(viewSource().'report.lot_report')
             ->with(compact('categories', 'brands', 'units', 'business_locations'));
     }
 
@@ -2276,7 +2276,7 @@ class ReportController extends Controller
         $business_locations = BusinessLocation::forDropdown($business_id);
         $suppliers = Contact::suppliersDropdown($business_id, false);
 
-        return view('report.purchase_payment_report')
+        return view(viewSource().'report.purchase_payment_report')
             ->with(compact('business_locations', 'suppliers'));
     }
 
@@ -2411,7 +2411,7 @@ class ReportController extends Controller
         $customers = Contact::customersDropdown($business_id, false);
         $customer_groups = CustomerGroup::forDropdown($business_id, false, true);
 
-        return view('report.sell_payment_report')
+        return view(viewSource().'report.sell_payment_report')
             ->with(compact('business_locations', 'customers', 'payment_types', 'customer_groups'));
     }
 
@@ -2459,7 +2459,7 @@ class ReportController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.table_report')
+        return view(viewSource().'report.table_report')
             ->with(compact('business_locations'));
     }
 
@@ -2480,7 +2480,7 @@ class ReportController extends Controller
 
         $waiters = $this->transactionUtil->serviceStaffDropdown($business_id);
 
-        return view('report.service_staff_report')
+        return view(viewSource().'report.service_staff_report')
             ->with(compact('business_locations', 'waiters'));
     }
 
@@ -2706,7 +2706,7 @@ class ReportController extends Controller
         }
 
         $business_locations = BusinessLocation::forDropdown($business_id);
-        return view('report.product_stock_details')
+        return view(viewSource().'report.product_stock_details')
             ->with(compact('stock_details', 'business_locations', 'location'));
     }
 
@@ -2958,7 +2958,7 @@ class ReportController extends Controller
             }
             $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
-            return view('report.partials.profit_by_day')->with(compact('profits', 'days'));
+            return view(viewSource().'report.partials.profit_by_day')->with(compact('profits', 'days'));
         }
 
         if ($by == 'customer') {
@@ -3199,7 +3199,7 @@ class ReportController extends Controller
         $suppliers = Contact::suppliersDropdown($business_id, false);
         $customers = Contact::customersDropdown($business_id, false);
         $business_locations = BusinessLocation::forDropdown($business_id);
-        return view('report.items_report')->with(compact('suppliers', 'customers', 'business_locations'));
+        return view(viewSource().'report.items_report')->with(compact('suppliers', 'customers', 'business_locations'));
     }
 
     public function sell_purchase_lines_report(){
@@ -3213,7 +3213,7 @@ class ReportController extends Controller
         $suppliers = Contact::suppliersDropdown($business_id, false);
         $customers = Contact::customersDropdown($business_id, false);
         $business_locations = BusinessLocation::forDropdown($business_id);
-        return view('report.sell_purchase_lines_report')->with(compact('suppliers', 'customers', 'business_locations','products'));
+        return view(viewSource().'report.sell_purchase_lines_report')->with(compact('suppliers', 'customers', 'business_locations','products'));
 
     }
     public function get_product_trans(Request $request){
@@ -3431,7 +3431,7 @@ class ReportController extends Controller
             if ($for == 'view_product' && !empty(request()->input('product_id'))) {
                 $product_stock_details = $products;
 
-                return view('product.partials.product_stock_details')->with(compact('product_stock_details'));
+                return view(viewSource().'product.partials.product_stock_details')->with(compact('product_stock_details'));
             }
 
             $datatable =  Datatables::of($products)
@@ -3552,7 +3552,7 @@ class ReportController extends Controller
         $business_locations = BusinessLocation::forDropdown($business_id, true);
         unset($business_locations[""]);
 //dd($business_locations);
-        return view('report.stock-compares')
+        return view(viewSource().'report.stock-compares')
             ->with(compact('categories', 'brands', 'units', 'business_locations', 'show_manufacturing_data'));
 
      }
@@ -3705,7 +3705,7 @@ class ReportController extends Controller
         $suppliers = Contact::suppliersDropdown($business_id, false);
         $orderStatuses = $this->productUtil->orderStatuses();
 
-        return view('report.purchase_report')
+        return view(viewSource().'report.purchase_report')
             ->with(compact('business_locations', 'suppliers', 'orderStatuses'));
     }
 
@@ -3724,7 +3724,7 @@ class ReportController extends Controller
         $business_locations = BusinessLocation::forDropdown($business_id, false);
         $customers = Contact::customersDropdown($business_id, false);
 
-        return view('report.sale_report')
+        return view(viewSource().'report.sale_report')
             ->with(compact('business_locations', 'customers'));
     }
 
@@ -3808,7 +3808,7 @@ class ReportController extends Controller
             if ($for == 'view_product' && !empty(request()->input('product_id'))) {
                 $product_stock_details = $products;
 
-                return view('product.partials.product_stock_details')->with(compact('product_stock_details'));
+                return view(viewSource().'product.partials.product_stock_details')->with(compact('product_stock_details'));
             }
 
             $datatable =  Datatables::of($products)
@@ -3936,7 +3936,7 @@ class ReportController extends Controller
                             ->pluck('short_name', 'id');
         $business_locations = BusinessLocation::forDropdown($business_id, true);
 
-        return view('report.stock_missing_report')
+        return view(viewSource().'report.stock_missing_report')
             ->with(compact('categories', 'brands', 'units', 'business_locations', 'show_manufacturing_data'));
     }
 
@@ -3973,7 +3973,7 @@ class ReportController extends Controller
 
 
 
-        return view('report.sellsall')
+        return view(viewSource().'report.sellsall')
             ->with(compact('users', 'business_locations'));
     }
 
@@ -4101,7 +4101,7 @@ class ReportController extends Controller
 
         $users = User::allUsersDropdown($business_id, false);
 
-        return view('report.activity_log')->with(compact('users', 'transaction_types'));
+        return view(viewSource().'report.activity_log')->with(compact('users', 'transaction_types'));
 
 
     }

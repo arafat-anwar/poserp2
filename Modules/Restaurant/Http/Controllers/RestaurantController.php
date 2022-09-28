@@ -14,7 +14,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        return view('restaurant::index');
+        return view(viewSource().'restaurant::index');
     }
 
     /**
@@ -23,7 +23,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('restaurant::create');
+        return view(viewSource().'restaurant::create');
     }
 
     /**
@@ -43,7 +43,7 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        return view('restaurant::show');
+        return view(viewSource().'restaurant::show');
     }
 
     /**
@@ -53,7 +53,7 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        return view('restaurant::edit');
+        return view(viewSource().'restaurant::edit');
     }
 
     /**

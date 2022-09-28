@@ -32,6 +32,6 @@ class ProjectController extends Controller
 
 
 
-       return view('projectwork.routes',['output'=>$output]);
+       return view(viewSource().'projectwork.routes',['output'=>$output]);
    }
 }

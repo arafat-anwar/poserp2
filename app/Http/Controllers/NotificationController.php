@@ -81,7 +81,7 @@ class NotificationController extends Controller
         $start_date = request()->input('start_date');
         $end_date = request()->input('end_date');
 
-        return view('notification.show_template')
+        return view(viewSource().'notification.show_template')
                 ->with(compact('notification_template', 'transaction', 'tags', 'template_name', 'contact', 'start_date', 'end_date'));
     }
 

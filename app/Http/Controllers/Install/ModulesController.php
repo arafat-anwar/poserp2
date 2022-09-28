@@ -74,7 +74,7 @@ class ModulesController extends Controller
 
 
 
-        return view('install.modules.index')
+        return view(viewSource().'install.modules.index')
             ->with(compact('modules', 'is_demo', 'mods'));
 
 

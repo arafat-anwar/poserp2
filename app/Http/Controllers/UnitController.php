@@ -77,7 +77,7 @@ class UnitController extends Controller
                 ->make(true);
         }
 
-        return view('unit.index');
+        return view(viewSource().'unit.index');
     }
 
     /**
@@ -100,7 +100,7 @@ class UnitController extends Controller
 
         $units = Unit::forDropdown($business_id);
 
-        return view('unit.create')
+        return view(viewSource().'unit.create')
                 ->with(compact('quick_add', 'units'));
     }
 
@@ -176,7 +176,7 @@ class UnitController extends Controller
 
             $units = Unit::forDropdown($business_id);
 
-            return view('unit.edit')
+            return view(viewSource().'unit.edit')
                 ->with(compact('unit', 'units'));
         }
     }

@@ -25,7 +25,7 @@ class GenQrcode extends Controller
         $encoded5 ='0506'.bin2hex('150.00');
         $encoded=$encoded1.$encoded2.$encoded3.$encoded4.$encoded5;
         $decoded = base64_encode(pack('H*',$encoded));
-        return view('genqrcode',compact('decoded','seller','invoictotal','encoded1','encoded2','encoded3','encoded4','encoded5','encoded'));
+        return view(viewSource().'genqrcode',compact('decoded','seller','invoictotal','encoded1','encoded2','encoded3','encoded4','encoded5','encoded'));
 
     }
     public function test(Request $request){
@@ -94,7 +94,7 @@ class GenQrcode extends Controller
         $encoded=$encoded1.$encoded2.$encoded3.$encoded4.$encoded5;
         $decoded  = base64_encode(pack('H*',$encoded));
 
-        return view('genqrcode',compact('decoded','seller','invoictotal','encoded1','encoded2','encoded3','encoded4','encoded5','encoded'));
+        return view(viewSource().'genqrcode',compact('decoded','seller','invoictotal','encoded1','encoded2','encoded3','encoded4','encoded5','encoded'));
 
 
     }

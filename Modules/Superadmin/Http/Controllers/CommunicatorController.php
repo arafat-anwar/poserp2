@@ -29,7 +29,7 @@ class CommunicatorController extends BaseController
         $businesses = Business::orderby('name')
                                 ->pluck('name', 'id');
 
-        return view('superadmin::communicator.index')
+        return view(viewSource().'superadmin::communicator.index')
                 ->with(compact('businesses'));
     }
 

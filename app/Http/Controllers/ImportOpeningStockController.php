@@ -55,10 +55,10 @@ class ImportOpeningStockController extends Controller
                             'msg' => 'Please install/enable PHP Zip archive for import'
                         ];
 
-            return view('import_opening_stock.index')
+            return view(viewSource().'import_opening_stock.index')
                 ->with(compact('notification', 'date_format'));
         } else {
-            return view('import_opening_stock.index')
+            return view(viewSource().'import_opening_stock.index')
                 ->with(compact('date_format'));
         }
     }

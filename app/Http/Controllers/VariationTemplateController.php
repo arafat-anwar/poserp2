@@ -50,7 +50,7 @@ class VariationTemplateController extends Controller
                 ->make(false);
         }
 
-        return view('variation.index');
+        return view(viewSource().'variation.index');
     }
 
     /**
@@ -60,7 +60,7 @@ class VariationTemplateController extends Controller
      */
     public function create()
     {
-        return view('variation.create');
+        return view(viewSource().'variation.create');
     }
 
     /**
@@ -127,7 +127,7 @@ class VariationTemplateController extends Controller
             $variation = VariationTemplate::where('business_id', $business_id)
                             ->with(['values'])->find($id);
 
-            return view('variation.edit')
+            return view(viewSource().'variation.edit')
                 ->with(compact('variation'));
         }
     }

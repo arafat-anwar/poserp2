@@ -63,7 +63,7 @@ class InvoiceSchemeController extends Controller
                                         ->with(['locations'])
                                         ->get();
 
-        return view('invoice_scheme.index')
+        return view(viewSource().'invoice_scheme.index')
                     ->with(compact('invoice_layouts'));
     }
 
@@ -78,7 +78,7 @@ class InvoiceSchemeController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        return view('invoice_scheme.create');
+        return view(viewSource().'invoice_scheme.create');
     }
 
     /**
@@ -150,7 +150,7 @@ class InvoiceSchemeController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $invoice = InvoiceScheme::where('business_id', $business_id)->find($id);
 
-        return view('invoice_scheme.edit')
+        return view(viewSource().'invoice_scheme.edit')
             ->with(compact('invoice'));
     }
 

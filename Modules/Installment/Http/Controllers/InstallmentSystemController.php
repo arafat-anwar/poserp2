@@ -86,7 +86,7 @@ class InstallmentSystemController extends Controller
         }
 
 
-        return view('installment::systems.index');
+        return view(viewSource().'installment::systems.index');
     }
 
 
@@ -106,7 +106,7 @@ class InstallmentSystemController extends Controller
      */
     public function create()
     {
-        return view('installment::systems.create');
+        return view(viewSource().'installment::systems.create');
     }
 
     /**
@@ -150,7 +150,7 @@ class InstallmentSystemController extends Controller
     public function edit($id)
     {
         $data=installmentsystem::where('id','=',$id)->first();
-        return view('installment::systems.edit',['data'=>$data]);
+        return view(viewSource().'installment::systems.edit',['data'=>$data]);
     }
 
     /**

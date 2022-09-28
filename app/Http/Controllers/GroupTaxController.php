@@ -53,7 +53,7 @@ class GroupTaxController extends Controller
     {
         $business_id = request()->session()->get('user.business_id');
         $taxes = TaxRate::where('business_id', $business_id)->where('is_tax_group', '0')->pluck('name', 'id');
-        return view('tax_group.create')
+        return view(viewSource().'tax_group.create')
                 ->with(compact('taxes'));
     }
 
@@ -125,7 +125,7 @@ class GroupTaxController extends Controller
             foreach ($tax_rate->sub_taxes as $sub_tax) {
                 $sub_taxes[] = $sub_tax->id;
             }
-            return view('tax_group.edit')
+            return view(viewSource().'tax_group.edit')
                 ->with(compact('taxes', 'sub_taxes', 'tax_rate'));
         }
     }

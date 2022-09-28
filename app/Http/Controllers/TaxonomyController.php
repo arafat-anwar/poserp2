@@ -70,7 +70,7 @@ class TaxonomyController extends Controller
 
         $module_category_data = $this->moduleUtil->getTaxonomyData($category_type);
 
-        return view('taxonomy.index')->with(compact('module_category_data', 'module_category_data'));
+        return view(viewSource().'taxonomy.index')->with(compact('module_category_data', 'module_category_data'));
     }
 
     /**
@@ -101,7 +101,7 @@ class TaxonomyController extends Controller
             }
         }
 
-        return view('taxonomy.create')
+        return view(viewSource().'taxonomy.create')
                     ->with(compact('parent_categories', 'module_category_data', 'category_type'));
     }
 
@@ -188,7 +188,7 @@ class TaxonomyController extends Controller
                 $selected_parent = $category->parent_id ;
             }
 
-            return view('taxonomy.edit')
+            return view(viewSource().'taxonomy.edit')
                 ->with(compact('category', 'parent_categories', 'is_parent', 'selected_parent', 'module_category_data'));
         }
     }
@@ -297,7 +297,7 @@ class TaxonomyController extends Controller
             $category_type = $request->get('category_type');
             $module_category_data = $this->moduleUtil->getTaxonomyData($category_type);
 
-            return view('taxonomy.ajax_index')
+            return view(viewSource().'taxonomy.ajax_index')
                 ->with(compact('module_category_data', 'category_type'));
         }
     }

@@ -70,7 +70,7 @@ class FinalAccountController extends Controller
 
 
 
-        return view('partners::finalaccount.index',['partners'=>$partners,'totalshare'=>$totalshare,'totalval'=>$totalval]);
+        return view(viewSource().'partners::finalaccount.index',['partners'=>$partners,'totalshare'=>$totalshare,'totalval'=>$totalval]);
     }
 
     /**
@@ -81,7 +81,7 @@ class FinalAccountController extends Controller
     {
         $business_id = request()->session()->get('user.business_id');
         $totalshare=partner::where('business_id', $business_id)->sum('share');
-        return view('partners::finalaccount.create',['totalshare'=>$totalshare]);
+        return view(viewSource().'partners::finalaccount.create',['totalshare'=>$totalshare]);
     }
     public function store(Request $request)
     {
@@ -120,7 +120,7 @@ class FinalAccountController extends Controller
 
     public function show($id)
     {
-        return view('partners::finalaccount.create');
+        return view(viewSource().'partners::finalaccount.create');
     }
 
     /**
@@ -137,7 +137,7 @@ class FinalAccountController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $data=businessprofit::findorfail($id);
 
-        return view('partners::finalaccount.edit',['data'=>$data]);
+        return view(viewSource().'partners::finalaccount.edit',['data'=>$data]);
     }
 
     /**
@@ -237,13 +237,13 @@ class FinalAccountController extends Controller
         return $output;
     }
     public function partners(){
-        return view('partners::partners');
+        return view(viewSource().'partners::partners');
     }
 
     public function partners_pay(){
-        return view('partners::partners_pay');
+        return view(viewSource().'partners::partners_pay');
     }
     public function partners_set(){
-        return view('partners::partners_set');
+        return view(viewSource().'partners::partners_set');
     }
 }

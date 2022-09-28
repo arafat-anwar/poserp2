@@ -81,7 +81,7 @@ class SuperadminSubscriptionsController extends BaseController
                         ->rawColumns([2, 6, 9])
                         ->make(false);
         }
-        return view('superadmin::superadmin_subscription.index');
+        return view(viewSource().'superadmin::superadmin_subscription.index');
     }
 
     /**
@@ -95,7 +95,7 @@ class SuperadminSubscriptionsController extends BaseController
 
         $gateways = $this->_payment_gateways();
 
-        return view('superadmin::superadmin_subscription.add_subscription')
+        return view(viewSource().'superadmin::superadmin_subscription.add_subscription')
               ->with(compact('packages', 'business_id', 'gateways'));
     }
 
@@ -141,7 +141,7 @@ class SuperadminSubscriptionsController extends BaseController
      */
     public function show()
     {
-        return view('superadmin::show');
+        return view(viewSource().'superadmin::show');
     }
 
     /**
@@ -158,7 +158,7 @@ class SuperadminSubscriptionsController extends BaseController
             $status = Subscription::package_subscription_status();
             $subscription = Subscription::find($id);
 
-            return view('superadmin::superadmin_subscription.edit')
+            return view(viewSource().'superadmin::superadmin_subscription.edit')
                         ->with(compact('subscription', 'status'));
         }
     }
@@ -308,7 +308,7 @@ class SuperadminSubscriptionsController extends BaseController
         if (request()->ajax()) {
             $subscription = Subscription::find($id);
 
-            return view('superadmin::superadmin_subscription.edit_date_modal')
+            return view(viewSource().'superadmin::superadmin_subscription.edit_date_modal')
                         ->with(compact('subscription'));
         }
     }

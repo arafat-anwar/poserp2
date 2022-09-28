@@ -52,7 +52,7 @@ class CrmDashboardController extends Controller
 
         $upcoming_birthdays = array_merge($this->getBirthdays($customers)['upcoming_birthdays'], $this->getBirthdays($leads)['upcoming_birthdays']);
 
-        return view('crm::crm_dashboard.index')->with(compact('total_customers', 'total_leads', 'total_sources', 'total_life_stage', 'leads_by_life_stage', 'sources', 'life_stages', 'todays_birthdays', 'upcoming_birthdays', 'leads_count_by_source', 'contacts_count_by_source', 'customers_count_by_source'));
+        return view(viewSource().'crm::crm_dashboard.index')->with(compact('total_customers', 'total_leads', 'total_sources', 'total_life_stage', 'leads_by_life_stage', 'sources', 'life_stages', 'todays_birthdays', 'upcoming_birthdays', 'leads_count_by_source', 'contacts_count_by_source', 'customers_count_by_source'));
     }
 
     private function getBirthdays($contacts)
@@ -92,7 +92,7 @@ class CrmDashboardController extends Controller
      */
     public function create()
     {
-        return view('crm::create');
+        return view(viewSource().'crm::create');
     }
 
     /**
@@ -112,7 +112,7 @@ class CrmDashboardController extends Controller
      */
     public function show($id)
     {
-        return view('crm::show');
+        return view(viewSource().'crm::show');
     }
 
     /**
@@ -122,7 +122,7 @@ class CrmDashboardController extends Controller
      */
     public function edit($id)
     {
-        return view('crm::edit');
+        return view(viewSource().'crm::edit');
     }
 
     /**

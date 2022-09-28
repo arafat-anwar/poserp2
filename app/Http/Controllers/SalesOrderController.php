@@ -65,7 +65,7 @@ class SalesOrderController extends Controller
             $sales_order_statuses[$key] = $value['label'];
         }
 
-        return view('sales_order.index')
+        return view(viewSource().'sales_order.index')
             ->with(compact('business_locations', 'customers', 'shipping_statuses', 'sales_order_statuses'));
     }
 
@@ -107,7 +107,7 @@ class SalesOrderController extends Controller
             $status = $transaction->status;
             $statuses = $this->sales_order_statuses;
 
-            return view('sales_order.edit_status_modal')
+            return view(viewSource().'sales_order.edit_status_modal')
                 ->with(compact('id', 'status', 'statuses'));
         }
     }

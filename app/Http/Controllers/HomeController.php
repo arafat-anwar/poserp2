@@ -68,7 +68,7 @@ class HomeController extends Controller
         $date_filters['this_week']['start'] = date('Y-m-d', strtotime('monday this week'));
         $date_filters['this_week']['end'] = date('Y-m-d', strtotime('sunday this week'));
         if (!auth()->user()->can('dashboard.data')) {
-            return view('home.index', compact('date_filters'));
+            return view(viewSource().'home.index', compact('date_filters'));
         }
 
 
@@ -258,8 +258,7 @@ class HomeController extends Controller
                             ->limit(10)
                             ->get();
         $is_admin = auth()->user()->can('admin.access');
-        return view('home.metronic-index', compact('transaction_sub_type','transactions','expenses','date_filters', 'widgets', 'all_locations', 'is_admin'));
-        return view('home.index', compact('transaction_sub_type','transactions','expenses','date_filters', 'widgets', 'all_locations'));
+        return view(viewSource().'home.index', compact('transaction_sub_type','transactions','expenses','date_filters', 'widgets', 'all_locations', 'is_admin'));
     }
 
     /**
@@ -537,7 +536,7 @@ class HomeController extends Controller
         }
         $notifications_data = $this->commonUtil->parseNotifications($notifications);
 
-        return view('layouts.partials.notification_list', compact('notifications_data'));
+        return view(viewSource().'layouts.partials.notification_list', compact('notifications_data'));
     }
 
     /**
@@ -632,7 +631,7 @@ class HomeController extends Controller
             $event_types = array_merge($event_types, $module_event_type);
         }
         
-        return view('home.calendar')->with(compact('all_locations', 'users', 'event_types'));
+        return view(viewSource().'home.calendar')->with(compact('all_locations', 'users', 'event_types'));
     }
 
     public function showNotification($id)
@@ -643,7 +642,7 @@ class HomeController extends Controller
 
         $notification->markAsRead();
 
-        return view('home.notification_modal')->with([
+        return view(viewSource().'home.notification_modal')->with([
                 'notifications' => [$notification]
             ]);
     }

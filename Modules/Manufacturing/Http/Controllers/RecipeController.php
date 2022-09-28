@@ -124,7 +124,7 @@ class RecipeController extends Controller
                 ->make(true);
         }
 
-        return view('manufacturing::recipe.index');
+        return view(viewSource().'manufacturing::recipe.index');
     }
 
     /**
@@ -140,7 +140,7 @@ class RecipeController extends Controller
 
         $recipes = MfgRecipe::forDropdown($business_id, false);
 
-        return view('manufacturing::recipe.create')->with(compact('recipes'));
+        return view(viewSource().'manufacturing::recipe.create')->with(compact('recipes'));
     }
 
     /**
@@ -276,7 +276,7 @@ class RecipeController extends Controller
                         ->findOrFail($id);
 
         $ingredients = $this->mfgUtil->getIngredientDetails($recipe, $business_id);
-        return view('manufacturing::recipe.show', compact('recipe', 'ingredients'));
+        return view(viewSource().'manufacturing::recipe.show', compact('recipe', 'ingredients'));
     }
 
     /**
@@ -304,7 +304,7 @@ class RecipeController extends Controller
 
         $sort_order = request()->input('sort_order');
 
-        return view('manufacturing::recipe.ingredient_row', compact('ingredient', 'row_index', 'ig_index', 'sort_order'));
+        return view(viewSource().'manufacturing::recipe.ingredient_row', compact('ingredient', 'row_index', 'ig_index', 'sort_order'));
     }
 
     /**
@@ -387,7 +387,7 @@ class RecipeController extends Controller
 
         $unit_html = !empty($sub_units) ? $sub_units : $variation->unit_name;
 
-        return view('manufacturing::recipe.add_ingredients', compact('variation', 'ingredients', 'recipe', 'unit_html', 'currency_details'));
+        return view(viewSource().'manufacturing::recipe.add_ingredients', compact('variation', 'ingredients', 'recipe', 'unit_html', 'currency_details'));
     }
 
     /**
@@ -468,7 +468,7 @@ class RecipeController extends Controller
     {
         $ig_index = request()->input('ig_index');
 
-        return view('manufacturing::recipe.ingredient_group')
+        return view(viewSource().'manufacturing::recipe.ingredient_group')
                 ->with(compact('ig_index'));
     }
 

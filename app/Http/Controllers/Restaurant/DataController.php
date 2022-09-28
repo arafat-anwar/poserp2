@@ -71,7 +71,7 @@ class DataController extends Controller
 
             $is_service_staff_required = (!empty($pos_settings['is_service_staff_required']) && $pos_settings['is_service_staff_required'] == 1) ? true : false;
 
-            return view('restaurant.partials.pos_table_dropdown')
+            return view(viewSource().'restaurant.partials.pos_table_dropdown')
                     ->with(compact('tables', 'waiters', 'view_data', 'waiters_enabled', 'tables_enabled', 'is_service_staff_required'));
         }
     }

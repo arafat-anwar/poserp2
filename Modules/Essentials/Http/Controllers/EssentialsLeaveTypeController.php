@@ -55,7 +55,7 @@ class EssentialsLeaveTypeController extends Controller
                 ->make(false);
         }
 
-        return view('essentials::leave_type.index');
+        return view(viewSource().'essentials::leave_type.index');
     }
 
     /**
@@ -64,7 +64,7 @@ class EssentialsLeaveTypeController extends Controller
      */
     public function create()
     {
-        return view('essentials::create');
+        return view(viewSource().'essentials::create');
     }
 
     /**
@@ -107,7 +107,7 @@ class EssentialsLeaveTypeController extends Controller
      */
     public function show()
     {
-        return view('essentials::show');
+        return view(viewSource().'essentials::show');
     }
 
     /**
@@ -126,7 +126,7 @@ class EssentialsLeaveTypeController extends Controller
         $leave_type = EssentialsLeaveType::where('business_id', $business_id)
                                         ->find($id);
 
-        return view('essentials::leave_type.edit')->with(compact('leave_type'));
+        return view(viewSource().'essentials::leave_type.edit')->with(compact('leave_type'));
     }
 
     /**

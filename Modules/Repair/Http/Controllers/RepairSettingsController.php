@@ -72,7 +72,7 @@ class RepairSettingsController extends Controller
         $devices = Category::forDropdown($business_id, 'device');
         $module_category_data = $this->moduleUtil->getTaxonomyData('device');
 
-        return view('repair::settings.index')
+        return view(viewSource().'repair::settings.index')
                 ->with(compact('barcode_settings', 'repair_settings', 'default_product_name', 'barcode_types', 'repair_statuses', 'brands', 'devices', 'module_category_data'));
     }
 

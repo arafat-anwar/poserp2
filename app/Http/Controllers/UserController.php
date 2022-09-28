@@ -51,7 +51,7 @@ class UserController extends Controller
             $languages[$key] = $value['full_name'];
         }
 
-        return view('user.profile', compact('user', 'languages'));
+        return view(viewSource().'user.profile', compact('user', 'languages'));
     }
 
     /**

@@ -59,7 +59,7 @@ class BrandController extends Controller
                 ->make(false);
         }
 
-        return view('brand.index');
+        return view(viewSource().'brand.index');
     }
 
     /**
@@ -80,7 +80,7 @@ class BrandController extends Controller
 
         $is_repair_installed = $this->moduleUtil->isModuleInstalled('Repair');
 
-        return view('brand.create')
+        return view(viewSource().'brand.create')
                 ->with(compact('quick_add', 'is_repair_installed'));
     }
 
@@ -151,7 +151,7 @@ class BrandController extends Controller
 
             $is_repair_installed = $this->moduleUtil->isModuleInstalled('Repair');
 
-            return view('brand.edit')
+            return view(viewSource().'brand.edit')
                 ->with(compact('brand', 'is_repair_installed'));
         }
     }

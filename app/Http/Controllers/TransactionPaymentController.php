@@ -183,7 +183,7 @@ class TransactionPaymentController extends Controller
             $location_id = !empty($transaction->location_id) ? $transaction->location_id : null;
             $payment_types = $this->transactionUtil->payment_types($location_id, true);
             
-            return view('transaction_payment.show_payments')
+            return view(viewSource().'transaction_payment.show_payments')
                     ->with(compact('transaction', 'payments', 'payment_types', 'accounts_enabled'));
         }
     }
@@ -215,7 +215,7 @@ class TransactionPaymentController extends Controller
             //Accounts
             $accounts = $this->moduleUtil->accountsDropdown($business_id, true, false, true);
 
-            return view('transaction_payment.edit_payment_row')
+            return view(viewSource().'transaction_payment.edit_payment_row')
                         ->with(compact('transaction', 'payment_types', 'payment_line', 'accounts'));
         }
     }
@@ -521,7 +521,7 @@ class TransactionPaymentController extends Controller
             //Accounts
             $accounts = $this->moduleUtil->accountsDropdown($business_id, true);
 
-            return view('transaction_payment.pay_supplier_due_modal')
+            return view(viewSource().'transaction_payment.pay_supplier_due_modal')
                         ->with(compact('contact_details', 'payment_types', 'payment_line', 'due_payment_type', 'ob_due', 'amount_formated', 'accounts'));
         }
     }
@@ -590,7 +590,7 @@ class TransactionPaymentController extends Controller
 
             $payment_types = $this->transactionUtil->payment_types(null, false, $business_id);
             
-            return view('transaction_payment.single_payment_view')
+            return view(viewSource().'transaction_payment.single_payment_view')
                     ->with(compact('single_payment_line', 'transaction', 'payment_types'));
         }
     }
@@ -617,7 +617,7 @@ class TransactionPaymentController extends Controller
 
             $payment_types = $this->transactionUtil->payment_types(null, false, $business_id);
             
-            return view('transaction_payment.show_child_payments')
+            return view(viewSource().'transaction_payment.show_child_payments')
                     ->with(compact('child_payments', 'payment_types'));
         }
     }

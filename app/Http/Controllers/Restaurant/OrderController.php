@@ -66,7 +66,7 @@ class OrderController extends Controller
             $service_staff = $this->restUtil->service_staff_dropdown($business_id);
         }
 
-        return view('restaurant.orders.index', compact('orders', 'is_service_staff', 'service_staff', 'line_orders'));
+        return view(viewSource().'restaurant.orders.index', compact('orders', 'is_service_staff', 'service_staff', 'line_orders'));
     }
 
     /**

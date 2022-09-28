@@ -140,7 +140,7 @@ class AccountController extends Controller
                                      ->with(['sub_types'])
                                      ->get();
 
-        return view('account.index')
+        return view(viewSource().'account.index')
                 ->with(compact('not_linked_payments', 'account_types'));
     }
 
@@ -160,7 +160,7 @@ class AccountController extends Controller
                                      ->with(['sub_types'])
                                      ->get();
 
-        return view('account.create')
+        return view(viewSource().'account.create')
                 ->with(compact('account_types'));
     }
 
@@ -312,7 +312,7 @@ class AccountController extends Controller
                         ->with(['account_type', 'account_type.parent_account'])
                         ->findOrFail($id);
 
-        return view('account.show')
+        return view(viewSource().'account.show')
                 ->with(compact('account'));
     }
 
@@ -336,7 +336,7 @@ class AccountController extends Controller
                                      ->with(['sub_types'])
                                      ->get();
            
-            return view('account.edit')
+            return view(viewSource().'account.edit')
                 ->with(compact('account', 'account_types'));
         }
     }
@@ -477,7 +477,7 @@ class AccountController extends Controller
                             ->NotClosed()
                             ->pluck('name', 'id');
 
-            return view('account.transfer')
+            return view(viewSource().'account.transfer')
                 ->with(compact('from_account', 'to_accounts'));
         }
     }
@@ -575,7 +575,7 @@ class AccountController extends Controller
                             ->NotClosed()
                             ->pluck('name', 'id');
 
-            return view('account.deposit')
+            return view(viewSource().'account.deposit')
                 ->with(compact('account', 'account', 'from_accounts'));
         }
     }
@@ -750,7 +750,7 @@ class AccountController extends Controller
         }
         $accounts = Account::forDropdown($business_id, false);
                             
-        return view('account.cash_flow')
+        return view(viewSource().'account.cash_flow')
                  ->with(compact('accounts'));
     }
 

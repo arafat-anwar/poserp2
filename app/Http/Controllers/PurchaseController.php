@@ -322,7 +322,7 @@ class PurchaseController extends Controller
         $suppliers = Contact::suppliersDropdown($business_id, false);
         $orderStatuses = $this->productUtil->orderStatuses();
 
-        return view('purchase.index')
+        return view(viewSource().'purchase.index')
             ->with(compact('business_locations', 'suppliers', 'orderStatuses'));
     }
 
@@ -380,7 +380,7 @@ class PurchaseController extends Controller
         //Accounts
         $accounts = $this->moduleUtil->accountsDropdown($business_id, true);
 
-        return view('purchase.create')
+        return view(viewSource().'purchase.create')
             ->with(compact('taxes', 'orderStatuses', 'business_locations', 'currency_details', 'default_purchase_status', 'customer_groups', 'types', 'shortcuts', 'payment_line', 'payment_types', 'accounts', 'bl_attributes'));
     }
     public function get_purchase_pay_default(Request $request){
@@ -573,7 +573,7 @@ class PurchaseController extends Controller
 
         $statuses = $this->productUtil->orderStatuses();
 
-        return view('purchase.show')
+        return view(viewSource().'purchase.show')
                 ->with(compact('taxes', 'purchase', 'payment_methods', 'purchase_taxes', 'activities', 'statuses'));
     }
 
@@ -663,7 +663,7 @@ class PurchaseController extends Controller
         $business_details = $this->businessUtil->getDetails($business_id);
         $shortcuts = json_decode($business_details->keyboard_shortcuts, true);
 
-        return view('purchase.edit')
+        return view(viewSource().'purchase.edit')
             ->with(compact(
                 'taxes',
                 'purchase',
@@ -1077,7 +1077,7 @@ class PurchaseController extends Controller
                             ->ExcludeForTaxGroup()
                             ->get();
 
-                return view('purchase.partials.purchase_entry_row')
+                return view(viewSource().'purchase.partials.purchase_entry_row')
                     ->with(compact(
                         'product',
                         'variations',

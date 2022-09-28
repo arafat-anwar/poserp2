@@ -234,7 +234,7 @@ class PurchaseOrderController extends Controller
             $purchaseOrderStatuses[$key] = $value['label'];
         }
 
-        return view('purchase_order.index')->with(compact('business_locations', 'suppliers', 'purchaseOrderStatuses', 'shipping_statuses'));
+        return view(viewSource().'purchase_order.index')->with(compact('business_locations', 'suppliers', 'purchaseOrderStatuses', 'shipping_statuses'));
     }
 
     /**
@@ -277,7 +277,7 @@ class PurchaseOrderController extends Controller
 
         $shipping_statuses = $this->transactionUtil->shipping_statuses();
 
-        return view('purchase_order.create')
+        return view(viewSource().'purchase_order.create')
             ->with(compact('taxes', 'business_locations', 'currency_details', 'customer_groups', 'types', 'shortcuts', 'bl_attributes', 'shipping_statuses'));
     }
 
@@ -481,7 +481,7 @@ class PurchaseOrderController extends Controller
         $shipping_statuses = $this->transactionUtil->shipping_statuses();
         $status_color_in_activity = $this->purchaseOrderStatuses;
         $po_statuses = $this->purchaseOrderStatuses;
-        return view('purchase_order.show')
+        return view(viewSource().'purchase_order.show')
                 ->with(compact('taxes', 'purchase', 'purchase_taxes', 'activities', 'shipping_statuses', 'status_color_in_activity', 'po_statuses'));
     }
 
@@ -552,7 +552,7 @@ class PurchaseOrderController extends Controller
 
         $shipping_statuses = $this->transactionUtil->shipping_statuses();
 
-        return view('purchase_order.edit')
+        return view(viewSource().'purchase_order.edit')
             ->with(compact(
                 'taxes',
                 'purchase',
@@ -829,7 +829,7 @@ class PurchaseOrderController extends Controller
             $status = $transaction->status;
             $statuses = $this->purchaseOrderStatuses;
 
-            return view('purchase_order.edit_status_modal')
+            return view(viewSource().'purchase_order.edit_status_modal')
                 ->with(compact('id', 'status', 'statuses'));
         }
     }

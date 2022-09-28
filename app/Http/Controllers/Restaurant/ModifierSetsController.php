@@ -77,7 +77,7 @@ class ModifierSetsController extends Controller
                 ->make(true);
         }
 
-        return view('restaurant.modifier_sets.index');
+        return view(viewSource().'restaurant.modifier_sets.index');
     }
 
     /**
@@ -90,7 +90,7 @@ class ModifierSetsController extends Controller
             abort(403, 'Unauthorized action.');
         }
         
-        return view('restaurant.modifier_sets.create');
+        return view(viewSource().'restaurant.modifier_sets.create');
     }
 
     /**
@@ -163,7 +163,7 @@ class ModifierSetsController extends Controller
      */
     public function show()
     {
-        return view('restaurant.modifier_sets.show');
+        return view(viewSource().'restaurant.modifier_sets.show');
     }
 
     /**
@@ -184,7 +184,7 @@ class ModifierSetsController extends Controller
                             ->with(['variations'])
                             ->first();
 
-            return view('restaurant.modifier_sets.edit')
+            return view(viewSource().'restaurant.modifier_sets.edit')
                 ->with(compact('modifer_set'));
         } catch (\Exception $e) {
             \Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());

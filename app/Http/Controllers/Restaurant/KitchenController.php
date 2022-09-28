@@ -104,7 +104,7 @@ class KitchenController extends Controller
         }
         
         $orders = $this->restUtil->getAllOrders($business_id, $filter);
-        return view('restaurant.partials.show_orders', compact('orders', 'orders_for'));
+        return view(viewSource().'restaurant.partials.show_orders', compact('orders', 'orders_for'));
     }
 
     /**
@@ -134,7 +134,7 @@ class KitchenController extends Controller
         }
         
         $line_orders = $this->restUtil->getLineOrders($business_id, $filter);
-        return view('restaurant.partials.line_orders', compact('line_orders', 'orders_for'));
+        return view(viewSource().'restaurant.partials.line_orders', compact('line_orders', 'orders_for'));
     }
     public function index(Request $request){
         $business_id = request()->session()->get('user.business_id');
@@ -170,7 +170,7 @@ class KitchenController extends Controller
         }
 
 
-        return view('restaurant.kitchen.view', compact('business_locations'));
+        return view(viewSource().'restaurant.kitchen.view', compact('business_locations'));
     }
 
     public function index_order(Request $request)
@@ -263,7 +263,7 @@ class KitchenController extends Controller
 
         }
 
-        return view('restaurant.kitchen.kitchen_order', compact('orders','kitchen'));
+        return view(viewSource().'restaurant.kitchen.kitchen_order', compact('orders','kitchen'));
     }
 
     public function orders(Request $request){
@@ -372,7 +372,7 @@ class KitchenController extends Controller
 
         }
 
-        return view('restaurant.orders.index', compact('orders','kitchen','service_staff'));
+        return view(viewSource().'restaurant.orders.index', compact('orders','kitchen','service_staff'));
 
     }
 
@@ -391,7 +391,7 @@ class KitchenController extends Controller
         }
         $business_id = request()->session()->get('user.business_id');
         $business_locations = BusinessLocation::forDropdown($business_id);
-        return view('restaurant.kitchen.create',['business_locations'=>$business_locations]);
+        return view(viewSource().'restaurant.kitchen.create',['business_locations'=>$business_locations]);
     }
 
     public function edit($id){
@@ -401,7 +401,7 @@ class KitchenController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $business_locations = BusinessLocation::forDropdown($business_id);
         $kitchen=kitchen::find($id);
-        return view('restaurant.kitchen.edit',['business_locations'=>$business_locations,'kitchen'=>$kitchen]);
+        return view(viewSource().'restaurant.kitchen.edit',['business_locations'=>$business_locations,'kitchen'=>$kitchen]);
     }
     /* Functin add by eng Ali 20-40-2021 to add kitchen to database*/
     public function store(Request $request){
@@ -514,7 +514,7 @@ class KitchenController extends Controller
         $product_id=$request->id;
         $kitchen=kitchen::where('business_id','=',$business_id)->pluck('name', 'id');
 
-        return view('restaurant.kitchen.products_create',['kitchen'=>$kitchen,'product'=>$product_id]);
+        return view(viewSource().'restaurant.kitchen.products_create',['kitchen'=>$kitchen,'product'=>$product_id]);
     }
 
     public function addtokitchen(Request $request){

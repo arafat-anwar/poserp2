@@ -39,7 +39,7 @@ class DashboardController extends Controller
 
         $contact = $this->contactUtil->getContactInfo($business_id, $crm_contact_id);
 
-        return view('crm::dashboard.index')
+        return view(viewSource().'crm::dashboard.index')
             ->with(compact('contact'));
     }
 

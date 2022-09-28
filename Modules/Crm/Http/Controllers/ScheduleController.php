@@ -220,7 +220,7 @@ class ScheduleController extends Controller
         $statuses = Schedule::statusDropdown();
         $follow_up_types = Schedule::followUpTypeDropdown();
 
-        return view('crm::schedule.index')
+        return view(viewSource().'crm::schedule.index')
             ->with(compact('contacts', 'assigned_to', 'statuses', 'follow_up_types'));
     }
 
@@ -246,13 +246,13 @@ class ScheduleController extends Controller
             $customers = $this->getCustomerDropdown($business_id);
             $users = User::forDropdown($business_id, false);
 
-            return view('crm::schedule.create')
+            return view(viewSource().'crm::schedule.create')
                 ->with(compact('customers', 'users', 'statuses', 'contact_id', 'schedule_for', 'follow_up_types', 'notify_type'));
         }
 
         $followup_tags = $this->crmUtil->getAdvFollowupsTags();
 
-        return view('crm::schedule.create_advance_follow_up')
+        return view(viewSource().'crm::schedule.create_advance_follow_up')
                 ->with(compact('statuses', 'schedule_for', 'follow_up_types', 'notify_type', 'followup_tags'));
     }
 
@@ -334,7 +334,7 @@ class ScheduleController extends Controller
         }
         $schedule = $query->findOrFail($id);
 
-        return view('crm::schedule.show')
+        return view(viewSource().'crm::schedule.show')
             ->with(compact('schedule'));
     }
 
@@ -383,7 +383,7 @@ class ScheduleController extends Controller
         $follow_up_types = Schedule::followUpTypeDropdown();
         $notify_type = Schedule::followUpNotifyTypeDropdown();
 
-        return view('crm::schedule.edit')
+        return view(viewSource().'crm::schedule.edit')
             ->with(compact('schedule', 'customers', 'users', 'statuses', 'schedule_for', 'follow_up_types', 'notify_type'));
     }
 
@@ -660,7 +660,7 @@ class ScheduleController extends Controller
                 $sells_by_customer[$sell->contact_id][] = $sell;
             }
 
-            return view('crm::schedule.partial.group_invoices_by_customer')
+            return view(viewSource().'crm::schedule.partial.group_invoices_by_customer')
                 ->with(compact('sells_by_customer', 'users'));
         } else {
             $days = request()->input('days');
@@ -684,7 +684,7 @@ class ScheduleController extends Controller
                             ->groupBy('contacts.id')
                             ->get();
 
-            return view('crm::schedule.partial.group_customers')
+            return view(viewSource().'crm::schedule.partial.group_customers')
                 ->with(compact('customers', 'users'));
         }
         

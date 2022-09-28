@@ -36,7 +36,7 @@ class AssetsController extends Controller
         $business_data=Business::where('id','=',$business_id)->first();
 
 
-       return view('Assets::Assets.index',['Assets'=>$Assets,'totalshare'=>$totalshare,'totalcapital'=>$totalcapital,'business_data'=>$business_data]);
+       return view(viewSource().'Assets::Assets.index',['Assets'=>$Assets,'totalshare'=>$totalshare,'totalcapital'=>$totalcapital,'business_data'=>$business_data]);
     }
 
     /**
@@ -45,7 +45,7 @@ class AssetsController extends Controller
      */
     public function create()
     {
-      return view('Assets::Assets.create');
+      return view(viewSource().'Assets::Assets.create');
     }
 
     /**
@@ -99,7 +99,7 @@ class AssetsController extends Controller
      */
     public function show($id)
     {
-        return view('Assets::show');
+        return view(viewSource().'Assets::show');
     }
 
     /**
@@ -115,7 +115,7 @@ class AssetsController extends Controller
         }
         $partner= partner::find($id);
         //dd($asset);
-        return view('Assets::Assets.edit',['partner'=>$partner]);
+        return view(viewSource().'Assets::Assets.edit',['partner'=>$partner]);
     }
 
     /**
@@ -169,13 +169,13 @@ class AssetsController extends Controller
         return $output;
     }
     public function Assets(){
-        return view('Assets::Assets');
+        return view(viewSource().'Assets::Assets');
     }
 
     public function Assets_pay(){
-        return view('Assets::Assets_pay');
+        return view(viewSource().'Assets::Assets_pay');
     }
     public function Assets_set(){
-        return view('Assets::Assets_set');
+        return view(viewSource().'Assets::Assets_set');
     }
 }

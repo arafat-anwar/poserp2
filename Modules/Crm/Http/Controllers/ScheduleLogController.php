@@ -92,7 +92,7 @@ class ScheduleLogController extends Controller
                         ->findOrFail($id);
         $customers = Contact::customersDropdown($business_id, false);
         $statuses = Schedule::statusDropdown();
-        return view('crm::schedule_log.create')
+        return view(viewSource().'crm::schedule_log.create')
             ->with(compact('schedule', 'customers', 'statuses'));
     }
 
@@ -160,7 +160,7 @@ class ScheduleLogController extends Controller
                         ->where('schedule_id', $schedule_id)
                         ->findOrFail($id);
 
-        return view('crm::schedule_log.show')
+        return view(viewSource().'crm::schedule_log.show')
             ->with(compact('schedule_log'));
     }
 
@@ -188,7 +188,7 @@ class ScheduleLogController extends Controller
         $customers = Contact::customersDropdown($business_id, false);
         $statuses = Schedule::statusDropdown();
 
-        return view('crm::schedule_log.edit')
+        return view(viewSource().'crm::schedule_log.edit')
             ->with(compact('schedule', 'customers', 'schedule_log', 'statuses'));
     }
 

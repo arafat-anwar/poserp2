@@ -146,9 +146,9 @@ class DocumentController extends Controller
         }
         
         if (!empty($type)) {
-            return view('essentials::memos.index');
+            return view(viewSource().'essentials::memos.index');
         } elseif (empty($type)) {
-            return view('essentials::document.index');
+            return view(viewSource().'essentials::document.index');
         }
     }
 
@@ -233,7 +233,7 @@ class DocumentController extends Controller
             $memo = Document::where('business_id', $business_id)
                             ->find($id);
 
-            return view('essentials::document.show')
+            return view(viewSource().'essentials::document.show')
                     ->with(compact('memo'));
         }
     }
@@ -244,7 +244,7 @@ class DocumentController extends Controller
      */
     public function edit()
     {
-        return view('essentials::edit');
+        return view(viewSource().'essentials::edit');
     }
 
     /**

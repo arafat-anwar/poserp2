@@ -34,7 +34,7 @@ class AccountTypeController extends Controller
                                      ->whereNull('parent_account_type_id')
                                      ->get();
 
-        return view('account_types.create')
+        return view(viewSource().'account_types.create')
                 ->with(compact('account_types'));
     }
 
@@ -101,7 +101,7 @@ class AccountTypeController extends Controller
                                      ->whereNull('parent_account_type_id')
                                      ->get();
 
-        return view('account_types.edit')
+        return view(viewSource().'account_types.edit')
                 ->with(compact('account_types', 'account_type'));
     }
 

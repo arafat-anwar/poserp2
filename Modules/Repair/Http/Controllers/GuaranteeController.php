@@ -200,7 +200,7 @@ class GuaranteeController extends Controller
             $is_user_service_staff = true;
         }
 
-        return view('repair::guarantee.index')
+        return view(viewSource().'repair::guarantee.index')
             ->with(compact('business_locations', 'customers', 'status_dropdown', 'service_staffs', 'is_user_service_staff'));
     }
     public function get_products_sold(Request $request){
@@ -305,7 +305,7 @@ class GuaranteeController extends Controller
             $technecians = $this->commonUtil->serviceStaffDropdown($business_id);
         }
 
-        return view('repair::guarantee.create')
+        return view(viewSource().'repair::guarantee.create')
             ->with(compact('repair_statuses', 'device_models', 'brands', 'devices', 'default_status', 'technecians', 'business_locations', 'types', 'customer_groups', 'walk_in_customer', 'repair_settings'));
     }
 
@@ -434,7 +434,7 @@ class GuaranteeController extends Controller
         $business = Business::find($business_id);
         $repair_settings = json_decode($business->repair_settings, true);
         
-        return view('repair::guarantee.show')
+        return view(viewSource().'repair::guarantee.show')
             ->with(compact('guarantee', 'repair_settings'));
     }
     public function print_slim($id)
@@ -464,7 +464,7 @@ class GuaranteeController extends Controller
         $business = Business::find($business_id);
         $repair_settings = json_decode($business->repair_settings, true);
         $receipt_details=[];
-        return view('repair::job_sheet.print_slim')
+        return view(viewSource().'repair::job_sheet.print_slim')
             ->with(compact('job_sheet', 'repair_settings','receipt_details'));
     }
     /**
@@ -501,7 +501,7 @@ class GuaranteeController extends Controller
             $technecians = $this->commonUtil->serviceStaffDropdown($business_id);
         }
 
-        return view('repair::job_sheet.edit')
+        return view(viewSource().'repair::job_sheet.edit')
             ->with(compact('job_sheet', 'repair_statuses', 'device_models', 'brands', 'devices', 'default_status', 'technecians', 'types', 'customer_groups', 'repair_settings'));
     }
 
@@ -627,7 +627,7 @@ class GuaranteeController extends Controller
             $transaction_id=$guarantee->transaction_id;
             $status_dropdown = RepairStatus::forDropdown($business_id, true);
             $status_template_tags = $this->repairUtil->getRepairStatusTemplateTags();
-            return view('repair::guarantee.partials.edit_status')
+            return view(viewSource().'repair::guarantee.partials.edit_status')
                 ->with(compact('transaction_id','guarantee', 'status_dropdown', 'status_template_tags'));
         }
     }

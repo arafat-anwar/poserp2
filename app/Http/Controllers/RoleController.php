@@ -75,7 +75,7 @@ class RoleController extends Controller
                 ->make(false);
         }
 
-        return view('role.index');
+        return view(viewSource().'role.index');
     }
 
     /**
@@ -99,7 +99,7 @@ class RoleController extends Controller
         $role =new Role();
         $role_permissions = [];
 
-        return view('role.edit')
+        return view(viewSource().'role.edit')
             ->with(compact('role','selling_price_groups', 'module_permissions','role_permissions'));
     }
 
@@ -205,7 +205,7 @@ class RoleController extends Controller
 
         $module_permissions = $this->moduleUtil->getModuleData('user_permissions');
 
-        return view('role.edit')
+        return view(viewSource().'role.edit')
             ->with(compact('role', 'role_permissions', 'selling_price_groups', 'module_permissions'));
     }
 

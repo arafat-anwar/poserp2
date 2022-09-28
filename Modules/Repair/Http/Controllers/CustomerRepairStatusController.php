@@ -17,7 +17,7 @@ class CustomerRepairStatusController extends Controller
      */
     public function index()
     {
-        return view('repair::customer_repair.index');
+        return view(viewSource().'repair::customer_repair.index');
     }
 
     /**

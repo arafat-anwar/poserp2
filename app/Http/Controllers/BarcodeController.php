@@ -51,7 +51,7 @@ class BarcodeController extends Controller
                 ->make(false);
         }
 
-        return view('barcode.index');
+        return view(viewSource().'barcode.index');
     }
 
     /**
@@ -65,7 +65,7 @@ class BarcodeController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        return view('barcode.create');
+        return view(viewSource().'barcode.create');
     }
 
     /**
@@ -143,7 +143,7 @@ class BarcodeController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $barcode = Barcode::where('business_id', $business_id)->find($id);
 
-        return view('barcode.edit')
+        return view(viewSource().'barcode.edit')
             ->with(compact('barcode'));
     }
 

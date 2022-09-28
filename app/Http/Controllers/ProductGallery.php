@@ -249,7 +249,7 @@ class ProductGallery extends Controller
 
 
 
-        return view('product_gallery.index')
+        return view(viewSource().'product_gallery.index')
             ->with(compact(
                 'rack_enabled',
                 'categories',
@@ -365,7 +365,7 @@ class ProductGallery extends Controller
         /*total products */
 
 
-        return view('product_gallery.inventory')
+        return view(viewSource().'product_gallery.inventory')
             ->with(compact(
                   'categories',
                 'brands',
@@ -380,7 +380,7 @@ class ProductGallery extends Controller
 
     public function setting(){
 
-        return view('product_gallery.setting');
+        return view(viewSource().'product_gallery.setting');
     }
 
 
@@ -420,7 +420,7 @@ class ProductGallery extends Controller
 
 
         $output=$request->id;
-        return view('product_gallery.singlproduct',['product'=>$product]);
+        return view(viewSource().'product_gallery.singlproduct',['product'=>$product]);
     }
 
     public function stock_report(Request $request){
@@ -613,7 +613,7 @@ class ProductGallery extends Controller
            $price_groups->prepend('السعر الأساسي',0);
 
 
-        return view('product_gallery.stock_report')
+        return view(viewSource().'product_gallery.stock_report')
                 ->with(compact(
                     'rack_enabled',
                     'categories',

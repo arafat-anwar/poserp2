@@ -59,7 +59,7 @@ class LocationSettingsController extends Controller
                             ->get()
                             ->pluck('name', 'id');
 
-        return view('location_settings.index')
+        return view(viewSource().'location_settings.index')
             ->with(compact('location', 'printReceiptOnInvoice', 'receiptPrinterType', 'printers', 'invoice_layouts', 'invoice_schemes'));
     }
 

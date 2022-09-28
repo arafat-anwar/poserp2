@@ -63,10 +63,10 @@ class ImportProductsController extends Controller
                             'msg' => 'Please install/enable PHP Zip archive for import'
                         ];
 
-            return view('import_products.index')
+            return view(viewSource().'import_products.index')
                 ->with('notification', $output);
         } else {
-            return view('import_products.index');
+            return view(viewSource().'import_products.index');
         }
     }
 

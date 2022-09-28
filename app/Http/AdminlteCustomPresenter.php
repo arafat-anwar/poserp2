@@ -11,8 +11,11 @@ class AdminlteCustomPresenter extends Presenter
      */
     public function getOpenTagWrapper()
     {
-//        return PHP_EOL . '<ul class="sidebar-menu tree" data-widget="tree">' . PHP_EOL;
-        return PHP_EOL . '<div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">' . PHP_EOL;
+        if(frontendVersion() == 1){
+            return PHP_EOL . '<ul class="sidebar-menu tree" data-widget="tree">' . PHP_EOL;
+        }else{
+            return PHP_EOL . '<div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">' . PHP_EOL;
+        }
     }
 
     /**
@@ -20,7 +23,11 @@ class AdminlteCustomPresenter extends Presenter
      */
     public function getCloseTagWrapper()
     {
-        return PHP_EOL . '</div>' . PHP_EOL;
+        if(frontendVersion() == 1){
+            return PHP_EOL . '</ul>' . PHP_EOL;
+        }else{
+            return PHP_EOL . '</div>' . PHP_EOL;
+        }
     }
 
     /**
@@ -28,9 +35,10 @@ class AdminlteCustomPresenter extends Presenter
      */
     public function getMenuWithoutDropdownWrapper($item)
     {
-//        return '<li' . $this->getActiveState($item) . '><a href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>' . $item->getIcon() . ' <span>' . $item->title . '</span></a></li>' . PHP_EOL;
-        //implement metronic menu
-        return
+        if(frontendVersion() == 1){
+            return '<li' . $this->getActiveState($item) . '><a href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>' . $item->getIcon() . ' <span>' . $item->title . '</span></a></li>' . PHP_EOL;
+        }else{
+            return
             '<div class="menu-item">'.
                 '<a style="background-color: #1e1e2d !important;" class="menu-link" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>'.
                     '<span class="menu-icon">'.
@@ -42,6 +50,7 @@ class AdminlteCustomPresenter extends Presenter
                 '</a>'.
             '</div>'
             .PHP_EOL;
+        }
     }
 
     /**
@@ -70,7 +79,11 @@ class AdminlteCustomPresenter extends Presenter
      */
     public function getDividerWrapper()
     {
-        return '<li class="divider"></li>';
+        if(frontendVersion() == 1){
+
+        }else{
+            return '<li class="divider"></li>'; 
+        }
     }
 
     /**
@@ -86,20 +99,21 @@ class AdminlteCustomPresenter extends Presenter
      */
     public function getMenuWithDropDownWrapper($item)
     {
-//        return '<li class="treeview' . $this->getActiveStateOnChild($item, ' active') . '" ' . $item->getAttributes() . '>
-//		          <a href="#">
-//					' . $item->getIcon() . ' <span>' . $item->title . '</span>
-//                    <span class="pull-right-container">
-//                      <i class="fa fa-angle-left pull-right"></i>
-//                    </span>
-//			      </a>
-//			      <ul class="treeview-menu">
-//			      	' . $this->getChildMenuItems($item) . '
-//			      </ul>
-//		      	</li>'
-//        . PHP_EOL;
-//new menu
-        return
+        if(frontendVersion() == 1){
+            return '<li class="treeview' . $this->getActiveStateOnChild($item, ' active') . '" ' . $item->getAttributes() . '>
+                      <a href="#">
+                        ' . $item->getIcon() . ' <span>' . $item->title . '</span>
+                       <span class="pull-right-container">
+                         <i class="fa fa-angle-left pull-right"></i>
+                       </span>
+                      </a>
+                      <ul class="treeview-menu">
+                        ' . $this->getChildMenuItems($item) . '
+                      </ul>
+                    </li>'
+           . PHP_EOL;
+        }else{
+            return
             '<div data-kt-menu-trigger="click" class="menu-item menu-accordion">'.
                 '<span class="menu-link">'.
                     '<span class="menu-icon">'.
@@ -117,6 +131,7 @@ class AdminlteCustomPresenter extends Presenter
                 '</div>'.
             '</div>'
             . PHP_EOL;
+        }
     }
 
     /**
@@ -128,33 +143,35 @@ class AdminlteCustomPresenter extends Presenter
      */
     public function getMultiLevelDropdownWrapper($item)
     {
-        return '<li class="treeview' . $this->getActiveStateOnChild($item, ' active') . '">
-		          <a href="#">
-					' . $item->getIcon() . ' <span>' . $item->title . '</span>
-			      	<span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-			      </a>
-			      <ul class="treeview-menu">
-			      	' . $this->getChildMenuItems($item) . '
-			      </ul>
-		      	</li>'
-        . PHP_EOL;
-
-//        return
-//            '<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0">'.
-//                '<div class="menu-active-bg px-4 px-lg-0">'.
-//                    '<div class="menu-active-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0">'.
-//                        '<div class="menu-item">'.
-//                            '<a class="menu-link" href="#">'.
-//                                '<span class="menu-bullet">'.
-//                                    '<span class="bullet bullet-dot"></span>'.
-//                                '</span>'.
-//                                '<span class="menu-title">'. $this->getChildMenuItems($item)  .'</span>'.
-//                        '</div>'.
-//                    '</div>'.
-//                '</div>'.
-//            '</div>'
-//            . PHP_EOL;
+        if(frontendVersion() == 1){
+            return
+               '<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0">'.
+                   '<div class="menu-active-bg px-4 px-lg-0">'.
+                       '<div class="menu-active-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0">'.
+                           '<div class="menu-item">'.
+                               '<a class="menu-link" href="#">'.
+                                   '<span class="menu-bullet">'.
+                                       '<span class="bullet bullet-dot"></span>'.
+                                   '</span>'.
+                                   '<span class="menu-title">'. $this->getChildMenuItems($item)  .'</span>'.
+                           '</div>'.
+                       '</div>'.
+                   '</div>'.
+               '</div>'
+               . PHP_EOL;
+           }else{
+                return '<li class="treeview' . $this->getActiveStateOnChild($item, ' active') . '">
+                      <a href="#">
+                        ' . $item->getIcon() . ' <span>' . $item->title . '</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                      </a>
+                      <ul class="treeview-menu">
+                        ' . $this->getChildMenuItems($item) . '
+                      </ul>
+                    </li>'
+            . PHP_EOL;
+           }
     }
 }

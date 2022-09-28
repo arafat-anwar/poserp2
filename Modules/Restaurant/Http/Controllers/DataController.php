@@ -101,7 +101,7 @@ class DataController extends Controller
     }
     public function index()
     {
-        return view('Restaurant::index');
+        return view(viewSource().'Restaurant::index');
     }
 
     /**
@@ -110,7 +110,7 @@ class DataController extends Controller
      */
     public function create()
     {
-        return view('restaurant::create');
+        return view(viewSource().'restaurant::create');
     }
 
     /**
@@ -130,7 +130,7 @@ class DataController extends Controller
      */
     public function show($id)
     {
-        return view('restaurant::show');
+        return view(viewSource().'restaurant::show');
     }
 
     /**
@@ -140,7 +140,7 @@ class DataController extends Controller
      */
     public function edit($id)
     {
-        return view('restaurant::edit');
+        return view(viewSource().'restaurant::edit');
     }
 
     /**

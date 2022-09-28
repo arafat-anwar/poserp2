@@ -63,7 +63,7 @@ class StocktackingController extends Controller
             'business_locations.name as location_name'
             )
         ->get();
-        return view('stocktacking.index',['transactions'=>$transactions]);
+        return view(viewSource().'stocktacking.index',['transactions'=>$transactions]);
     }
 
     /**
@@ -79,7 +79,7 @@ class StocktackingController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $business_locations = BusinessLocation::forDropdown($business_id);
         
-        return view('stocktacking.create')
+        return view(viewSource().'stocktacking.create')
                 ->with(compact('business_locations'));
     }
 
@@ -170,7 +170,7 @@ class StocktackingController extends Controller
              $lastproduct = new \stdClass();
              $lastproduct->product_name='';//[];
          }
-        return view('stocktacking.transaction_form')
+        return view(viewSource().'stocktacking.transaction_form')
                 ->with(compact('variations','transaction_id','lastproduct'));
     }
     public function get_last_product(Request $request){
@@ -442,7 +442,7 @@ class StocktackingController extends Controller
 
         $categories = Category::forDropdown($business_id, 'product');
         $brands = Brands::forDropdown($business_id);
-        return view('stocktacking.report',['transaction_id'=>$id,'categories'=>$categories,'brands'=>$brands ,'location'=>$location]);
+        return view(viewSource().'stocktacking.report',['transaction_id'=>$id,'categories'=>$categories,'brands'=>$brands ,'location'=>$location]);
     }
     public function not_tacking_report($id){
         $transactions=\DB::table('transactions')->where('id',$id)->first();
@@ -517,7 +517,7 @@ class StocktackingController extends Controller
         }
         $categories = Category::forDropdown($business_id, 'product');
         $brands = Brands::forDropdown($business_id);
-        return view('stocktacking.not_tacking_report',['transaction_id'=>$id,'categories'=>$categories,'brands'=>$brands]);
+        return view(viewSource().'stocktacking.not_tacking_report',['transaction_id'=>$id,'categories'=>$categories,'brands'=>$brands]);
     
     }
     
@@ -570,7 +570,7 @@ class StocktackingController extends Controller
                 ->make(true);
         }
 
-        return view('stocktacking.plus_report',['transaction_id'=>$id,'location'=>$location]);
+        return view(viewSource().'stocktacking.plus_report',['transaction_id'=>$id,'location'=>$location]);
     }
     public function report_minus($id)
     {
@@ -622,7 +622,7 @@ class StocktackingController extends Controller
                 ->make(true);
         }
 
-        return view('stocktacking.minus_report',['transaction_id'=>$id,'location'=>$location]);
+        return view(viewSource().'stocktacking.minus_report',['transaction_id'=>$id,'location'=>$location]);
     }
     
     public function changeStatus($id,$status){

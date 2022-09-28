@@ -109,7 +109,7 @@ class CallLogController extends Controller
 
         $is_admin = $this->commonUtil->is_admin(auth()->user());
 
-        return view('crm::call_logs.index')->with(compact('contacts', 'users', 'is_admin'));
+        return view(viewSource().'crm::call_logs.index')->with(compact('contacts', 'users', 'is_admin'));
     }
 
      /**

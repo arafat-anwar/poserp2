@@ -95,7 +95,7 @@ class ReminderController extends Controller
             return $events;
         }
 
-        return view('essentials::reminder.index');
+        return view(viewSource().'essentials::reminder.index');
     }
 
     /**
@@ -171,7 +171,7 @@ class ReminderController extends Controller
                 'every_month' => __('essentials::lang.every_month'),
                   ];
 
-            return view('essentials::reminder.show')
+            return view(viewSource().'essentials::reminder.show')
                 ->with(compact('reminder', 'time', 'repeat'));
         }
     }

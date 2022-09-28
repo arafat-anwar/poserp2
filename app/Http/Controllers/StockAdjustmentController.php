@@ -113,7 +113,7 @@ class StockAdjustmentController extends Controller
                 ->make(true);
         }
 
-        return view('stock_adjustment.index');
+        return view(viewSource().'stock_adjustment.index');
     }
 
     /**
@@ -136,7 +136,7 @@ class StockAdjustmentController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id);
 
-        return view('stock_adjustment.create')
+        return view(viewSource().'stock_adjustment.create')
                 ->with(compact('business_locations'));
     }
 
@@ -272,7 +272,7 @@ class StockAdjustmentController extends Controller
            ->latest()
            ->get();
 
-        return view('stock_adjustment.show')
+        return view(viewSource().'stock_adjustment.show')
                 ->with(compact('stock_adjustment', 'lot_n_exp_enabled', 'activities'));
     }
 
@@ -384,7 +384,7 @@ class StockAdjustmentController extends Controller
             }
             $product->lot_numbers = $lot_numbers;
 
-            return view('stock_adjustment.partials.product_table_row')
+            return view(viewSource().'stock_adjustment.partials.product_table_row')
             ->with(compact('product', 'row_index'));
         }
     }

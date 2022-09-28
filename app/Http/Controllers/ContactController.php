@@ -77,7 +77,7 @@ class ContactController extends Controller
 
         $reward_enabled = (request()->session()->get('business.enable_rp') == 1 && in_array($type, ['customer'])) ? true : false;
 
-        return view('contact.index')
+        return view(viewSource().'contact.index')
             ->with(compact('type', 'reward_enabled'));
     }
 
@@ -451,7 +451,7 @@ class ContactController extends Controller
 
         $module_form_parts = $this->moduleUtil->getModuleData('contact_form_part');
 
-        return view('contact.create')
+        return view(viewSource().'contact.create')
             ->with(compact('types', 'customer_groups', 'selected_type', 'module_form_parts'));
     }
 
@@ -539,7 +539,7 @@ class ContactController extends Controller
            ->latest()
            ->get();
 
-        return view('contact.show')
+        return view(viewSource().'contact.show')
              ->with(compact('contact', 'reward_enabled', 'contact_dropdown', 'business_locations', 'view_type', 'contact_view_tabs', 'activities'));
     }
 
@@ -591,7 +591,7 @@ class ContactController extends Controller
                 $opening_balance = $this->commonUtil->num_f($opening_balance);
             }
 
-            return view('contact.edit')
+            return view(viewSource().'contact.edit')
                 ->with(compact('contact', 'types', 'customer_groups', 'opening_balance'));
         }
     }
@@ -802,10 +802,10 @@ class ContactController extends Controller
                             'msg' => 'Please install/enable PHP Zip archive for import'
                         ];
 
-            return view('contact.import')
+            return view(viewSource().'contact.import')
                 ->with('notification', $output);
         } else {
-            return view('contact.import');
+            return view(viewSource().'contact.import');
         }
     }
 
@@ -1084,7 +1084,7 @@ class ContactController extends Controller
             $mpdf->Output();
         }
 
-        return view('contact.ledger')
+        return view(viewSource().'contact.ledger')
              ->with(compact('ledger_details', 'contact'));
     }
 
@@ -1315,7 +1315,7 @@ class ContactController extends Controller
                         ->active()
                         ->get();
 
-        return view('contact.contact_map')
+        return view(viewSource().'contact.contact_map')
              ->with(compact('contacts', 'all_contacts'));
     }
 
@@ -1356,7 +1356,7 @@ class ContactController extends Controller
 
             $payment_types = $this->transactionUtil->payment_types(null, true, $business_id);
 
-            return view('contact.partials.contact_payments_tab')
+            return view(viewSource().'contact.partials.contact_payments_tab')
                     ->with(compact('payments', 'payment_types'));
         }
     }

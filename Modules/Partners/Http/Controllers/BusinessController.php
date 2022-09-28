@@ -160,7 +160,7 @@ class BusinessController extends Controller
 
 
 
-        return view('partners::business.index',
+        return view(viewSource().'partners::business.index',
             [
                 'closing_stock_by_pp'=>$closing_stock_by_pp,
                 'closing_stock_by_sp'=>$closing_stock_by_sp,
@@ -192,7 +192,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        return view('partners::create');
+        return view(viewSource().'partners::create');
     }
 
     /**
@@ -212,7 +212,7 @@ class BusinessController extends Controller
      */
     public function show($id)
     {
-        return view('partners::show');
+        return view(viewSource().'partners::show');
     }
 
     /**
@@ -222,7 +222,7 @@ class BusinessController extends Controller
      */
     public function edit($id)
     {
-        return view('partners::edit');
+        return view(viewSource().'partners::edit');
     }
 
     /**

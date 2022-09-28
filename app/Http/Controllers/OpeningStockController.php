@@ -104,7 +104,7 @@ class OpeningStockController extends Controller
             $enable_lot = request()->session()->get('business.enable_lot_number');
 
             if (request()->ajax()) {
-                return view('opening_stock.ajax_add')
+                return view(viewSource().'opening_stock.ajax_add')
                     ->with(compact(
                         'product',
                         'locations',
@@ -114,7 +114,7 @@ class OpeningStockController extends Controller
                     ));
             }
 
-            return view('opening_stock.add')
+            return view(viewSource().'opening_stock.add')
                     ->with(compact(
                         'product',
                         'locations',

@@ -37,7 +37,7 @@ class CashRegisterController extends Controller
      */
     public function index()
     {
-        return view('cash_register.index');
+        return view(viewSource().'cash_register.index');
     }
 
     /**
@@ -57,7 +57,7 @@ class CashRegisterController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $business_locations = BusinessLocation::forDropdown($business_id);
 
-        return view('cash_register.create')->with(compact('business_locations', 'sub_type'));
+        return view(viewSource().'cash_register.create')->with(compact('business_locations', 'sub_type'));
     }
 
     /**
@@ -315,7 +315,7 @@ class CashRegisterController extends Controller
                     )->get();
                     
 
-        return view('cash_register.register_details')
+        return view(viewSource().'cash_register.register_details')
                     ->with(compact('register_details', 'details', 'total_expences','sells_return','sells','purchases_returns','expenses','purchases','payment_types', 'close_time','payements_detail'));
     }
 
@@ -536,7 +536,7 @@ class CashRegisterController extends Controller
                     )->get();
                     
 
-        return view('cash_register.register_details')
+        return view(viewSource().'cash_register.register_details')
                 ->with(compact('register_details','total_expences','sells_return','sells','purchases_returns','expenses','purchases','details', 'payment_types', 'close_time','payements_detail'));
     }
 
@@ -755,7 +755,7 @@ class CashRegisterController extends Controller
                     )->get();
                     
 
-        return view('cash_register.close_register_modal')
+        return view(viewSource().'cash_register.close_register_modal')
                     ->with(compact('register_details','total_expences','sells_return','sells','purchases_returns','expenses','purchases','details', 'payment_types', 'close_time','payements_detail'));
     }
 

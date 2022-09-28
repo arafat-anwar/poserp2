@@ -45,7 +45,7 @@ class InstallmentController extends Controller
         $business_id=auth()->user()->business_id;
         $customers=Contact::where('business_id','=',$business_id)->where('type','!=','supplier')->pluck('name','id');
         $customers->prepend(__('lang_v1.select_all'), '0');
-     return view('installment::reports.index',['customers'=>$customers,'installment_id'=>$request->id]);
+     return view(viewSource().'installment::reports.index',['customers'=>$customers,'installment_id'=>$request->id]);
     }
 
 
@@ -197,7 +197,7 @@ class InstallmentController extends Controller
     /*   $accounts->prepend(__('lang_v1.select_all'), '0');*/
 
 
-        return view('installment::customer.payment',['data'=>$data,'daylats'=>$daylats,'latfines_value'=>$latfines_value,'accounts'=>$accounts,'contact'=>$contact]);
+        return view(viewSource().'installment::customer.payment',['data'=>$data,'daylats'=>$daylats,'latfines_value'=>$latfines_value,'accounts'=>$accounts,'contact'=>$contact]);
     }
 
     public function storepayment(Request $request){
@@ -357,11 +357,11 @@ class InstallmentController extends Controller
 
     public function system(){
 
-       return view('installment::systems.index');
+       return view(viewSource().'installment::systems.index');
     }
 
     public function system_create(){
-        return view('installment::systems.create');
+        return view(viewSource().'installment::systems.create');
     }
 
 

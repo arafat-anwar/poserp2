@@ -14,7 +14,7 @@ class WebController extends Controller
      */
     public function index()
     {
-        return view('web::index');
+        return view(viewSource().'web::index');
     }
 
     /**
@@ -23,7 +23,7 @@ class WebController extends Controller
      */
     public function create()
     {
-        return view('web::create');
+        return view(viewSource().'web::create');
     }
 
     /**
@@ -43,7 +43,7 @@ class WebController extends Controller
      */
     public function show($id)
     {
-        return view('web::show');
+        return view(viewSource().'web::show');
     }
 
     /**
@@ -53,7 +53,7 @@ class WebController extends Controller
      */
     public function edit($id)
     {
-        return view('web::edit');
+        return view(viewSource().'web::edit');
     }
 
     /**

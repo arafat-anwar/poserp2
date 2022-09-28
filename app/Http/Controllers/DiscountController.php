@@ -93,7 +93,7 @@ class DiscountController extends Controller
                 ->rawColumns(['name', 'action', 'row_select', 'products'])
                 ->make(true);
         }
-        return view('discount.index');
+        return view(viewSource().'discount.index');
     }
 
     /**
@@ -117,7 +117,7 @@ class DiscountController extends Controller
 
         $locations = BusinessLocation::forDropdown($business_id);
 
-        return view('discount.create')
+        return view(viewSource().'discount.create')
                 ->with(compact('categories', 'brands', 'locations'));
     }
 
@@ -211,7 +211,7 @@ class DiscountController extends Controller
                 $variations[$variation->id] = $variation->full_name;
             }
 
-            return view('discount.edit')
+            return view(viewSource().'discount.edit')
                 ->with(compact('discount', 'starts_at', 'ends_at', 'brands', 'categories', 'locations', 'variations'));
         }
     }

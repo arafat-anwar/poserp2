@@ -70,7 +70,7 @@ class DashboardConfiguratorController extends Controller
             'widget3' => ['title' => 'Widget 3']
         ];
 
-        return view('dashboard_configurator.edit', compact('dashboard', 'available_widgets'));
+        return view(viewSource().'dashboard_configurator.edit', compact('dashboard', 'available_widgets'));
     }
 
     /**

@@ -281,13 +281,13 @@ class DataController extends Controller
 
             $user = !empty($data['user']) ? $data['user'] : null;
 
-            return view('essentials::partials.user_form_part', compact('departments', 'designations', 'user'))->render();
+            return view(viewSource().'essentials::partials.user_form_part', compact('departments', 'designations', 'user'))->render();
         } elseif ($data['view'] == 'manage_user.show') {
             $user = !empty($data['user']) ? $data['user'] : null;
             $user_department = Category::find($user->essentials_department_id);
             $user_designstion = Category::find($user->essentials_designation_id);
 
-            return view('essentials::partials.user_details_part', compact('user_department', 'user_designstion'))->render();
+            return view(viewSource().'essentials::partials.user_details_part', compact('user_department', 'user_designstion'))->render();
         }
     }
 

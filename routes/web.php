@@ -30,6 +30,11 @@ Route::get('/clear-cache', function () {
     echo 'DONE'; //Return anything
 });
 
+Route::get('switch-frontend-version', function(){
+    session()->put('frontend-version', request()->get('version'));
+    return redirect('/');
+});
+
 /*
 Route::get('addtodb',function (){
     DB::statement("ALTER TABLE transactions CHANGE COLUMN payment_status payment_status ENUM('paid','due','partial','installmented','new') NOT NULL DEFAULT 'paid'");
@@ -40,7 +45,7 @@ Route::get('addtodb',function (){
 
 Route::middleware(['setData'])->group(function () {
     /* Route::get('/', function () {
-         return view('welcome_old');
+         return view(viewSource().'welcome_old');
      });*/
     Auth::routes();
 

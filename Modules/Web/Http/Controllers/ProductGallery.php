@@ -249,7 +249,7 @@ class ProductGallery extends Controller
                                  ->where('products.type', '!=', 'modifier')
                                   ->count();
 
-        return view('product_gallery.index')
+        return view(viewSource().'product_gallery.index')
             ->with(compact(
                 'rack_enabled',
                 'categories',
@@ -367,7 +367,7 @@ class ProductGallery extends Controller
             ->where('products.type', '!=', 'modifier')
             ->count();
 
-        return view('product_gallery.inventory')
+        return view(viewSource().'product_gallery.inventory')
             ->with(compact(
                   'categories',
                 'brands',
@@ -450,7 +450,7 @@ class ProductGallery extends Controller
         //product screen view from module
         $pos_module_data = $this->moduleUtil->getModuleData('get_product_screen_top_view');
 
-        return view('product.create')
+        return view(viewSource().'product.create')
             ->with(compact('categories', 'brands', 'units', 'taxes', 'barcode_types', 'default_profit_percent', 'tax_attributes', 'barcode_default', 'business_locations', 'duplicate_product', 'sub_categories', 'rack_details', 'selling_price_group_count', 'module_form_parts', 'product_types', 'common_settings', 'warranties', 'pos_module_data'));
     }
 
@@ -631,7 +631,7 @@ class ProductGallery extends Controller
         $business_id = request()->session()->get('user.business_id');
         $details = $this->productUtil->getRackDetails($business_id, $id, true);
 
-        return view('product.show')->with(compact('details'));
+        return view(viewSource().'product.show')->with(compact('details'));
     }
 
     /**
@@ -690,7 +690,7 @@ class ProductGallery extends Controller
         //product screen view from module
         $pos_module_data = $this->moduleUtil->getModuleData('get_product_screen_top_view');
 
-        return view('product.edit')
+        return view(viewSource().'product.edit')
             ->with(compact('categories', 'brands', 'units', 'sub_units', 'taxes', 'tax_attributes', 'barcode_types', 'product', 'sub_categories', 'default_profit_percent', 'business_locations', 'rack_details', 'selling_price_group_count', 'module_form_parts', 'product_types', 'common_settings', 'warranties', 'pos_module_data'));
     }
 
@@ -1060,16 +1060,16 @@ class ProductGallery extends Controller
         $action = $request->input('action');
         if ($request->input('action') == "add") {
             if ($request->input('type') == 'single') {
-                return view('product.partials.single_product_form_part')
+                return view(viewSource().'product.partials.single_product_form_part')
                     ->with(['profit_percent' => $profit_percent]);
             } elseif ($request->input('type') == 'variable') {
                 $variation_templates = VariationTemplate::where('business_id', $business_id)->pluck('name', 'id')->toArray();
                 $variation_templates = [ "" => __('messages.please_select')] + $variation_templates;
 
-                return view('product.partials.variable_product_form_part')
+                return view(viewSource().'product.partials.variable_product_form_part')
                     ->with(compact('variation_templates', 'profit_percent', 'action'));
             } elseif ($request->input('type') == 'combo') {
-                return view('product.partials.combo_product_form_part')
+                return view(viewSource().'product.partials.combo_product_form_part')
                     ->with(compact('profit_percent', 'action'));
             }
         } elseif ($request->input('action') == "edit" || $request->input('action') == "duplicate") {
@@ -1080,13 +1080,13 @@ class ProductGallery extends Controller
                     ->with(['variations', 'variations.media'])
                     ->first();
 
-                return view('product.partials.edit_single_product_form_part')
+                return view(viewSource().'product.partials.edit_single_product_form_part')
                     ->with(compact('product_deatails', 'action'));
             } elseif ($request->input('type') == 'variable') {
                 $product_variations = ProductVariation::where('product_id', $product_id)
                     ->with(['variations', 'variations.media'])
                     ->get();
-                return view('product.partials.variable_product_form_part')
+                return view(viewSource().'product.partials.variable_product_form_part')
                     ->with(compact('product_variations', 'profit_percent', 'action'));
             } elseif ($request->input('type') == 'combo') {
                 $product_deatails = ProductVariation::where('product_id', $product_id)
@@ -1096,7 +1096,7 @@ class ProductGallery extends Controller
 
                 $variation_id = $product_deatails['variations'][0]->id;
                 $profit_percent = $product_deatails['variations'][0]->profit_percent;
-                return view('product.partials.combo_product_form_part')
+                return view(viewSource().'product.partials.combo_product_form_part')
                     ->with(compact('combo_variations', 'profit_percent', 'action', 'variation_id'));
             }
         }
@@ -1119,7 +1119,7 @@ class ProductGallery extends Controller
 
         $row_type = $request->input('row_type', 'add');
 
-        return view('product.partials.variation_value_row')
+        return view(viewSource().'product.partials.variation_value_row')
             ->with(compact('profit_percent', 'variation_index', 'value_index', 'row_type'));
     }
 
@@ -1142,7 +1142,7 @@ class ProductGallery extends Controller
         $row_index = $request->input('row_index', 0);
         $action = $request->input('action');
 
-        return view('product.partials.product_variation_row')
+        return view(viewSource().'product.partials.product_variation_row')
             ->with(compact('variation_templates', 'row_index', 'action', 'profit_percent'));
     }
 
@@ -1163,7 +1163,7 @@ class ProductGallery extends Controller
             ->first();
         $row_index = $request->input('row_index');
 
-        return view('product.partials.product_variation_template')
+        return view(viewSource().'product.partials.product_variation_template')
             ->with(compact('template', 'row_index', 'profit_percent'));
     }
 
@@ -1195,7 +1195,7 @@ class ProductGallery extends Controller
 
                 $sub_units = $this->productUtil->getSubUnits($business_id, $product['unit']->id);
 
-                return view('product.partials.combo_product_entry_row')
+                return view(viewSource().'product.partials.combo_product_entry_row')
                     ->with(compact('product', 'variations', 'sub_units'));
             }
         }
@@ -1360,7 +1360,7 @@ class ProductGallery extends Controller
         $common_settings = session()->get('business.common_settings');
         $warranties = Warranty::forDropdown($business_id);
 
-        return view('product.partials.quick_add_product')
+        return view(viewSource().'product.partials.quick_add_product')
             ->with(compact('categories', 'brands', 'units', 'taxes', 'barcode_types', 'default_profit_percent', 'tax_attributes', 'product_name', 'locations', 'product_for', 'enable_expiry', 'enable_lot', 'module_form_parts', 'business_locations', 'common_settings', 'warranties'));
     }
 
@@ -1516,7 +1516,7 @@ class ProductGallery extends Controller
                 $combo_variations = $this->productUtil->__getComboProductDetails($product['variations'][0]->combo_variations, $business_id);
             }
 
-            return view('product.view-modal')->with(compact(
+            return view(viewSource().'product.view-modal')->with(compact(
                 'product',
                 'rack_details',
                 'allowed_group_prices',
@@ -1629,7 +1629,7 @@ class ProductGallery extends Controller
                 $variation_prices[$variation->id][$group_price->price_group_id] = $group_price->price_inc_tax;
             }
         }
-        return view('product.add-selling-prices')->with(compact('product', 'price_groups', 'variation_prices'));
+        return view(viewSource().'product.add-selling-prices')->with(compact('product', 'price_groups', 'variation_prices'));
     }
 
     /**
@@ -1738,7 +1738,7 @@ class ProductGallery extends Controller
             }
         }
 
-        return view('product.view-product-group-prices')->with(compact('product', 'allowed_group_prices', 'group_price_details'));
+        return view(viewSource().'product.view-product-group-prices')->with(compact('product', 'allowed_group_prices', 'group_price_details'));
     }
 
     /**
@@ -1990,7 +1990,7 @@ class ProductGallery extends Controller
             $price_groups = SellingPriceGroup::where('business_id', $business_id)->active()->pluck('name', 'id');
             $business_locations = BusinessLocation::forDropdown($business_id);
 
-            return view('product.bulk-edit')->with(compact(
+            return view(viewSource().'product.bulk-edit')->with(compact(
                 'products',
                 'categories',
                 'brands',
@@ -2118,7 +2118,7 @@ class ProductGallery extends Controller
 
         $price_groups = SellingPriceGroup::where('business_id', $business_id)->active()->pluck('name', 'id');
 
-        return view('product.partials.bulk_edit_product_row')->with(compact(
+        return view(viewSource().'product.partials.bulk_edit_product_row')->with(compact(
             'product',
             'categories',
             'brands',
@@ -2219,7 +2219,7 @@ class ProductGallery extends Controller
             $stock_details = $this->productUtil->getVariationStockDetails($business_id, $id, request()->input('location_id'));
             $stock_history = $this->productUtil->getVariationStockHistory($business_id, $id, request()->input('location_id'));
 
-            return view('product.stock_history_details')
+            return view(viewSource().'product.stock_history_details')
                 ->with(compact('stock_details', 'stock_history'));
         }
 
@@ -2231,7 +2231,7 @@ class ProductGallery extends Controller
         $business_locations = BusinessLocation::forDropdown($business_id);
 
 
-        return view('product.stock_history')
+        return view(viewSource().'product.stock_history')
             ->with(compact('product', 'business_locations'));
     }
 
@@ -2258,7 +2258,7 @@ class ProductGallery extends Controller
         $barcode_types = $this->barcode_types;
 
 
-        return view('product.barcode',['product'=>$product,'barcodes'=>$barcodes,'barcode_types'=>$barcode_types,'barcode_default'=>$barcode_default,'variation'=>$variation]);
+        return view(viewSource().'product.barcode',['product'=>$product,'barcodes'=>$barcodes,'barcode_types'=>$barcode_types,'barcode_default'=>$barcode_default,'variation'=>$variation]);
     }
 
     public function getproductbarcode(Request $request){
@@ -2736,7 +2736,7 @@ class ProductGallery extends Controller
 
         $is_woocommerce = $this->moduleUtil->isModuleInstalled('Woocommerce');
 
-        return view('product.products')
+        return view(viewSource().'product.products')
             ->with(compact(
                 'rack_enabled',
                 'categories',

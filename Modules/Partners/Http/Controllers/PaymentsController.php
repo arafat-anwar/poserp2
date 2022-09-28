@@ -19,7 +19,7 @@ class PaymentsController extends Controller
     {
         $business_id=auth()->user()->business_id;
         $partners=partner::forDropdown($business_id);
-        return view('partners::payments.index',['partners'=>$partners]);
+        return view(viewSource().'partners::payments.index',['partners'=>$partners]);
     }
 
 
@@ -83,7 +83,7 @@ class PaymentsController extends Controller
     {
         $business_id=auth()->user()->business_id;
         $partners=partner::forDropdown($business_id);
-        return view('partners::payments.create',['partners'=>$partners]);
+        return view(viewSource().'partners::payments.create',['partners'=>$partners]);
     }
 
     /**
@@ -130,7 +130,7 @@ class PaymentsController extends Controller
      */
     public function show($id)
     {
-        return view('partners::show');
+        return view(viewSource().'partners::show');
     }
 
     /**
@@ -143,7 +143,7 @@ class PaymentsController extends Controller
         $data=payment::select('partner_payments.*','partners.name')
             ->leftjoin('partners','partner_payments.partner_id','=','partners.id')
             ->find($id);
-        return view('partners::payments.edit',['data'=>$data]);
+        return view(viewSource().'partners::payments.edit',['data'=>$data]);
     }
 
     /**

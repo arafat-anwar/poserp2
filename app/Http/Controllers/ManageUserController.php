@@ -79,7 +79,7 @@ class ManageUserController extends Controller
                 ->make(true);
         }
 
-        return view('manage_user.index');
+        return view(viewSource().'manage_user.index');
     }
 
     /**
@@ -112,7 +112,7 @@ class ManageUserController extends Controller
         //Get user form part from modules
         $form_partials = $this->moduleUtil->getModuleData('moduleViewPartials', ['view' => 'manage_user.create']);
 
-        return view('manage_user.create')
+        return view(viewSource().'manage_user.create')
                 ->with(compact('roles', 'username_ext', 'contacts', 'locations', 'form_partials'));
     }
 
@@ -259,7 +259,7 @@ class ManageUserController extends Controller
            ->latest()
            ->get();
 
-        return view('manage_user.show')->with(compact('user', 'view_partials', 'users', 'activities'));
+        return view(viewSource().'manage_user.show')->with(compact('user', 'view_partials', 'users', 'activities'));
     }
 
     /**
@@ -299,7 +299,7 @@ class ManageUserController extends Controller
         //Get user form part from modules
         $form_partials = $this->moduleUtil->getModuleData('moduleViewPartials', ['view' => 'manage_user.edit', 'user' => $user]);
         
-        return view('manage_user.edit')
+        return view(viewSource().'manage_user.edit')
                 ->with(compact('roles', 'user', 'contact_access', 'contacts', 'is_checked_checkbox', 'locations', 'permitted_locations', 'form_partials', 'username_ext'));
     }
 

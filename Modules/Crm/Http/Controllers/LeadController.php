@@ -290,7 +290,7 @@ class LeadController extends Controller
 
         $users = User::forDropdown($business_id, false, false, false, true);
 
-        return view('crm::lead.index')
+        return view(viewSource().'crm::lead.index')
             ->with(compact('sources', 'life_stages', 'lead_view', 'users'));
     }
 
@@ -314,7 +314,7 @@ class LeadController extends Controller
 
         $module_form_parts = $this->moduleUtil->getModuleData('contact_form_part');
 
-        return view('contact.create')
+        return view(viewSource().'contact.create')
             ->with(compact('types', 'store_action', 'sources', 'life_stages', 'users', 'module_form_parts'));
     }
 
@@ -396,7 +396,7 @@ class LeadController extends Controller
 
         $contact_view_tabs = $this->moduleUtil->getModuleData('get_contact_view_tabs');
 
-        return view('crm::lead.show')
+        return view(viewSource().'crm::lead.show')
             ->with(compact('contact', 'leads', 'contact_view_tabs'));
     }
 
@@ -435,7 +435,7 @@ class LeadController extends Controller
         $types['lead'] = __('crm::lang.lead');
         $update_action = action('\Modules\Crm\Http\Controllers\LeadController@update', ['lead' => $id]);
         
-        return view('contact.edit')
+        return view(viewSource().'contact.edit')
             ->with(compact('contact', 'types', 'update_action', 'sources', 'life_stages', 'users'));
     }
 

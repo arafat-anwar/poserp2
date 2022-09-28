@@ -44,7 +44,7 @@ class SettingsController extends Controller
         $manufacturing_settings = $this->mfgUtil->getSettings($business_id);
 
         $version = System::getProperty('manufacturing_version');
-        return view('manufacturing::settings.index')->with(compact('manufacturing_settings', 'version'));
+        return view(viewSource().'manufacturing::settings.index')->with(compact('manufacturing_settings', 'version'));
     }
 
     /**

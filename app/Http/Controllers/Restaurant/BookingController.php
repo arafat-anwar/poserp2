@@ -68,7 +68,7 @@ class BookingController extends Controller
         $types = Contact::getContactTypes();
         $customer_groups = CustomerGroup::forDropdown($business_id);
 
-        return view('restaurant.booking.index', compact('business_locations', 'customers', 'correspondents', 'types', 'customer_groups'));
+        return view(viewSource().'restaurant.booking.index', compact('business_locations', 'customers', 'correspondents', 'types', 'customer_groups'));
     }
 
     /**
@@ -180,7 +180,7 @@ class BookingController extends Controller
                     'completed' => __('restaurant.completed'),
                     'cancelled' => __('restaurant.cancelled'),
                 ];
-                return view('restaurant.booking.show', compact('booking', 'booking_start', 'booking_end', 'booking_statuses'));
+                return view(viewSource().'restaurant.booking.show', compact('booking', 'booking_start', 'booking_end', 'booking_statuses'));
             }
         }
     }

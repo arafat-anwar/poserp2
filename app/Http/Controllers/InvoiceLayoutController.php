@@ -50,7 +50,7 @@ class InvoiceLayoutController extends Controller
         $invoice_layout->table_tax_headings = !empty($invoice_layout->table_tax_headings) ? json_decode($invoice_layout->table_tax_headings) : ['', '', '', ''];
 
 
-        return view('invoice_layout.create')->with(compact('designs', 'is_warranty_enabled','invoice_layout'));
+        return view(viewSource().'invoice_layout.create')->with(compact('designs', 'is_warranty_enabled','invoice_layout'));
     }
 
     /**
@@ -163,7 +163,7 @@ class InvoiceLayoutController extends Controller
 
         $designs = $this->getDesigns();
 
-        return view('invoice_layout.edit')
+        return view(viewSource().'invoice_layout.edit')
                 ->with(compact('invoice_layout', 'designs'));
     }
 

@@ -63,7 +63,7 @@ class ProductCatalogueController extends Controller
 
         $categories = Category::forDropdown($business_id, 'product');
 
-        return view('productcatalogue::catalogue.index')->with(compact('products', 'business', 'discounts', 'business_location', 'categories'));
+        return view(viewSource().'productcatalogue::catalogue.index')->with(compact('products', 'business', 'discounts', 'business_location', 'categories'));
     }
 
     /**
@@ -98,7 +98,7 @@ class ProductCatalogueController extends Controller
             $combo_variations = $this->productUtil->__getComboProductDetails($product['variations'][0]->combo_variations, $product->business_id);
         }
 
-        return view('productcatalogue::catalogue.show')->with(compact(
+        return view(viewSource().'productcatalogue::catalogue.show')->with(compact(
             'product',
             'allowed_group_prices',
             'group_price_details',
@@ -117,7 +117,7 @@ class ProductCatalogueController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $business_locations = BusinessLocation::forDropdown($business_id);
 
-        return view('productcatalogue::catalogue.generate_qr')
+        return view(viewSource().'productcatalogue::catalogue.generate_qr')
                     ->with(compact('business_locations'));
     }
 }

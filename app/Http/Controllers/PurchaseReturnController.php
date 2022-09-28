@@ -249,7 +249,7 @@ class PurchaseReturnController extends Controller
 
         $business_locations = BusinessLocation::forDropdown($business_id);
 
-        return view('purchase_return.index')->with(compact('business_locations'));
+        return view(viewSource().'purchase_return.index')->with(compact('business_locations'));
     }
 
     /**
@@ -284,7 +284,7 @@ class PurchaseReturnController extends Controller
             $purchase->purchase_lines[$key]->formatted_qty_available = $this->transactionUtil->num_f($qty_available);
         }
 
-        return view('purchase_return.add')
+        return view(viewSource().'purchase_return.add')
                     ->with(compact('purchase'));
     }
 
@@ -448,7 +448,7 @@ class PurchaseReturnController extends Controller
            ->latest()
            ->get();
 
-        return view('purchase_return.show')
+        return view(viewSource().'purchase_return.show')
                 ->with(compact('purchase', 'purchase_taxes', 'activities'));
     }
 

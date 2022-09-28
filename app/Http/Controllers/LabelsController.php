@@ -57,7 +57,7 @@ class LabelsController extends Controller
             foreach ($products as $product){
                 $barcodes[]=product_barcode::where('variation_id','=',$product->variation_id)->get();
             }
-            return view('labels.show')
+            return view(viewSource().'labels.show')
                 ->with(compact('products', 'barcode_settings','barcodes'));
         } elseif ($product_id) {
             $products = $this->productUtil->getDetailsFromProduct($business_id, $product_id);
@@ -66,7 +66,7 @@ class LabelsController extends Controller
                 $barcodes[]=product_barcode::where('variation_id','=',$product->variation_id)->get();
             }
 
-            return view('labels.show')
+            return view(viewSource().'labels.show')
                 ->with(compact('products', 'barcode_settings','barcodes'));
         }
 
@@ -98,7 +98,7 @@ class LabelsController extends Controller
                 foreach ($products as $product){
                     $barcodes[]=product_barcode::where('variation_id','=',$product->variation_id)->get();
                 }
-                return view('labels.partials.show_table_rows')
+                return view(viewSource().'labels.partials.show_table_rows')
                         ->with(compact('products','index','qty_available','barcodes'));
             }
         }

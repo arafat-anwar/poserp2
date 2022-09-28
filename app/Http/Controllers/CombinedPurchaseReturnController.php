@@ -60,7 +60,7 @@ class CombinedPurchaseReturnController extends Controller
                         ->ExcludeForTaxGroup()
                         ->get();
 
-        return view('purchase_return.create')
+        return view(viewSource().'purchase_return.create')
             ->with(compact('business_locations', 'taxes'));
     }
 
@@ -234,7 +234,7 @@ class CombinedPurchaseReturnController extends Controller
                         ->ExcludeForTaxGroup()
                         ->get();
 
-        return view('purchase_return.edit')
+        return view(viewSource().'purchase_return.edit')
             ->with(compact('business_locations', 'taxes', 'purchase_return', 'purchase_lines'));
     }
 
@@ -380,7 +380,7 @@ class CombinedPurchaseReturnController extends Controller
             $product = $this->productUtil->getDetailsFromVariation($variation_id, $business_id, $location_id);
             $product->formatted_qty_available = $this->productUtil->num_f($product->qty_available);
             
-            return view('purchase_return.partials.product_table_row')
+            return view(viewSource().'purchase_return.partials.product_table_row')
             ->with(compact('product', 'row_index'));
         }
     }

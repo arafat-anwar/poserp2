@@ -57,7 +57,7 @@ class PackagesController extends BaseController
         }
 
 
-        return view('superadmin::packages.index')
+        return view(viewSource().'superadmin::packages.index')
             ->with(compact('packages', 'permission_formatted'));
     }
 
@@ -75,7 +75,7 @@ class PackagesController extends BaseController
         $currency = System::getCurrency();
         $permissions = $this->moduleUtil->getModuleData('superadmin_package');
 
-        return view('superadmin::packages.create')
+        return view(viewSource().'superadmin::packages.create')
             ->with(compact('intervals', 'currency', 'permissions'));
     }
 
@@ -131,7 +131,7 @@ class PackagesController extends BaseController
      */
     public function show()
     {
-        return view('superadmin::show');
+        return view(viewSource().'superadmin::show');
     }
 
     /**
@@ -147,7 +147,7 @@ class PackagesController extends BaseController
 
         $permissions = $this->moduleUtil->getModuleData('superadmin_package', true);
 
-        return view('superadmin::packages.edit')
+        return view(viewSource().'superadmin::packages.edit')
                ->with(compact('packages', 'intervals', 'permissions'));
     }
 

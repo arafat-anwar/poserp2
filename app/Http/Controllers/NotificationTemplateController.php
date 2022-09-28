@@ -66,7 +66,7 @@ class NotificationTemplateController extends Controller
 
         $supplier_notifications = $this->__getTemplateDetails($supplier_notifications);
 
-        return view('notification_template.index')
+        return view(viewSource().'notification_template.index')
                 ->with(compact('customer_notifications', 'supplier_notifications', 'general_notifications'));
     }
 

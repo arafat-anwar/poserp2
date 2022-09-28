@@ -415,7 +415,7 @@ class RepairController extends Controller
             $is_service_staff = true;
         }
 
-        return view('repair::repair.index')->with(compact('business_locations', 'customers', 'service_staffs', 'repair_status_dropdown', 'sales_representative', 'is_service_staff'));
+        return view(viewSource().'repair::repair.index')->with(compact('business_locations', 'customers', 'service_staffs', 'repair_status_dropdown', 'sales_representative', 'is_service_staff'));
     }
 
     /**
@@ -493,7 +493,7 @@ class RepairController extends Controller
 
         $repair_settings = $this->repairUtil->getRepairSettings($business_id);
 
-        return view('repair::repair.create')
+        return view(viewSource().'repair::repair.create')
                 ->with(compact(
                     'business_details',
                     'taxes',
@@ -623,7 +623,7 @@ class RepairController extends Controller
             }
         }
 
-        return view('repair::repair.show')
+        return view(viewSource().'repair::repair.show')
             ->with(compact('taxes', 'sell', 'payment_types', 'order_taxes', 'activities', 'warranty_expires_in', 'is_warranty_enabled', 'checklists'));
     }
 
@@ -805,7 +805,7 @@ class RepairController extends Controller
             $redeem_details['points'] -= $transaction->rp_earned;
         }
 
-        return view('repair::repair.edit')
+        return view(viewSource().'repair::repair.edit')
             ->with(compact(
                 'business_details',
                 'taxes',
@@ -839,7 +839,7 @@ class RepairController extends Controller
             $repair_status_dropdown = RepairStatus::forDropdown($business_id, true);
             $status_template_tags = $this->repairUtil->getRepairStatusTemplateTags();
 
-            return view('repair::repair.partials.edit_repair_status_modal')
+            return view(viewSource().'repair::repair.partials.edit_repair_status_modal')
                 ->with(compact('transaction', 'repair_status_dropdown', 'status_template_tags'));
         }
     }
@@ -956,7 +956,7 @@ class RepairController extends Controller
                 $barcode_details->paper_height = $barcode_details->top_margin + ($rows*$barcode_details->height) + ($rows*$barcode_details->row_distance);
             }
             
-            return view('repair::repair.partials.preview_label')
+            return view(viewSource().'repair::repair.partials.preview_label')
                 ->with(compact('product_details', 'business_name', 'barcode_details', 'page_height', 'barcode_type'));
         } catch (\Exception $e) {
             \Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());

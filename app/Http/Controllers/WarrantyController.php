@@ -34,7 +34,7 @@ class WarrantyController extends Controller
                  ->make(true);
         }
 
-        return view('warranties.index');
+        return view(viewSource().'warranties.index');
     }
 
     /**
@@ -44,7 +44,7 @@ class WarrantyController extends Controller
      */
     public function create()
     {
-        return view('warranties.create');
+        return view(viewSource().'warranties.create');
     }
 
     /**
@@ -101,7 +101,7 @@ class WarrantyController extends Controller
         if (request()->ajax()) {
             $warranty = Warranty::where('business_id', $business_id)->find($id);
 
-            return view('warranties.edit')
+            return view(viewSource().'warranties.edit')
                 ->with(compact('warranty'));
         }
     }

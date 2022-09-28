@@ -39,7 +39,7 @@ class DashboardController extends Controller
         $trending_dm_chart = $this->repairUtil->getTrendingDeviceModels($business_id);
         
         
-        return view('repair::dashboard.index')
+        return view(viewSource().'repair::dashboard.index')
             ->with(compact('job_sheets_by_status', 'job_sheets_by_service_staff', 'trending_devices_chart', 'trending_dm_chart', 'trending_brand_chart'));
     }
 
@@ -49,7 +49,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        return view('repair::create');
+        return view(viewSource().'repair::create');
     }
 
     /**
@@ -69,7 +69,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        return view('repair::show');
+        return view(viewSource().'repair::show');
     }
 
     /**
@@ -79,7 +79,7 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        return view('repair::edit');
+        return view(viewSource().'repair::edit');
     }
 
     /**

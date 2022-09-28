@@ -66,7 +66,7 @@ class TaxRateController extends Controller
                 ->make(false);
         }
 
-        return view('tax_rate.index');
+        return view(viewSource().'tax_rate.index');
     }
 
     /**
@@ -80,7 +80,7 @@ class TaxRateController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        return view('tax_rate.create');
+        return view(viewSource().'tax_rate.create');
     }
 
     /**
@@ -145,7 +145,7 @@ class TaxRateController extends Controller
             $business_id = request()->session()->get('user.business_id');
             $tax_rate = TaxRate::where('business_id', $business_id)->find($id);
 
-            return view('tax_rate.edit')
+            return view(viewSource().'tax_rate.edit')
                 ->with(compact('tax_rate'));
         }
     }

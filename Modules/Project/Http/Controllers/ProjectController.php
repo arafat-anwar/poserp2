@@ -264,7 +264,7 @@ class ProjectController extends Controller
 
         $due_dates = ProjectTask::dueDatesDropdown();
         $categories = ProjectCategory::forDropdown($business_id, 'project');
-        return view('project::project.index')
+        return view(viewSource().'project::project.index')
             ->with(compact('statuses', 'due_dates', 'project_stats', 'categories', 'project_view'));
     }
 
@@ -285,7 +285,7 @@ class ProjectController extends Controller
         $statuses = Project::statusDropdown();
         $categories = ProjectCategory::forDropdown($business_id, 'project');
 
-        return view('project::project.create')
+        return view(viewSource().'project::project.create')
             ->with(compact('users', 'customers', 'statuses', 'categories'));
     }
 
@@ -452,7 +452,7 @@ class ProjectController extends Controller
             $tab_view = request()->get('view');
         }
 
-        return view('project::project.show')
+        return view(viewSource().'project::project.show')
             ->with(compact('project', 'project_members', 'statuses', 'due_dates', 'priorities', 'timelog', 'can_crud_task', 'can_crud_docus_note', 'can_crud_timelog', 'is_lead_or_admin', 'transaction', 'invoice', 'tab_view'));
     }
 
@@ -476,7 +476,7 @@ class ProjectController extends Controller
                         ->where('business_id', $business_id)
                         ->findOrFail($id);
 
-        return view('project::project.edit')
+        return view(viewSource().'project::project.edit')
             ->with(compact('users', 'customers', 'statuses', 'project', 'categories'));
     }
 

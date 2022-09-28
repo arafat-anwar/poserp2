@@ -48,7 +48,7 @@ class PrinterController extends Controller
                 ->make(false);
         }
 
-        return view('printer.index');
+        return view(viewSource().'printer.index');
     }
 
     /**
@@ -65,7 +65,7 @@ class PrinterController extends Controller
         $capability_profiles = Printer::capability_profiles();
         $connection_types = Printer::connection_types();
 
-        return view('printer.create')
+        return view(viewSource().'printer.create')
             ->with(compact('capability_profiles', 'connection_types'));
     }
 
@@ -142,7 +142,7 @@ class PrinterController extends Controller
         $capability_profiles = Printer::capability_profiles();
         $connection_types = Printer::connection_types();
 
-        return view('printer.edit')
+        return view(viewSource().'printer.edit')
             ->with(compact('printer', 'capability_profiles', 'connection_types'));
     }
 

@@ -126,7 +126,7 @@ class DeviceModelController extends Controller
         $brands = Brands::forDropdown($business_id);
         $devices = Category::forDropdown($business_id, 'device');
 
-        return view('repair::device_model.create')
+        return view(viewSource().'repair::device_model.create')
             ->with(compact('devices', 'brands'));
     }
 
@@ -174,7 +174,7 @@ class DeviceModelController extends Controller
      */
     public function show($id)
     {
-        return view('repair::show');
+        return view(viewSource().'repair::show');
     }
 
     /**
@@ -196,7 +196,7 @@ class DeviceModelController extends Controller
         $brands = Brands::forDropdown($business_id);
         $devices = Category::forDropdown($business_id, 'device');
 
-        return view('repair::device_model.edit')
+        return view(viewSource().'repair::device_model.edit')
             ->with(compact('devices', 'brands', 'model'));
     }
 

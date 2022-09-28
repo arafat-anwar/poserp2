@@ -92,7 +92,7 @@ class BusinessLocationController extends Controller
                 ->make(false);
         }
 
-        return view('business_location.index');
+        return view(viewSource().'business_location.index');
     }
 
     /**
@@ -132,7 +132,7 @@ class BusinessLocationController extends Controller
             $accounts = Account::forDropdown($business_id, true, false);
         }
 
-        return view('business_location.create')
+        return view(viewSource().'business_location.create')
                     ->with(compact(
                         'invoice_layouts',
                         'invoice_schemes',
@@ -241,7 +241,7 @@ class BusinessLocationController extends Controller
         }
         $featured_products = $location->getFeaturedProducts(true, false);
 
-        return view('business_location.edit')
+        return view(viewSource().'business_location.edit')
                 ->with(compact(
                     'location',
                     'invoice_layouts',

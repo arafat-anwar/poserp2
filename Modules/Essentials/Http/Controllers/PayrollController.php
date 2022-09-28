@@ -154,7 +154,7 @@ class PayrollController extends Controller
         $departments = Category::forDropdown($business_id, 'hrm_department');
         $designations = Category::forDropdown($business_id, 'hrm_designation');
 
-        return view('essentials::payroll.index')->with(compact('employees', 'is_admin', 'departments', 'designations'));
+        return view(viewSource().'essentials::payroll.index')->with(compact('employees', 'is_admin', 'departments', 'designations'));
     }
 
     /**
@@ -209,7 +209,7 @@ class PayrollController extends Controller
                 }
             }
 
-            return view('essentials::payroll.create')
+            return view(viewSource().'essentials::payroll.create')
                     ->with(compact('employee', 'total_work_duration', 'month_name', 'transaction_date', 'year', 'allowances', 'deductions'));
         } else {
             return redirect()->action('\Modules\Essentials\Http\Controllers\PayrollController@edit', $payroll->id);
@@ -348,7 +348,7 @@ class PayrollController extends Controller
 
         $payment_types = $this->moduleUtil->payment_types();
 
-        return view('essentials::payroll.show')->with(compact('payroll', 'month_name', 'allowances', 'deductions', 'year', 'payment_types'));
+        return view(viewSource().'essentials::payroll.show')->with(compact('payroll', 'month_name', 'allowances', 'deductions', 'year', 'payment_types'));
     }
 
     /**
@@ -375,7 +375,7 @@ class PayrollController extends Controller
         $allowances = !empty($payroll->essentials_allowances) ? json_decode($payroll->essentials_allowances, true) : [];
         $deductions = !empty($payroll->essentials_deductions) ? json_decode($payroll->essentials_deductions, true) : [];
 
-        return view('essentials::payroll.edit')->with(compact('payroll', 'month_name', 'allowances', 'deductions', 'year'));
+        return view(viewSource().'essentials::payroll.edit')->with(compact('payroll', 'month_name', 'allowances', 'deductions', 'year'));
     }
 
     /**

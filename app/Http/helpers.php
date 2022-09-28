@@ -100,3 +100,19 @@ if (! function_exists('str_ordinal')) {
         return number_format($number) . $suffix;
     }
 }
+
+function frontendVersion(){
+    if((session()->has('frontend-version') && session()->get('frontend-version') == 'v1') || (!session()->has('frontend-version'))){
+        return 1;
+    }else{
+        return 2;
+    }
+}
+
+function viewSource(){
+    if(frontendVersion() == 1){
+        return '';
+    }else{
+        return 'v2.';
+    }
+}

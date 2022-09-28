@@ -196,7 +196,7 @@ class DocumentAndNoteController extends Controller
         $notable_id = request()->get('notable_id');
         //model name like App\User
         $notable_type = request()->get('notable_type');
-        return view('documents_and_notes.create')
+        return view(viewSource().'documents_and_notes.create')
             ->with(compact('notable_id', 'notable_type'));
     }
 
@@ -277,7 +277,7 @@ class DocumentAndNoteController extends Controller
             ->with('media', 'createdBy')
             ->findOrFail($id);
 
-        return view('documents_and_notes.show')
+        return view(viewSource().'documents_and_notes.show')
             ->with(compact('document_note'));
     }
 
@@ -300,7 +300,7 @@ class DocumentAndNoteController extends Controller
         ->where('notable_type', $notable_type)
         ->findOrFail($id);
 
-        return view('documents_and_notes.edit')
+        return view(viewSource().'documents_and_notes.edit')
             ->with(compact('notable_id', 'document_note', 'notable_type'));
     }
 
@@ -454,7 +454,7 @@ class DocumentAndNoteController extends Controller
             $notable_id = $request->get('notable_id');
             $permissions = $this->__getPermission($business_id, $notable_id, $notable_type);
 
-            return view('documents_and_notes.index')
+            return view(viewSource().'documents_and_notes.index')
                 ->with(compact('permissions', 'notable_type', 'notable_id'));
         }
     }

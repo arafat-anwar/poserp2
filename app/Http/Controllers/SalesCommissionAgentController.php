@@ -60,7 +60,7 @@ class SalesCommissionAgentController extends Controller
                 ->make(true);
         }
 
-        return view('sales_commission_agent.index');
+        return view(viewSource().'sales_commission_agent.index');
     }
 
     /**
@@ -74,7 +74,7 @@ class SalesCommissionAgentController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        return view('sales_commission_agent.create');
+        return view(viewSource().'sales_commission_agent.create');
     }
 
     /**
@@ -127,7 +127,7 @@ class SalesCommissionAgentController extends Controller
 
         $user = User::findOrFail($id);
 
-        return view('sales_commission_agent.edit')
+        return view(viewSource().'sales_commission_agent.edit')
                     ->with(compact('user'));
     }
 

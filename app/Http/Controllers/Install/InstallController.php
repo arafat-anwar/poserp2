@@ -90,7 +90,7 @@ class InstallController extends Controller
         $this->isInstalled();
         $this->installSettings();
 
-        return view('install.index');
+        return view(viewSource().'install.index');
     }
 
     public function checkServer()
@@ -121,7 +121,7 @@ class InstallController extends Controller
         
         $output['next'] = $output['php'] && $output['openssl'] && $output['pdo'] && $output['mbstring'] && $output['tokenizer'] && $output['xml'] && $output['curl'] && $output['zip'] && $output['gd'] && $output['storage_writable'] && $output['cache_writable'];
 
-        return view('install.check-server')
+        return view(viewSource().'install.check-server')
             ->with(compact('output'));
     }
 
@@ -137,7 +137,7 @@ class InstallController extends Controller
             die("<b>.env.example file not found in <code>$env_example</code></b> <br/><br/> - In the downloaded codebase you will find .env.example file, please upload it and refresh this page.");
         }
 
-        return view('install.details')
+        return view(viewSource().'install.details')
             ->with('activation_key', $this->macActivationKeyChecker);
     }
 
@@ -237,7 +237,7 @@ class InstallController extends Controller
 
                 //Show intermediate steps if not able to copy file.
                 $envContent = implode('', $env_lines);
-                return view('install.envText')
+                return view(viewSource().'install.envText')
                     ->with(compact('envContent', 'envPath'));
             }
         } catch (Exception $e) {
@@ -286,7 +286,7 @@ class InstallController extends Controller
 
     public function success()
     {
-        return view('install.success');
+        return view(viewSource().'install.success');
     }
 
     public function updateConfirmation()
@@ -295,7 +295,7 @@ class InstallController extends Controller
         $db_version = $installUtil->getSystemInfo('db_version');
         
         if (Comparator::greaterThan($this->appVersion, $db_version)) {
-            return view('install.update_confirmation');
+            return view(viewSource().'install.update_confirmation');
         } else {
             abort(404);
         }

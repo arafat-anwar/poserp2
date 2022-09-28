@@ -67,7 +67,7 @@ class SellingPriceGroupController extends Controller
                 ->make(false);
         }
 
-        return view('selling_price_group.index');
+        return view(viewSource().'selling_price_group.index');
     }
 
     /**
@@ -82,7 +82,7 @@ class SellingPriceGroupController extends Controller
         }
 
         $currencies = $this->businessUtil->allCurrencies();
-        return view('selling_price_group.create',['currencies'=>$currencies]);
+        return view(viewSource().'selling_price_group.create',['currencies'=>$currencies]);
     }
 
     /**
@@ -149,7 +149,7 @@ class SellingPriceGroupController extends Controller
             $business_id = request()->session()->get('user.business_id');
             $spg = SellingPriceGroup::where('business_id', $business_id)->find($id);
 
-            return view('selling_price_group.edit')
+            return view(viewSource().'selling_price_group.edit')
                 ->with(compact('spg'));
         }
     }
@@ -398,7 +398,7 @@ class SellingPriceGroupController extends Controller
     public function changecurrency(){
         $settings = System::pluck('value', 'key');
         $currencies = $this->businessUtil->allCurrencies();
-        return view('currency.changecurrency',['currencies'=>$currencies,'settings'=>$settings]);
+        return view(viewSource().'currency.changecurrency',['currencies'=>$currencies,'settings'=>$settings]);
     }
 
     public function savecurrency(Request $request){

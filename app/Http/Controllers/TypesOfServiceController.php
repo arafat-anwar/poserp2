@@ -66,7 +66,7 @@ class TypesOfServiceController extends Controller
                 ->make(true);
         }
 
-        return view('types_of_service.index');
+        return view(viewSource().'types_of_service.index');
     }
 
     /**
@@ -84,7 +84,7 @@ class TypesOfServiceController extends Controller
         $locations = BusinessLocation::forDropdown($business_id);
         $price_groups = SellingPriceGroup::forDropdown($business_id);
 
-        return view('types_of_service.create')
+        return view(viewSource().'types_of_service.create')
                 ->with(compact('locations', 'price_groups'));
     }
 
@@ -155,7 +155,7 @@ class TypesOfServiceController extends Controller
         $type_of_service = TypesOfService::where('business_id', $business_id)
                                         ->findOrFail($id);
 
-        return view('types_of_service.edit')
+        return view(viewSource().'types_of_service.edit')
                 ->with(compact('locations', 'price_groups', 'type_of_service'));
     }
 

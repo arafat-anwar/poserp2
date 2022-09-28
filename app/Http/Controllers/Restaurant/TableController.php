@@ -46,7 +46,7 @@ class TableController extends Controller
                 ->make(true);
         }
 
-        return view('restaurant.table.index');
+        return view(viewSource().'restaurant.table.index');
     }
 
     /**
@@ -62,7 +62,7 @@ class TableController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $business_locations = BusinessLocation::forDropdown($business_id);
 
-        return view('restaurant.table.create')
+        return view(viewSource().'restaurant.table.create')
             ->with(compact('business_locations'));
     }
 
@@ -109,7 +109,7 @@ class TableController extends Controller
              abort(403, 'Unauthorized action.');
         }
 
-        return view('restaurant.table.show');
+        return view(viewSource().'restaurant.table.show');
     }
 
     /**
@@ -126,7 +126,7 @@ class TableController extends Controller
             $business_id = request()->session()->get('user.business_id');
             $table = ResTable::where('business_id', $business_id)->find($id);
 
-            return view('restaurant.table.edit')
+            return view(viewSource().'restaurant.table.edit')
                 ->with(compact('table'));
         }
     }

@@ -262,7 +262,7 @@ class SellController extends Controller
                     ->addSelect('transactions.is_suspend', 'transactions.res_table_id', 'transactions.res_waiter_id', 'transactions.additional_notes')
                     ->get();
 
-                return view('sale_pos.partials.suspended_sales_modal')->with(compact('sales', 'is_tables_enabled', 'is_service_staff_enabled', 'transaction_sub_type'));
+                return view(viewSource().'sale_pos.partials.suspended_sales_modal')->with(compact('sales', 'is_tables_enabled', 'is_service_staff_enabled', 'transaction_sub_type'));
             }
 
             $with[] = 'payment_lines';
@@ -540,7 +540,7 @@ class SellController extends Controller
 
         $shipping_statuses = $this->transactionUtil->shipping_statuses();
 
-        return view('sell.index')
+        return view(viewSource().'sell.index')
             ->with(compact('business_locations', 'customers', 'is_woocommerce', 'sales_representative', 'is_cmsn_agent_enabled', 'commission_agents', 'service_staffs', 'is_tables_enabled', 'is_service_staff_enabled', 'is_types_service_enabled', 'shipping_statuses'));
     }
 
@@ -655,7 +655,7 @@ class SellController extends Controller
         $payment_lines[] = $this->dummyPaymentLine;
         $change_return = $this->dummyPaymentLine;
 //        dd($price_groups);
-        return view('sell.new_sell.create')
+        return view(viewSource().'sell.new_sell.create')
             ->with(compact(
                 'business_details',
                 'taxes',
@@ -755,7 +755,7 @@ class SellController extends Controller
 
         $statuses = Transaction::getSellStatuses();
 //dd($sell);
-        return view('sale_pos.show')
+        return view(viewSource().'sale_pos.show')
             ->with(compact(
                 'taxes',
                 'sell',
@@ -1016,7 +1016,7 @@ class SellController extends Controller
         $is_warranty_enabled = !empty($common_settings['enable_product_warranty']) ? true : false;
         $warranties = $is_warranty_enabled ? Warranty::forDropdown($business_id) : [];
         
-        return view('sell.edit')
+        return view(viewSource().'sell.edit')
             ->with(compact('business_details', 'taxes', 'sell_details', 'transaction', 'commission_agent', 'types', 'customer_groups', 'pos_settings', 'waiters', 'invoice_schemes', 'default_invoice_schemes', 'redeem_details', 'edit_discount', 'edit_price', 'accounts', 'shipping_statuses', 'warranties'));
     }
 
@@ -1039,7 +1039,7 @@ class SellController extends Controller
         $sales_representative = User::forDropdown($business_id, false, false, true);
     
 
-        return view('sale_pos.draft')
+        return view(viewSource().'sale_pos.draft')
             ->with(compact('business_locations', 'customers', 'sales_representative'));
     }
 
@@ -1061,7 +1061,7 @@ class SellController extends Controller
       
         $sales_representative = User::forDropdown($business_id, false, false, true);
 
-        return view('sale_pos.quotations')
+        return view(viewSource().'sale_pos.quotations')
                 ->with(compact('business_locations', 'customers', 'sales_representative'));
     }
 
@@ -1333,7 +1333,7 @@ class SellController extends Controller
                                 ->findorfail($id);
         $shipping_statuses = $this->transactionUtil->shipping_statuses();
 
-        return view('sell.partials.edit_shipping')
+        return view(viewSource().'sell.partials.edit_shipping')
                ->with(compact('transaction', 'shipping_statuses'));
     }
 
@@ -1412,7 +1412,7 @@ class SellController extends Controller
             $service_staffs = $this->productUtil->serviceStaffDropdown($business_id);
         }
 
-        return view('sell.shipments')->with(compact('shipping_statuses'))
+        return view(viewSource().'sell.shipments')->with(compact('shipping_statuses'))
                 ->with(compact('business_locations', 'customers', 'sales_representative', 'is_service_staff_enabled', 'service_staffs'));
     }
 
@@ -1434,7 +1434,7 @@ class SellController extends Controller
 
             $medias = $query->get();
 
-            return view('sell.view_media')->with(compact('medias', 'title'));
+            return view(viewSource().'sell.view_media')->with(compact('medias', 'title'));
         }
     }
 }

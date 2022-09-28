@@ -10,10 +10,10 @@
 					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
 						<span class="menu-link">
-						<span class="svg-icon svg-icon-1">
-								<i class="fas fa-plus-circle fa-lg" style="font-size: 24px"></i>
-						</span> &nbsp;
-					</span>
+							<span class="svg-icon svg-icon-1">
+									<i class="fas fa-plus-circle fa-lg" style="font-size: 24px"></i>
+							</span> &nbsp;
+						</span>
 					</div>
 					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
@@ -25,7 +25,7 @@
 					</div>
 					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
-						<span class="menu-link">
+						<span class="menu-link" onclick="window.open('{{ url('pos/create') }}', '_parent')">
 						<span class="svg-icon svg-icon-1">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
@@ -40,7 +40,7 @@
 					</div>
 					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
-						<span class="menu-link">
+						<span class="menu-link" onclick="window.open('{{ url('sells/create') }}', '_parent')">
 						<span class="svg-icon svg-icon-1">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
@@ -55,7 +55,7 @@
 					</div>
 					<div title="Add Repair" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
-						<span class="menu-link">
+						<span class="menu-link" onclick="window.open('{{ url('pos/create?sub_type=repair') }}', '_parent')">
 						<span class="svg-icon svg-icon-1">
 								<i class="las la-tools" style="font-size: 24px"></i>
 						</span> &nbsp;&nbsp;&nbsp;
@@ -71,6 +71,32 @@
 						</span>
 					</span>
 					</div>
+
+					@if(frontendVersion() == 1)
+						<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+							<!--begin:Menu link-->
+							<span class="menu-link" onclick="window.open('{{ url('switch-frontend-version?version=v2') }}', '_parent')">
+								<span class="svg-icon svg-icon-1">
+									<i class="fas fa-code-branch" style="font-size: 18px"></i>
+								</span> &nbsp;&nbsp;&nbsp;
+								<span class="menu-title">V1</span>
+								<span class="menu-arrow d-lg-none"></span>
+							</span>
+						</div>
+					@else
+						<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+							<!--begin:Menu link-->
+							<span class="menu-link" onclick="window.open('{{ url('switch-frontend-version?version=v1') }}', '_parent')">
+								<span class="svg-icon svg-icon-1">
+									<i class="fas fa-code-branch" style="font-size: 18px"></i>
+								</span> &nbsp;&nbsp;&nbsp;
+								<span class="menu-title">V2</span>
+								<span class="menu-arrow d-lg-none"></span>
+							</span>
+						</div>
+					@endif
+					
+
 				</div>
 			</div>
 		</div>
@@ -140,7 +166,7 @@
 						<!--begin::Username-->
 						<div class="d-flex flex-column">
 							<div class="fw-bold d-flex align-items-center fs-5">{{ Auth::User()->first_name }} {{ Auth::User()->last_name }}
-							@if($is_admin)
+							@if(isset($is_admin) && $is_admin)
 								<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Supper Admin</span></div>
 							@else
 								<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Business</span></div>
@@ -161,52 +187,6 @@
 				<!--begin::Menu item-->
 				<div class="menu-item px-5">
 					<a href="{{action('UserController@getProfile')}}" class="menu-link px-5">@lang('lang_v1.profile')</a>
-				</div>
-				<!--end::Menu item-->
-				<!--begin::Menu item-->
-				<div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start">
-					<a href="#" class="menu-link px-5">
-						<span class="menu-title">My Subscription</span>
-						<span class="menu-arrow"></span>
-					</a>
-					<!--begin::Menu sub-->
-					<div class="menu-sub menu-sub-dropdown w-175px py-4">
-						<!--begin::Menu item-->
-						<div class="menu-item px-3">
-							<a href="../../demo1/dist/account/referrals.html" class="menu-link px-5">Referrals</a>
-						</div>
-						<!--end::Menu item-->
-						<!--begin::Menu item-->
-						<div class="menu-item px-3">
-							<a href="../../demo1/dist/account/billing.html" class="menu-link px-5">Billing</a>
-						</div>
-						<!--end::Menu item-->
-						<!--begin::Menu item-->
-						<div class="menu-item px-3">
-							<a href="../../demo1/dist/account/statements.html" class="menu-link px-5">Payments</a>
-						</div>
-						<!--end::Menu item-->
-						<!--begin::Menu item-->
-						<div class="menu-item px-3">
-							<a href="../../demo1/dist/account/statements.html" class="menu-link d-flex flex-stack px-5">Statements
-							<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="View your statements"></i></a>
-						</div>
-						<!--end::Menu item-->
-						<!--begin::Menu separator-->
-						<div class="separator my-2"></div>
-						<!--end::Menu separator-->
-						<!--begin::Menu item-->
-						<div class="menu-item px-3">
-							<div class="menu-content px-3">
-								<label class="form-check form-switch form-check-custom form-check-solid">
-									<input class="form-check-input w-30px h-20px" type="checkbox" value="1" checked="checked" name="notifications" />
-									<span class="form-check-label text-muted fs-7">Notifications</span>
-								</label>
-							</div>
-						</div>
-						<!--end::Menu item-->
-					</div>
-					<!--end::Menu sub-->
 				</div>
 				<!--end::Menu item-->
 				<!--begin::Menu item-->

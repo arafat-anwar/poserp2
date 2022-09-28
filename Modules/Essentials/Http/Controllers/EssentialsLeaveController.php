@@ -150,7 +150,7 @@ class EssentialsLeaveController extends Controller
 
         $leave_types = EssentialsLeaveType::forDropdown($business_id);
 
-        return view('essentials::leave.index')->with(compact('leave_statuses', 'users', 'leave_types', 'is_admin'));
+        return view(viewSource().'essentials::leave.index')->with(compact('leave_statuses', 'users', 'leave_types', 'is_admin'));
     }
 
     /**
@@ -173,7 +173,7 @@ class EssentialsLeaveController extends Controller
             $employees = User::forDropdown($business_id, false, false, false, true);
         }
 
-        return view('essentials::leave.create')->with(compact('leave_types', 'instructions', 'employees'));
+        return view(viewSource().'essentials::leave.create')->with(compact('leave_types', 'instructions', 'employees'));
     }
 
     /**
@@ -249,7 +249,7 @@ class EssentialsLeaveController extends Controller
      */
     public function show()
     {
-        return view('essentials::show');
+        return view(viewSource().'essentials::show');
     }
 
     /**
@@ -258,7 +258,7 @@ class EssentialsLeaveController extends Controller
      */
     public function edit()
     {
-        return view('essentials::edit');
+        return view(viewSource().'essentials::edit');
     }
 
     /**
@@ -367,7 +367,7 @@ class EssentialsLeaveController extends Controller
                            ->latest()
                            ->get();
 
-        return view('essentials::leave.activity_modal')->with(compact('leave', 'activities'));
+        return view(viewSource().'essentials::leave.activity_modal')->with(compact('leave', 'activities'));
     }
 
     /**
@@ -431,6 +431,6 @@ class EssentialsLeaveController extends Controller
         $user = User::where('business_id', $business_id)
                     ->find($user_id);
         
-        return view('essentials::leave.user_leave_summary')->with(compact('leaves_summary', 'leave_types', 'statuses', 'user', 'status_summary'));
+        return view(viewSource().'essentials::leave.user_leave_summary')->with(compact('leaves_summary', 'leave_types', 'statuses', 'user', 'status_summary'));
     }
 }

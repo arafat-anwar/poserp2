@@ -66,7 +66,7 @@ class DataController extends Controller
 
     public function index()
     {
-        return view('inventory::index');
+        return view(viewSource().'inventory::index');
     }
 
     /**
@@ -75,7 +75,7 @@ class DataController extends Controller
      */
     public function create()
     {
-        return view('inventory::create');
+        return view(viewSource().'inventory::create');
     }
 
     /**
@@ -95,7 +95,7 @@ class DataController extends Controller
      */
     public function show($id)
     {
-        return view('inventory::show');
+        return view(viewSource().'inventory::show');
     }
 
     /**
@@ -105,7 +105,7 @@ class DataController extends Controller
      */
     public function edit($id)
     {
-        return view('inventory::edit');
+        return view(viewSource().'inventory::edit');
     }
 
     /**

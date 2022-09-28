@@ -85,7 +85,7 @@ class RepairStatusController extends Controller
 
         $status_template_tags = $this->repairUtil->getRepairStatusTemplateTags();
 
-        return view('repair::status.create')
+        return view(viewSource().'repair::status.create')
             ->with(compact('status_template_tags'));
     }
 
@@ -140,7 +140,7 @@ class RepairStatusController extends Controller
             $status = RepairStatus::where('business_id', $business_id)->find($id);
             $status_template_tags = $this->repairUtil->getRepairStatusTemplateTags();
 
-            return view('repair::status.edit')
+            return view(viewSource().'repair::status.edit')
                 ->with(compact('status', 'status_template_tags'));
         }
     }

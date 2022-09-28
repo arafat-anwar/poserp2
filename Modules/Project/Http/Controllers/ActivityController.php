@@ -69,7 +69,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        return view('project::create');
+        return view(viewSource().'project::create');
     }
 
     /**
@@ -87,7 +87,7 @@ class ActivityController extends Controller
      */
     public function show()
     {
-        return view('project::show');
+        return view(viewSource().'project::show');
     }
 
     /**
@@ -96,7 +96,7 @@ class ActivityController extends Controller
      */
     public function edit()
     {
-        return view('project::edit');
+        return view(viewSource().'project::edit');
     }
 
     /**

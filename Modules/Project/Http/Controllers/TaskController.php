@@ -326,7 +326,7 @@ class TaskController extends Controller
 
         $projects = Project::projectDropdown($business_id, $user_id);
 
-        return view('project::my_task.index')
+        return view(viewSource().'project::my_task.index')
             ->with(compact('users', 'statuses', 'priorities', 'due_dates', 'projects', 'is_admin'));
     }
 
@@ -341,7 +341,7 @@ class TaskController extends Controller
         $priorities = ProjectTask::prioritiesDropdown();
         $statuses = ProjectTask::taskStatuses();
 
-        return view('project::task.create')
+        return view(viewSource().'project::task.create')
             ->with(compact('project_members', 'priorities', 'project_id', 'statuses'));
     }
 
@@ -431,7 +431,7 @@ class TaskController extends Controller
 
         $can_crud_timelog = $this->projectUtil->canMemberCrudTimelog($business_id, auth()->user()->id, $project_id);
 
-        return view('project::task.show')
+        return view(viewSource().'project::task.show')
             ->with(compact('project_task', 'is_lead_or_admin', 'can_crud_timelog'));
     }
 
@@ -449,7 +449,7 @@ class TaskController extends Controller
         $project_members = ProjectMember::projectMembersDropdown($project_id);
         $priorities = ProjectTask::prioritiesDropdown();
         $statuses = ProjectTask::taskStatuses();
-        return view('project::task.edit')
+        return view(viewSource().'project::task.edit')
             ->with(compact('project_members', 'priorities', 'project_task', 'statuses'));
     }
 
@@ -553,7 +553,7 @@ class TaskController extends Controller
         $project_task = ProjectTask::where('project_id', $project_id)
                             ->findOrFail($task_id);
 
-        return view('project::task.change_status')
+        return view(viewSource().'project::task.change_status')
             ->with(compact('project_task', 'statuses'));
     }
 

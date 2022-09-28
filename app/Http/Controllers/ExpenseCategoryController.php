@@ -38,7 +38,7 @@ class ExpenseCategoryController extends Controller
                 ->make(false);
         }
 
-        return view('expense_category.index');
+        return view(viewSource().'expense_category.index');
     }
 
     /**
@@ -52,7 +52,7 @@ class ExpenseCategoryController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        return view('expense_category.create');
+        return view(viewSource().'expense_category.create');
     }
 
     /**
@@ -113,7 +113,7 @@ class ExpenseCategoryController extends Controller
             $business_id = request()->session()->get('user.business_id');
             $expense_category = ExpenseCategory::where('business_id', $business_id)->find($id);
 
-            return view('expense_category.edit')
+            return view(viewSource().'expense_category.edit')
                     ->with(compact('expense_category'));
         }
     }

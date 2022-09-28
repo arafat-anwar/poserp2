@@ -60,7 +60,7 @@ class BusinessController extends BaseController
         $business_id = request()->session()->get('user.business_id');
         
        
-        return view('superadmin::business.index')
+        return view(viewSource().'superadmin::business.index')
             ->with(compact('businesses', 'business_id'));
     }
 
@@ -140,7 +140,7 @@ class BusinessController extends BaseController
 
         $is_admin = true;
 
-        return view('superadmin::business.create')
+        return view(viewSource().'superadmin::business.create')
             ->with(compact(
                 'currencies',
                 'timezone_list',
@@ -244,7 +244,7 @@ class BusinessController extends BaseController
 
         $created_by = !empty($created_id) ? User::find($created_id) : null;
 
-        return view('superadmin::business.show')
+        return view(viewSource().'superadmin::business.show')
             ->with(compact('business', 'created_by'));
     }
 
@@ -254,7 +254,7 @@ class BusinessController extends BaseController
      */
     public function edit()
     {
-        return view('superadmin::edit');
+        return view(viewSource().'superadmin::edit');
     }
 
     /**

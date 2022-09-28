@@ -77,7 +77,7 @@ class ImportSalesController extends Controller
 
     	$import_fields = $this->__importFields();
 
-    	return view('import_sales.index')->with(compact('imported_sales_array', 'import_fields'));
+    	return view(viewSource().'import_sales.index')->with(compact('imported_sales_array', 'import_fields'));
     }
 
     /**
@@ -127,7 +127,7 @@ class ImportSalesController extends Controller
 
             $business_locations = BusinessLocation::forDropdown($business_id);
 
-    		return view('import_sales.preview')->with(compact('parsed_array', 'import_fields', 'file_name', 'business_locations', 'match_array'));
+    		return view(viewSource().'import_sales.preview')->with(compact('parsed_array', 'import_fields', 'file_name', 'business_locations', 'match_array'));
         }
     }
 

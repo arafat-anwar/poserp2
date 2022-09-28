@@ -14,7 +14,7 @@ class ManufacturingController extends Controller
      */
     public function index()
     {
-        return view('manufacturing::index');
+        return view(viewSource().'manufacturing::index');
     }
 
     /**
@@ -23,7 +23,7 @@ class ManufacturingController extends Controller
      */
     public function create()
     {
-        return view('manufacturing::create');
+        return view(viewSource().'manufacturing::create');
     }
 
     /**
@@ -41,7 +41,7 @@ class ManufacturingController extends Controller
      */
     public function show()
     {
-        return view('manufacturing::show');
+        return view(viewSource().'manufacturing::show');
     }
 
     /**
@@ -50,7 +50,7 @@ class ManufacturingController extends Controller
      */
     public function edit()
     {
-        return view('manufacturing::edit');
+        return view(viewSource().'manufacturing::edit');
     }
 
     /**

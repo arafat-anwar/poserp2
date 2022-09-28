@@ -59,7 +59,7 @@ class CustomerGroupController extends Controller
                     ->make(false);
         }
 
-        return view('customer_group.index');
+        return view(viewSource().'customer_group.index');
     }
 
     /**
@@ -76,7 +76,7 @@ class CustomerGroupController extends Controller
         $business_id = request()->session()->get('user.business_id');
         $price_groups = SellingPriceGroup::forDropdown($business_id, false);
 
-        return view('customer_group.create')->with(compact('price_groups'));
+        return view(viewSource().'customer_group.create')->with(compact('price_groups'));
     }
 
     /**
@@ -132,7 +132,7 @@ class CustomerGroupController extends Controller
             $business_id = request()->session()->get('user.business_id');
             $price_groups = SellingPriceGroup::forDropdown($business_id, false);
 
-            return view('customer_group.edit')
+            return view(viewSource().'customer_group.edit')
                 ->with(compact('customer_group', 'price_groups'));
         }
     }

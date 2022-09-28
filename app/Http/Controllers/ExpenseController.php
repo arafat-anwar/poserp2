@@ -262,7 +262,7 @@ class ExpenseController extends Controller
 
         $contacts = Contact::contactDropdown($business_id, false, false);
 
-        return view('expense.index')
+        return view(viewSource().'expense.index')
             ->with(compact('categories', 'business_locations', 'users', 'contacts'));
     }
 
@@ -308,11 +308,11 @@ class ExpenseController extends Controller
         }
 
         if (request()->ajax()) {
-            return view('expense.add_expense_modal')
+            return view(viewSource().'expense.add_expense_modal')
                 ->with(compact('expense_categories', 'business_locations', 'users', 'taxes', 'payment_line', 'payment_types', 'accounts', 'bl_attributes', 'contacts'));
         }
 
-        return view('expense.create')
+        return view(viewSource().'expense.create')
             ->with(compact('expense_categories', 'business_locations', 'users', 'taxes', 'payment_line', 'payment_types', 'accounts', 'bl_attributes', 'contacts'));
     }
 
@@ -411,7 +411,7 @@ class ExpenseController extends Controller
 
         $contacts = Contact::contactDropdown($business_id, false, false);
 
-        return view('expense.edit')
+        return view(viewSource().'expense.edit')
             ->with(compact('expense', 'expense_categories', 'business_locations', 'users', 'taxes', 'contacts'));
     }
 

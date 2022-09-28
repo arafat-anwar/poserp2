@@ -125,7 +125,7 @@ class DashboardController extends Controller
                                 ->get();
         }
 
-        return view('essentials::dashboard.hrm_dashboard')
+        return view(viewSource().'essentials::dashboard.hrm_dashboard')
                 ->with(compact('users', 'departments', 'users_by_dept', 'todays_holidays', 'todays_leaves', 'upcoming_leaves', 'is_admin', 'users_leaves', 'upcoming_holidays', 'todays_attendances'));
     }
 
@@ -135,7 +135,7 @@ class DashboardController extends Controller
      */
     public function essentialsDashboard()
     {
-        return view('essentials::dashboard.essentials_dashboard');
+        return view(viewSource().'essentials::dashboard.essentials_dashboard');
     }
 
     /**
@@ -144,7 +144,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        return view('essentials::create');
+        return view(viewSource().'essentials::create');
     }
 
     /**
@@ -164,7 +164,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        return view('essentials::show');
+        return view(viewSource().'essentials::show');
     }
 
     /**
@@ -174,7 +174,7 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        return view('essentials::edit');
+        return view(viewSource().'essentials::edit');
     }
 
     /**

@@ -85,7 +85,7 @@ class AccountReportsController extends Controller
             return $output;
         }
 
-        return view('account_reports.balance_sheet');
+        return view(viewSource().'account_reports.balance_sheet');
     }
 
     /**
@@ -128,7 +128,7 @@ class AccountReportsController extends Controller
             return $output;
         }
 
-        return view('account_reports.trial_balance');
+        return view(viewSource().'account_reports.trial_balance');
     }
 
     /**
@@ -270,7 +270,7 @@ class AccountReportsController extends Controller
         $accounts = Account::forDropdown($business_id, false);
         $accounts = ['' => __('messages.all'), 'none' => __('lang_v1.none')] + $accounts;
         
-        return view('account_reports.payment_account_report')
+        return view(viewSource().'account_reports.payment_account_report')
                 ->with(compact('accounts'));
     }
 
@@ -289,7 +289,7 @@ class AccountReportsController extends Controller
             $payment = TransactionPayment::where('business_id', $business_id)->findOrFail($id);
             $accounts = Account::forDropdown($business_id, false);
 
-            return view('account_reports.link_account_modal')
+            return view(viewSource().'account_reports.link_account_modal')
                 ->with(compact('accounts', 'payment'));
         }
     }

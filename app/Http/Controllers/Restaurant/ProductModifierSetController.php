@@ -27,7 +27,7 @@ class ProductModifierSetController extends Controller
                         ->with(['modifier_products'])
                         ->first();
 
-            return view('restaurant.product_modifier_set.edit')
+            return view(viewSource().'restaurant.product_modifier_set.edit')
                 ->with(compact('modifer_set'));
         }
     }
@@ -45,7 +45,7 @@ class ProductModifierSetController extends Controller
                         ->where('id', $product_id)
                         ->first();
 
-            return view('restaurant.product_modifier_set.product_row')
+            return view(viewSource().'restaurant.product_modifier_set.product_row')
                 ->with(compact('product'));
         }
     }
@@ -101,7 +101,7 @@ class ProductModifierSetController extends Controller
                         ->get();
 
         if (count($modifiers) > 0) {
-            return view('restaurant.product_modifier_set.add_selected_modifiers')
+            return view(viewSource().'restaurant.product_modifier_set.add_selected_modifiers')
                 ->with(compact('modifiers', 'index', 'quantity'));
         } else {
             return '';
