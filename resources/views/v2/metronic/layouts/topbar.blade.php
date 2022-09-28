@@ -79,7 +79,7 @@
 								<span class="svg-icon svg-icon-1">
 									<i class="fas fa-code-branch" style="font-size: 18px"></i>
 								</span> &nbsp;&nbsp;&nbsp;
-								<span class="menu-title">V1</span>
+								<span class="menu-title">V2</span>
 								<span class="menu-arrow d-lg-none"></span>
 							</span>
 						</div>
@@ -90,7 +90,7 @@
 								<span class="svg-icon svg-icon-1">
 									<i class="fas fa-code-branch" style="font-size: 18px"></i>
 								</span> &nbsp;&nbsp;&nbsp;
-								<span class="menu-title">V2</span>
+								<span class="menu-title">V1</span>
 								<span class="menu-arrow d-lg-none"></span>
 							</span>
 						</div>
