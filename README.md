@@ -41,7 +41,15 @@ Now go to browser and open http://127.0.0.1:8000
 
 ### Good Luck
 
+Developer: Md Omar Farook
+
+Email: gmfaruk2021@gmail.com
+
 Developer: Zillur Rahman
 
 Email: zillurrahman68582@gmail.com
+
+Developer: Arafat Anwar
+
+Email: anwarullah834@gmail.com
 
