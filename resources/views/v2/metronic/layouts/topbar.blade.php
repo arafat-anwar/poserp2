@@ -1,7 +1,79 @@
 <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
 	<!--begin::Menu wrapper-->
 	<div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true" data-kt-swapper-mode="{default: 'append', lg: 'prepend'}" data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
-		
+		<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
+			<!--begin::Menu wrapper-->
+			<div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true" data-kt-swapper-mode="{default: 'append', lg: 'prepend'}" data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
+				<!--begin::Menu-->
+				<div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
+					<!--begin:Menu item-->
+					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+						<!--begin:Menu link-->
+						<span class="menu-link">
+						<span class="svg-icon svg-icon-1">
+								<i class="fas fa-plus-circle fa-lg" style="font-size: 24px"></i>
+						</span> &nbsp;
+					</span>
+					</div>
+					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+						<!--begin:Menu link-->
+						<span class="menu-link">
+						<span class="svg-icon svg-icon-1">
+								<i class="fa fa-calculator fa-lg" style="font-size: 24px"></i>
+						</span> &nbsp;
+					</span>
+					</div>
+					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+						<!--begin:Menu link-->
+						<span class="menu-link">
+						<span class="svg-icon svg-icon-1">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
+									<rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor" />
+									<rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor" />
+									<rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor" />
+								</svg>
+						</span> &nbsp;&nbsp;&nbsp;
+						<span class="menu-title">POS</span>
+						<span class="menu-arrow d-lg-none"></span>
+					</span>
+					</div>
+					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+						<!--begin:Menu link-->
+						<span class="menu-link">
+						<span class="svg-icon svg-icon-1">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
+									<rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor" />
+									<rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor" />
+									<rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor" />
+								</svg>
+						</span> &nbsp;&nbsp;&nbsp;
+						<span class="menu-title">Add Sale</span>
+						<span class="menu-arrow d-lg-none"></span>
+					</span>
+					</div>
+					<div title="Add Repair" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+						<!--begin:Menu link-->
+						<span class="menu-link">
+						<span class="svg-icon svg-icon-1">
+								<i class="las la-tools" style="font-size: 24px"></i>
+						</span> &nbsp;&nbsp;&nbsp;
+						<span class="menu-title">Repair</span>
+						<span class="menu-arrow d-lg-none"></span>
+					</span>
+					</div>
+					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+						<!--begin:Menu link-->
+						<span class="menu-link">
+						<span class="svg-icon svg-icon-1" title="Today Profit">
+								<i class="fas fa-money-bill-alt fa-lg" style="font-size: 24px"></i>
+						</span>
+					</span>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!--end::Menu wrapper-->
 	<!--begin::Navbar-->
@@ -43,7 +115,15 @@
 		<div class="app-navbar-item ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
 			<!--begin::Menu wrapper-->
 			<div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-				<img src="{{ asset('metronic/assets') }}/media/avatars/300-1.jpg" alt="user" />
+				@php
+					$profile_photo = auth()->user()->media;
+				@endphp
+{{--				<img src="{{ asset('metronic/assets') }}/media/avatars/300-1.jpg" alt="user" />--}}
+				@if(!empty($profile_photo))
+					<img src="{{$profile_photo->display_url}}" class="user-image" alt="User Image">
+				@else
+					<img src="{{ asset('/v2/assets/media/avatars/blank.png') }}" class="user-image" alt="User Image">
+				@endif
 			</div>
 			<!--begin::User account menu-->
 			<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
@@ -52,14 +132,20 @@
 					<div class="menu-content d-flex align-items-center px-3">
 						<!--begin::Avatar-->
 						<div class="symbol symbol-50px me-5">
-							<img alt="Logo" src="{{ asset('metronic/assets') }}/media/avatars/300-1.jpg" />
+							@if(!empty(Session::get('business.logo')))
+								<img src="{{ asset( 'uploads/business_logos/' . Session::get('business.logo') ) }}" alt="business logo">
+							@endif
 						</div>
 						<!--end::Avatar-->
 						<!--begin::Username-->
 						<div class="d-flex flex-column">
-							<div class="fw-bold d-flex align-items-center fs-5">Max Smith
+							<div class="fw-bold d-flex align-items-center fs-5">{{ Auth::User()->first_name }} {{ Auth::User()->last_name }}
 							<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span></div>
-							<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com</a>
+							@if(Auth::User()->email)
+							<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::User()->email }}</a>
+							@else
+							<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::User()->username }}</a>
+							@endif
 						</div>
 						<!--end::Username-->
 					</div>
@@ -70,7 +156,7 @@
 				<!--end::Menu separator-->
 				<!--begin::Menu item-->
 				<div class="menu-item px-5">
-					<a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My Profile</a>
+					<a href="{{action('UserController@getProfile')}}" class="menu-link px-5">@lang('lang_v1.profile')</a>
 				</div>
 				<!--end::Menu item-->
 				<!--begin::Menu item-->
@@ -121,7 +207,7 @@
 				<!--end::Menu item-->
 				<!--begin::Menu item-->
 				<div class="menu-item px-5">
-					<a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="menu-link px-5">Sign Out</a>
+					<a href="{{action('Auth\LoginController@logout')}}" class="menu-link px-5">@lang('lang_v1.sign_out')</a>
 				</div>
 				<!--end::Menu item-->
 			</div>
