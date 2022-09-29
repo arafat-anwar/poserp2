@@ -1,3 +1,14 @@
+@inject('request', 'Illuminate\Http\Request')
+
+@if($request->segment(1) == 'pos' && ($request->segment(2) == 'create' || $request->segment(3) == 'edit'))
+@php
+	$pos_layout = true;
+@endphp
+@else
+@php
+	$pos_layout = false;
+@endphp
+@endif
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" dir="{{in_array(session()->get('user.language', config('app.locale')), config('constants.langs_rtl')) ? 'rtl' : 'ltr'}}">
 	<!--begin::Head-->
@@ -5,7 +16,7 @@
 	<!--end::Head-->
 
 	<!--begin::Body-->
-	<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+	<body class="@if($pos_layout) hold-transition lockscreen pos-bg @else hold-transition skin-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'black-light'}}@endif sidebar-mini @endif" id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
 		
 		<!--begin::Theme mode setup on page load-->
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-theme-mode")) { themeMode = document.documentElement.getAttribute("data-theme-mode"); } else { if ( localStorage.getItem("data-theme") !== null ) { themeMode = localStorage.getItem("data-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-theme", themeMode); }</script>
@@ -26,7 +37,11 @@
 				<!--begin::Wrapper-->
 				<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
 					<!--begin::Sidebar-->
-					@include('v2.metronic.layouts.sidebar')
+					@if(!$pos_layout)
+						@include('v2.metronic.layouts.sidebar')
+					@else
+						@include('v2.layouts.partials.header-pos')
+					@endif
 					<!--end::Sidebar-->
 					<!--begin::Main-->
 					<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
