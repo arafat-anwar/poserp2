@@ -1,35 +1,33 @@
-<div class="box {{$class ?? 'box-solid'}}" @if(!empty($id)) id="{{$id}}" @endif>
+<div class="card {{$class ?? 'box-solid'}}" @if(!empty($id)) id="{{$id}}" @endif>
     @if(empty($header))
         @if(!empty($title) || !empty($tool))
-            <div class="card card-flush py-4">
-                <!--begin::Card header-->
-                <div class="card-header">
-                    <!--begin::Card title-->
+            {{--        <div class="box-header">--}}
+            {{--            {!!$icon ?? '' !!}--}}
+            {{--            <h3 class="box-title">{{ $title ?? '' }}</h3>--}}
+            {{--            {!!$tool ?? ''!!}--}}
+            {{--        </div>--}}
+            <div class="card-header">
+                <div class="card-title">
                     {!!$icon ?? '' !!}
-                    <div class="card-title">
-                        <h2>{{ $title ?? '' }}</h2>
-                    </div>
+                    <h2>{{ $title ?? '' }}</h2>
                     {!!$tool ?? ''!!}
-                    <!--end::Card title-->
                 </div>
-                <!--end::Card header-->
             </div>
         @endif
     @else
-        <div class="box-header">
-            {!! $header !!}
-        </div>
         <div class="card-header">
-            <!--begin::Card title-->
             <div class="card-title">
                 <h2>{!! $header !!}</h2>
             </div>
-            <!--end::Card title-->
         </div>
+        {{--        <div class="box-header">--}}
+        {{--            {!! $header !!}--}}
+        {{--        </div>--}}
     @endif
 
-    <div class="card-body">
+    <div class="card-body pt-0">
         {{$slot}}
     </div>
+
     <!-- /.box-body -->
 </div>
