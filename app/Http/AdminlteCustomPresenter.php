@@ -82,7 +82,7 @@ class AdminlteCustomPresenter extends Presenter
         if(frontendVersion() == 1){
 
         }else{
-            return '<li class="divider"></li>'; 
+            return '<div class="separator my-2"></div>';
         }
     }
 

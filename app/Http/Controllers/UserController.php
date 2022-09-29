@@ -50,8 +50,9 @@ class UserController extends Controller
         foreach ($config_languages as $key => $value) {
             $languages[$key] = $value['full_name'];
         }
+        $is_admin = $this->moduleUtil->is_admin(auth()->user(), true);
 
-        return view(viewSource().'user.profile', compact('user', 'languages'));
+        return view(viewSource().'user.profile', compact('user', 'languages', 'is_admin'));
     }
 
     /**
