@@ -15,7 +15,7 @@
 							</span> &nbsp;
 						</span>
 					</div>
-					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+					<div data-bs-toggle="tooltip" data-bs-placement="bottom" title="Calculator" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
 						<span class="menu-link">
 						<span class="svg-icon svg-icon-1">
@@ -23,7 +23,7 @@
 						</span> &nbsp;
 					</span>
 					</div>
-					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+					<div data-bs-toggle="tooltip" data-bs-placement="bottom" title="POS" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
 						<span class="menu-link" onclick="window.open('{{ url('pos/create') }}', '_parent')">
 						<span class="svg-icon svg-icon-1">
@@ -38,7 +38,7 @@
 						<span class="menu-arrow d-lg-none"></span>
 					</span>
 					</div>
-					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+					<div data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add Sale" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
 						<span class="menu-link" onclick="window.open('{{ url('sells/create') }}', '_parent')">
 						<span class="svg-icon svg-icon-1">
@@ -53,7 +53,7 @@
 						<span class="menu-arrow d-lg-none"></span>
 					</span>
 					</div>
-					<div title="Add Repair" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+					<div data-bs-toggle="tooltip" data-bs-placement="bottom" title="Repair" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
 						<span class="menu-link" onclick="window.open('{{ url('pos/create?sub_type=repair') }}', '_parent')">
 						<span class="svg-icon svg-icon-1">
@@ -63,17 +63,17 @@
 						<span class="menu-arrow d-lg-none"></span>
 					</span>
 					</div>
-					<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+					<div data-bs-toggle="tooltip" data-bs-placement="bottom" title="Today Profit" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 						<!--begin:Menu link-->
 						<span class="menu-link">
-						<span class="svg-icon svg-icon-1" title="Today Profit">
+						<span class="svg-icon svg-icon-1">
 								<i class="fas fa-money-bill-alt fa-lg" style="font-size: 24px"></i>
 						</span>
 					</span>
 					</div>
 
 					@if(frontendVersion() == 1)
-						<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+						<div data-bs-toggle="tooltip" data-bs-placement="bottom" title="Change Version 2.0"  class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 							<!--begin:Menu link-->
 							<span class="menu-link" onclick="window.open('{{ url('switch-frontend-version?version=v2') }}', '_parent')">
 								<span class="svg-icon svg-icon-1">
@@ -84,7 +84,7 @@
 							</span>
 						</div>
 					@else
-						<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+						<div data-bs-toggle="tooltip" data-bs-placement="bottom" title="Change Version 1.0"  class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 							<!--begin:Menu link-->
 							<span class="menu-link" onclick="window.open('{{ url('switch-frontend-version?version=v1') }}', '_parent')">
 								<span class="svg-icon svg-icon-1">
