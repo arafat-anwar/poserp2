@@ -162,4 +162,11 @@ return [
     'common_completed_status_tooltip' => 'Status which are marked as completed will be displayed here.',
     'common_pending_status_tooltip' => 'Status which are not marked as completed will be displayed here.',
     'send_email' => 'Send Email',
+    'inventory'=>'Inventory',
+    'Inventory'=>'Inventory',
+    'Inventory_add'=>'Inventory Add',
+    'something_went_wrong'=>'Something went wrong',
+    'saved_succes'=>'Saved Success',
+    'inventory_module'=>'Inventory Module',
+    'quantity'=>'Quantity',
 ];
