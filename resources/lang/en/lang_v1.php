@@ -1245,4 +1245,8 @@ return [
     'leave_empty_to_autogenerate' => 'Leave empty to autogenerate',
     'add_edit_invoice_number' => 'Add edit invoice number',
     'keep_blank_to_autogenerate' => 'Keep blank to auto generate',
+    'product_gallery' => 'Product Gallery',
+    'gallery_setting' => 'Gallery Setting',
+    'inventory' => 'Inventory',
+    'activity_log' => 'Activity Log',
 ];
