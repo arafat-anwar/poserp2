@@ -163,3 +163,16 @@
         });
     });
 </script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.dt-buttons').addClass('mb-2');
+        $('.dataTables_info').css('padding-left', '10px !important');
+        $.each($('.dt-buttons').find('a'), function(index, val) {
+            $(this).removeClass('btn-default').addClass('btn-dark');
+        });
+        $.each($('.paginate_button'), function(index, val) {
+            $(this).addClass('btn-dark');
+        });
+    });
+</script>

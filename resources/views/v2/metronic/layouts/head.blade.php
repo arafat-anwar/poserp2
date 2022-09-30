@@ -13,7 +13,7 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content="" />
 	<meta property="og:url" content="#" />
-	<meta property="og:site_name" content=#" />
+	<meta property="og:site_name" content="#" />
 	<link rel="canonical" href="#" />
 	
 	<!--begin::Fonts-->
@@ -32,4 +32,6 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap.min.css"/>
+
+	@include('v2.metronic.layouts.css')
 </head>
