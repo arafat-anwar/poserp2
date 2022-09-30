@@ -1,5 +1,5 @@
 @extends('v2.metronic.index')
-@section('title',__('assets::lang.assets_titel'))
+@section('title',__('assets::lang.assets_title'))
 
 @section('content')
     <style>
