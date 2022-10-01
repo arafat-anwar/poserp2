@@ -177,4 +177,5 @@ return [
     'common_completed_status_tooltip' => 'Status which are marked as completed will be displayed here.',
     'common_pending_status_tooltip' => 'Status which are not marked as completed will be displayed here.',
     'send_email' => 'Send Email',
+    'assets' => 'Assets',
 ];
