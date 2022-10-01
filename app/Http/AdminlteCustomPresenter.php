@@ -38,7 +38,6 @@ class AdminlteCustomPresenter extends Presenter
         if(frontendVersion() == 1){
             return '<li' . $this->getActiveState($item) . '><a href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>' . $item->getIcon() . ' <span>' . $item->title . '</span></a></li>' . PHP_EOL;
         }else{
-//            $bg = 'background-color: #1e1e2d';
             if ($this->getActiveState($item)){
                 return
                     '<div class="menu-item">'.
