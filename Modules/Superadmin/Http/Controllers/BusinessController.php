@@ -48,15 +48,15 @@ class BusinessController extends BaseController
         $date_today = \Carbon::today();
 
         $businesses = Business::orderby('id')
-                    ->with(['subscriptions' => function ($query) use ($date_today) {
-                        $query->whereDate('start_date', '<=', $date_today)
-                            ->whereDate('end_date', '>=', $date_today);
-                    }, 'locations', 'owner'])
+            ->with(['subscriptions' => function ($query) use ($date_today) {
+                $query->whereDate('start_date', '<=', $date_today)
+                    ->whereDate('end_date', '>=', $date_today);
+            }, 'locations', 'owner'])
 
-                    ->paginate(21);
+            ->paginate(21);
 
 
-        
+
         $business_id = request()->session()->get('user.business_id');
         
        
