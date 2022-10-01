@@ -52,8 +52,7 @@ class BusinessController extends BaseController
                 $query->whereDate('start_date', '<=', $date_today)
                     ->whereDate('end_date', '>=', $date_today);
             }, 'locations', 'owner'])
-
-            ->paginate(21);
+            ->paginate(10);
 
 
 
