@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-lg" role="document">
+<div class="modal-dialog modal-dialog-centered mw-900px" role="document">
   <div class="modal-content">
   @php
     $form_id = 'contact_add_form';
@@ -21,18 +21,28 @@
     {!! Form::open(['url' => $url, 'method' => 'post', 'id' => $form_id ]) !!}
 
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+{{--      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
       <h4 class="modal-title">@lang('contact.add_contact')</h4>
+        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+            <span class="svg-icon svg-icon-1">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                    </svg>
+                </span>
+            <!--end::Svg Icon-->
+        </div>
     </div>
 
-    <div class="modal-body">
-        <div class="row">            
+    <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+        <div class="row g-9 mb-1 mt-1">
             <div class="col-md-4 contact_type_div">
                 <div class="form-group">
                     {!! Form::label('type', __('contact.contact_type') . ':*' ) !!}
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-user"></i>
+                    <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-user fs-4"></i>
                         </span>
                         {!! Form::select('type', $types, $type , ['class' => 'form-control', 'id' => 'contact_type','placeholder' => __('messages.please_select'), 'required']); !!}
                     </div>
@@ -42,9 +52,9 @@
             <div class="col-md-4">
                 <div class="form-group">
                     {!! Form::label('supplier_business_name', __('business.business_name') . ':') !!}
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-briefcase"></i>
+                    <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-briefcase fs-4"></i>
                         </span>
                         {!! Form::text('supplier_business_name', null, ['class' => 'form-control', 'placeholder' => __('business.business_name')]); !!}
                     </div>
@@ -61,10 +71,10 @@
             <div class="col-md-4">
                 <div class="form-group">
                     {!! Form::label('tax_number', __('contact.tax_no') . ':') !!}
-                    <div class="input-group">
-                          <span class="input-group-addon">
-                              <i class="fa fa-info"></i>
-                          </span>
+                    <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-info fs-4"></i>
+                        </span>
                         {!! Form::text('tax_number', null, ['class' => 'form-control', 'placeholder' => __('contact.tax_no')]); !!}
                     </div>
                 </div>
@@ -72,9 +82,9 @@
             <div class="col-md-4">
                 <div class="form-group">
                     {!! Form::label('mobile', __('contact.mobile') . ':*') !!}
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-mobile"></i>
+                    <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-mobile fs-4"></i>
                         </span>
                         {!! Form::text('mobile', null, ['class' => 'form-control', 'required', 'placeholder' => __('contact.mobile')]); !!}
                     </div>
@@ -83,10 +93,10 @@
             <div class="col-md-4 opening_balance">
                 <div class="form-group">
                     {!! Form::label('opening_balance', __('lang_v1.opening_balance') . ':') !!}
-                    <div class="input-group">
-                          <span class="input-group-addon">
-                              <i class="fas fa-money-bill-alt"></i>
-                          </span>
+                    <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-money-bill-alt fs-4"></i>
+                        </span>
                         {!! Form::text('opening_balance', 0, ['class' => 'form-control input_number']); !!}
                     </div>
                 </div>
@@ -121,10 +131,10 @@
             <div class="col-md-4 lead_additional_div">
               <div class="form-group">
                   {!! Form::label('crm_source', __('lang_v1.source') . ':' ) !!}
-                  <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="fas fa fa-search"></i>
-                      </span>
+                  <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-search fs-4"></i>
+                        </span>
                       {!! Form::select('crm_source', $sources, null , ['class' => 'form-control', 'id' => 'crm_source','placeholder' => __('messages.please_select')]); !!}
                   </div>
               </div>
@@ -133,10 +143,10 @@
             <div class="col-md-4 lead_additional_div">
               <div class="form-group">
                   {!! Form::label('crm_life_stage', __('lang_v1.life_stage') . ':' ) !!}
-                  <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="fas fa fa-life-ring"></i>
-                      </span>
+                  <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-life-ring fs-4"></i>
+                        </span>
                       {!! Form::select('crm_life_stage', $life_stages, null , ['class' => 'form-control', 'id' => 'crm_life_stage','placeholder' => __('messages.please_select')]); !!}
                   </div>
               </div>
@@ -144,26 +154,26 @@
             <div class="col-md-6 lead_additional_div">
                   <div class="form-group">
                       {!! Form::label('user_id', __('lang_v1.assigned_to') . ':*' ) !!}
-                      <div class="input-group">
-                          <span class="input-group-addon">
-                              <i class="fa fa-user"></i>
-                          </span>
+                      <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-user fs-4"></i>
+                        </span>
                           {!! Form::select('user_id[]', $users, null , ['class' => 'form-control select2', 'id' => 'user_id', 'multiple', 'required', 'style' => 'width: 100%;']); !!}
                       </div>
                   </div>
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="row">
+        <div class="">
             <div class="col-md-12">
                 <button type="button" class="btn btn-primary center-block more_btn" data-target="#more_div">@lang('lang_v1.more_info') <i class="fa fa-chevron-down"></i></button>
             </div>
 
-            <div id="more_div" class="hide">
+            <div id="more_div" class="hide row g-9 mb-1 mt-1">
                 {!! Form::hidden('position', null, ['id' => 'position']); !!}
                 <div class="col-md-12"><hr/></div>
 
-                <div class="col-md-4 pay_term">
+                <div class="col-md-6 pay_term">
                   <div class="form-group">
                     <div class="multi-input">
                       {!! Form::label('pay_term_number', __('contact.pay_term') . ':') !!} @show_tooltip(__('tooltip.pay_term'))
@@ -175,13 +185,13 @@
                   </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         {!! Form::label('contact_id', __('lang_v1.contact_id') . ':') !!}
-                        <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-id-badge"></i>
-                        </span>
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-id-badge fs-4"></i>
+                            </span>
                             {!! Form::text('contact_id', null, ['class' => 'form-control','placeholder' => __('lang_v1.contact_id')]); !!}
                         </div>
                         <p class="help-block">
@@ -192,10 +202,10 @@
                 <div class="col-md-4 customer_fields">
                     <div class="form-group">
                         <label>المجموعة التسعيرية</label>
-                        <div class="input-group">
-                  <span class="input-group-addon">
-                      <i class="fa fa-users"></i>
-                  </span>
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-users fs-4"></i>
+                            </span>
                             <?php
                             $business_id = request()->session()->get('user.business_id');
                             $price_groups = \App\SellingPriceGroup::where('business_id', $business_id)
@@ -214,10 +224,10 @@
                 <div class="col-md-12 customer_fields">
                     <div class="form-group">
                         {!! Form::label('customer_group_id', __('lang_v1.customer_group') . ':') !!}
-                        <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="fa fa-users"></i>
-                      </span>
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-users fs-4"></i>
+                            </span>
                             {!! Form::select('customer_group_id', $customer_groups, '', ['class' => 'form-control']); !!}
                         </div>
                     </div>
@@ -231,10 +241,10 @@
                 <div class="col-md-4 customer_fields">
                   <div class="form-group">
                       {!! Form::label('credit_limit', __('lang_v1.credit_limit') . ':') !!}
-                      <div class="input-group">
-                          <span class="input-group-addon">
-                              <i class="fas fa-money-bill-alt"></i>
-                          </span>
+                      <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-money-bill-alt fs-4"></i>
+                            </span>
                           {!! Form::text('credit_limit', $default_credit_limit ?? null, ['class' => 'form-control input_number']); !!}
                       </div>
                       <p class="help-block">@lang('lang_v1.credit_limit_help')</p>
@@ -246,10 +256,10 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         {!! Form::label('alternate_number', __('contact.alternate_contact_number') . ':') !!}
-                        <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                        </span>
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-phone fs-4"></i>
+                            </span>
                             {!! Form::text('alternate_number', null, ['class' => 'form-control', 'placeholder' => __('contact.alternate_contact_number')]); !!}
                         </div>
                     </div>
@@ -257,10 +267,10 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         {!! Form::label('landline', __('contact.landline') . ':') !!}
-                        <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                        </span>
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-phone fs-4"></i>
+                            </span>
                             {!! Form::text('landline', null, ['class' => 'form-control', 'placeholder' => __('contact.landline')]); !!}
                         </div>
                     </div>
@@ -268,10 +278,10 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         {!! Form::label('email', __('business.email') . ':') !!}
-                        <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-envelope"></i>
-                        </span>
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-envelope fs-4"></i>
+                            </span>
                             {!! Form::email('email', null, ['class' => 'form-control','placeholder' => __('business.email')]); !!}
                         </div>
                     </div>
@@ -280,10 +290,10 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         {!! Form::label('dob', __('lang_v1.dob') . ':') !!}
-                        <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </span>
+                        <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-calendar fs-4"></i>
+                            </span>
 
                             {!! Form::text('dob', null, ['class' => 'form-control dob-date-picker','placeholder' => __('lang_v1.dob'), 'readonly']); !!}
                         </div>
@@ -308,10 +318,10 @@
               <div class="col-md-3">
                 <div class="form-group">
                     {!! Form::label('city', __('business.city') . ':') !!}
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-map-marker"></i>
-                        </span>
+                    <div class="input-group mb-5">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fas fa-map-marker fs-4"></i>
+                            </span>
                         {!! Form::text('city', null, ['class' => 'form-control', 'placeholder' => __('business.city')]); !!}
                     </div>
                 </div>
@@ -319,10 +329,10 @@
           <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('state', __('business.state') . ':') !!}
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-map-marker"></i>
-                    </span>
+                <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-map-marker fs-4"></i>
+                        </span>
                     {!! Form::text('state', null, ['class' => 'form-control', 'placeholder' => __('business.state')]); !!}
                 </div>
             </div>
@@ -330,9 +340,9 @@
           <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('country', __('business.country') . ':') !!}
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-globe"></i>
+                <div class="input-group mb-5">
+                    <span class="input-group-text" id="basic-addon2">
+                        <i class="fas fa-globe fs-4"></i>
                     </span>
                     {!! Form::text('country', null, ['class' => 'form-control', 'placeholder' => __('business.country')]); !!}
                 </div>
@@ -341,10 +351,10 @@
           <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('zip_code', __('business.zip_code') . ':') !!}
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-map-marker"></i>
-                    </span>
+                <div class="input-group mb-5">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fas fa-map-marker fs-4"></i>
+                        </span>
                     {!! Form::text('zip_code', null, ['class' => 'form-control', 
                     'placeholder' => __('business.zip_code_placeholder')]); !!}
                 </div>
