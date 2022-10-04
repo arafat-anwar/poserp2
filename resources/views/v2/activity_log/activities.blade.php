@@ -1,11 +1,15 @@
 @if(!empty($activities))
-<table class="table table-condensed">
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+    <thead>
     <tr>
         <th>@lang('lang_v1.date')</th>
         <th>@lang('messages.action')</th>
         <th>@lang('lang_v1.by')</th>
         <th>@lang('brand.note')</th>
     </tr>
+    </thead>
+    <tbody>
     @forelse($activities as $activity)
         <tr>
             <td>{{@format_datetime($activity->created_at)}}</td>
@@ -46,5 +50,7 @@
           </td>
         </tr>
     @endforelse
+    </tbody>
 </table>
+</div>
 @endif

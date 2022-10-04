@@ -171,7 +171,6 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#change_lang').change( function(){
-            alert(0)
             window.location = "{{ route('login') }}?lang=" + $(this).val();
         });
 
