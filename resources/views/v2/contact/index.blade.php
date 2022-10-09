@@ -9,24 +9,15 @@
     @endsection
 @endif
 @section('content')
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1> @lang('lang_v1.'.$type.'s')
-        <small>@lang( 'contact.manage_your_contact', ['contacts' =>  __('lang_v1.'.$type.'s') ])</small>
-    </h1>
-    <!-- <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-    </ol> -->
-</section>
+
 
 <!-- Main content -->
 <section class="content">
     <input type="hidden" value="{{$type}}" id="contact_type">
-    @component('components.widget', ['class' => 'box-primary', 'title' => __( 'contact.all_your_contact', ['contacts' => __('lang_v1.'.$type.'s') ])])
+    @component('v2.components.widget', ['class' => 'box-primary', 'title' => __( 'contact.all_your_contact', ['contacts' => __('lang_v1.'.$type.'s') ])])
         @if(auth()->user()->can('supplier.create') || auth()->user()->can('customer.create') || auth()->user()->can('supplier.view_own') || auth()->user()->can('customer.view_own'))
             @slot('tool')
-                <div class="box-tools">
+                <div class="card-toolbar">
                     <button type="button" class="btn btn-block btn-primary btn-modal" 
                     data-href="{{action('ContactController@create', ['type' => $type])}}" 
                     data-container=".contact_modal">

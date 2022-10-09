@@ -5,6 +5,7 @@
 
 <!-- Main content -->
 <section class="content no-print">
+    @component('v2.components.widget', ['class' => ''])
     <div class="row no-print">
         <div class="col-md-4">
             <h3>@lang('contact.view_contact')</h3>
@@ -14,28 +15,31 @@
         </div>
     </div>
     <div class="hide print_table_part">
-        <style type="text/css">
+        {{-- <style type="text/css">
             .info_col {
-                width: 25%;
+                width: 50%;
                 float: left;
                 padding-left: 10px;
                 padding-right: 10px;
             }
-        </style>
-        <div style="width: 100%;">
-            <div class="info_col">
-                @include('contact.contact_basic_info')
+        </style> --}}
+        <div style="width: 100%;" class="row">
+            <div class="info_col col-md-4">
+                
+                @include('v2.contact.contact_basic_info')
+               
             </div>
-            <div class="info_col">
-                @include('contact.contact_more_info')
+            <div class="info_col col-md-4">
+
+                @include('v2.contact.contact_more_info')
             </div>
             @if( $contact->type != 'customer')
-                <div class="info_col">
-                    @include('contact.contact_tax_info')
+                <div class="info_col col-md-4">
+                    @include('v2.contact.contact_tax_info')
                 </div>
             @endif
-            <div class="info_col">
-                @include('contact.contact_payment_info')
+            <div class="info_col col-md-4">
+                @include('v2.contact.contact_payment_info')
             </div>
         </div>
     </div>
@@ -46,7 +50,7 @@
         <div class="col-md-12">
             <div class="box box-solid">
                 <div class="box-body">
-                    @include('contact.partials.contact_info_tab')
+                    @include('v2.contact.partials.contact_info_tab')
                 </div>
             </div>
         </div>
@@ -54,89 +58,119 @@
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs nav-justified">
-                    <li class="
+                <ul class="nav nav-tabs">
+                    <li class="nav-item
                             @if(!empty($view_type) &&  $view_type == 'ledger')
                                 active
                             @else
                                 ''
                             @endif">
-                        <a href="#ledger_tab" data-toggle="tab" aria-expanded="true"><i class="fas fa-scroll" aria-hidden="true"></i> @lang('lang_v1.ledger')</a>
+                        <a href="#ledger_tab" data-toggle="tab" aria-expanded="true" class="nav-link">
+                            <span class="nav-icon"><i class="fas fa-scroll" aria-hidden="true"></i></span>
+                            <span class="nav-text">@lang('lang_v1.ledger')</span>
+                        </a>
                     </li>
                     @if(in_array($contact->type, ['both', 'supplier']))
-                        <li class="
+                        <li class="nav-item
                             @if(!empty($view_type) &&  $view_type == 'purchase')
                                 active
                             @else
                                 ''
                             @endif">
-                            <a href="#purchases_tab" data-toggle="tab" aria-expanded="true"><i class="fas fa-arrow-circle-down" aria-hidden="true"></i> @lang( 'purchase.purchases')</a>
+                            <a href="#purchases_tab" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                 <span class="nav-icon"><i class="fas fa-arrow-circle-down" aria-hidden="true"></i></span>
+                            <span class="nav-text">@lang( 'purchase.purchases')</span> 
+                            
+                        </a>
                         </li>
-                        <li class="
+                        <li class="nav-item
                             @if(!empty($view_type) &&  $view_type == 'stock_report')
                                 active
                             @else
                                 ''
                             @endif">
-                            <a href="#stock_report_tab" data-toggle="tab" aria-expanded="true"><i class="fas fa-hourglass-half" aria-hidden="true"></i> @lang( 'report.stock_report')</a>
+                            <a href="#stock_report_tab" data-toggle="tab" aria-expanded="true" class="nav-link">
+
+                                 <span class="nav-icon"><i class="fas fa-hourglass-half" aria-hidden="true"></i></span>
+                            <span class="nav-text">@lang( 'report.stock_report')</span> 
+                            </a>
                         </li>
                     @endif
                     @if(in_array($contact->type, ['both', 'customer']))
-                        <li class="
+                        <li class="nav-item
                             @if(!empty($view_type) &&  $view_type == 'sales')
                                 active
                             @else
                                 ''
                             @endif">
-                            <a href="#sales_tab" data-toggle="tab" aria-expanded="true"><i class="fas fa-arrow-circle-up" aria-hidden="true"></i> @lang( 'sale.sells')</a>
+                            <a href="#sales_tab" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <span class="nav-icon"><i class="fas fa-arrow-circle-up" aria-hidden="true"></i></span>
+                            <span class="nav-text">@lang( 'sale.sells')</span></a>
+
                         </li>
                         @if(in_array('subscription', $enabled_modules))
-                            <li class="
+                            <li class="nav-item
                                 @if(!empty($view_type) &&  $view_type == 'subscriptions')
                                     active
                                 @else
                                     ''
                                 @endif">
-                                <a href="#subscriptions_tab" data-toggle="tab" aria-expanded="true"><i class="fas fa-recycle" aria-hidden="true"></i> @lang( 'lang_v1.subscriptions')</a>
+                                <a href="#subscriptions_tab" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                    <span class="nav-icon"><i class="fas fa-recycle" aria-hidden="true"></i></span>
+                                    <span class="nav-text">@lang( 'lang_v1.subscriptions')</span> 
+                                </a>
                             </li>
                         @endif
                     @endif
-                    <li class="
+                    <li class="nav-item
                             @if(!empty($view_type) &&  $view_type == 'documents_and_notes')
                                 active
                             @else
                                 ''
                             @endif
                             ">
-                        <a href="#documents_and_notes_tab" data-toggle="tab" aria-expanded="true"><i class="fas fa-paperclip" aria-hidden="true"></i> @lang('lang_v1.documents_and_notes')</a>
+                        <a href="#documents_and_notes_tab" data-toggle="tab" aria-expanded="true" class="nav-link"> 
+                             <span class="nav-icon"><i class="fas fa-paperclip" aria-hidden="true"></i></span>
+                            <span class="nav-text">@lang('lang_v1.documents_and_notes')</span> 
+                        </a>
                     </li>
-                    <li class="
+                    <li class="nav-item
                             @if(!empty($view_type) &&  $view_type == 'payments')
                                 active
                             @else
                                 ''
                             @endif">
-                        <a href="#payments_tab" data-toggle="tab" aria-expanded="true"><i class="fas fa-money-bill-alt" aria-hidden="true"></i> @lang('sale.payments')</a>
+                        <a href="#payments_tab" data-toggle="tab" aria-expanded="true" class="nav-link">
+                             <span class="nav-icon"><i class="fas fa-money-bill-alt" aria-hidden="true"></i></span>
+                            <span class="nav-text">@lang('sale.payments')</span>
+                             </a>
                     </li>
 
                     @if( in_array($contact->type, ['customer', 'both']) && session('business.enable_rp'))
-                        <li class="
+                        <li class="nav-item
                             @if(!empty($view_type) &&  $view_type == 'reward_point')
                                 active
                             @else
                                 ''
                             @endif">
-                            <a href="#reward_point_tab" data-toggle="tab" aria-expanded="true"><i class="fas fa-gift" aria-hidden="true"></i> {{ session('business.rp_name') ?? __( 'lang_v1.reward_points')}}</a>
+                            <a href="#reward_point_tab" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                 <span class="nav-icon"><i class="fas fa-gift" aria-hidden="true"></i></span>
+                            <span class="nav-text">{{ session('business.rp_name') ?? __( 'lang_v1.reward_points')}}</span>
+
+                        </a>
                         </li>
                     @endif
 
-                    <li class="
+                    <li class="nav-item
                         @if(!empty($view_type) &&  $view_type == 'activities')
                             active
                         @else
                             ''
                         @endif">
-                        <a href="#activities_tab" data-toggle="tab" aria-expanded="true"><i class="fas fa-pen-square" aria-hidden="true"></i> @lang('lang_v1.activities')</a>
+                        <a href="#activities_tab" data-toggle="tab" aria-expanded="true" class="nav-link">
+                            <span class="nav-icon"><i class="fas fa-pen-square" aria-hidden="true"></i></span>
+                            <span class="nav-text">@lang('lang_v1.activities')</span>
+                             </a>
                         </li>
 
                     @if(!empty($contact_view_tabs))
@@ -162,7 +196,7 @@
                                     ''
                                 @endif"
                             id="ledger_tab">
-                        @include('contact.partials.ledger_tab')
+                        @include('v2.contact.partials.ledger_tab')
                     </div>
                     @if(in_array($contact->type, ['both', 'supplier']))
                         <div class="tab-pane
@@ -180,7 +214,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    @include('purchase.partials.purchase_table')
+                                    @include('v2.purchase.partials.purchase_table')
                                 </div>
                             </div>
                         </div>
@@ -190,7 +224,7 @@
                             @else
                                 ''
                             @endif" id="stock_report_tab">
-                            @include('contact.partials.stock_report_tab')
+                            @include('v2.contact.partials.stock_report_tab')
                         </div>
                     @endif
                     @if(in_array($contact->type, ['both', 'customer']))
@@ -204,18 +238,18 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     @component('components.widget')
-                                        @include('sell.partials.sell_list_filters', ['only' => ['sell_list_filter_payment_status', 'sell_list_filter_date_range', 'only_subscriptions']])
+                                        @include('v2.sell.partials.sell_list_filters', ['only' => ['sell_list_filter_payment_status', 'sell_list_filter_date_range', 'only_subscriptions']])
                                     @endcomponent
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    @include('sale_pos.partials.sales_table')
+                                    @include('v2.sale_pos.partials.sales_table')
                                 </div>
                             </div>
                         </div>
                         @if(in_array('subscription', $enabled_modules))
-                            @include('contact.partials.subscriptions')
+                            @include('v2.contact.partials.subscriptions')
                         @endif
                     @endif
                     <div class="tab-pane
@@ -225,7 +259,7 @@
                                 ''
                             @endif"
                         id="documents_and_notes_tab">
-                        @include('contact.partials.documents_and_notes_tab')
+                        @include('v2.contact.partials.documents_and_notes_tab')
                     </div>
                     <div class="tab-pane 
                         @if(!empty($view_type) &&  $view_type == 'payments')
@@ -279,7 +313,7 @@
 
                     <div class="tab-pane"
                         id="activities_tab">
-                        @include('activity_log.activities')
+                        @include('v2.activity_log.activities')
                     </div>
 
                     @if(!empty($contact_view_tabs))
@@ -298,6 +332,7 @@
             </div>
         </div>
     </div>
+     @endcomponent
 </section>
 <!-- /.content -->
 <div class="modal fade payment_modal" tabindex="-1" role="dialog" 
@@ -458,14 +493,14 @@ $(document).on('click', '#print_ledger_pdf', function() {
 });
 
 </script>
-@include('sale_pos.partials.sale_table_javascript')
+@include('v2.sale_pos.partials.sale_table_javascript')
 <script src="{{ asset('js/payment.js?v=' . $asset_v) }}"></script>
 @if(in_array($contact->type, ['both', 'supplier']))
     <script src="{{ asset('js/purchase.js?v=' . $asset_v) }}"></script>
 @endif
 
 <!-- document & note.js -->
-@include('documents_and_notes.document_and_note_js')
+@include('v2.documents_and_notes.document_and_note_js')
 @if(!empty($contact_view_tabs))
     @foreach($contact_view_tabs as $key => $tabs)
         @foreach ($tabs as $index => $value)
@@ -491,5 +526,5 @@ $(document).on('click', '#print_ledger_pdf', function() {
         });
     });
 </script>
-@include('sale_pos.partials.subscriptions_table_javascript', ['contact_id' => $contact->id])
+@include('v2.sale_pos.partials.subscriptions_table_javascript', ['contact_id' => $contact->id])
 @endsection
