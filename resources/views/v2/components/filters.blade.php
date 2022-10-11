@@ -1,19 +1,20 @@
-<div class="box @if(!empty($class)) {{$class}} @else box-solid @endif" id="accordion">
-  <div class="box-header with-border" style="cursor: pointer;">
-    <h3 class="box-title">
-      <a data-toggle="collapse" data-parent="#accordion" href="#collapseFilter">
-        @if(!empty($icon)) {!! $icon !!} @else <i class="fa fa-filter" aria-hidden="true"></i> @endif {{$title ?? ''}}
-      </a>
-    </h3>
-  </div>
-  @php
+
+<div class="accordion accordion-toggle-arrow" id="accordionExample1">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title" data-toggle="collapse" data-target="#collapseOne1">@if(!empty($icon)) {!! $icon !!} @else <i class="fa fa-filter" aria-hidden="true"></i> @endif  {{$title ?? ''}}</div>
+    </div>
+    @php
     if(isMobile()) {
       $closed = true;
     }
   @endphp
-  <div id="collapseFilter" class="panel-collapse active collapse @if(empty($closed)) in @endif" aria-expanded="true">
-    <div class="box-body">
-      {{$slot}}
+    <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
+      <div class="card-body">
+         
+            {{$slot}}
+         
+      </div>
     </div>
   </div>
 </div>

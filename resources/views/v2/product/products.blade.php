@@ -8,17 +8,14 @@
     <h1>@lang('sale.products')
         <small>@lang('lang_v1.manage_products')</small>
     </h1>
-    <!-- <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-    </ol> -->
+    
 </section>
 
 <!-- Main content -->
 <section class="content">
 <div class="row">
     <div class="col-md-12">
-    @component('components.filters', ['title' => __('report.filters')])
+    @component('v2.components.filters', ['title' => __('report.filters')])
         <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('type', __('product.product_type') . ':') !!}
@@ -105,7 +102,7 @@
         @endif
             <div class="">
                 @can('product.create')
-                    <a class="btn btn-primary  " href="{{action('ProductController@create')}}">
+                    <a class="btn btn-primary btn-sm" href="{{action('ProductController@create')}}">
                         <i class="fa fa-plus"></i> @lang('product.add_new_product')</a>
                 @endcan
             </div>
@@ -150,15 +147,15 @@
 
                         @endcan--}}
                         <br><br>
-                        @include('product.partials.product_list')
-                        {{--@include('product.update_all_prices')--}}
+                        @include('v2.product.partials.product_list')
+                        {{--@include('v2.product.update_all_prices')--}}
                     </div>
 
                     <div class="tab-pane " id="product_stock_report">
 
                         @can('stock_report.view')
 
-                                @include('report.partials.stock_report_table')
+                                @include('v2.report.partials.stock_report_table')
 
                         @endcan
                     </div>
@@ -184,7 +181,7 @@
     aria-labelledby="gridSystemModalLabel">
 </div>
 
-@include('product.partials.edit_product_location_modal')
+@include('v2.product.partials.edit_product_location_modal')
 
 </section>
 <!-- /.content -->

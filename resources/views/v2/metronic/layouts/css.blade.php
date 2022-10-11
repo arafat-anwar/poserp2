@@ -210,4 +210,18 @@ input[type=radio], input[type=checkbox] {
     box-sizing: border-box;
     padding: 0;
 }
+
+.product-thumbnail-small {
+  height: 50px;
+  width: 50px;
+}
+.input-height{
+    height: 28px !important;
+}
+.custom-search-btn{
+    height: 28px;
+    line-height: 5px;
+    background: #f5f8fa;
+    border-radius: 0px
+}
 </style>
