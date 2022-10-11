@@ -11,12 +11,12 @@
     <div class="modal-body">
       <div class="form-group">
         {!! Form::label('name', __( 'lang_v1.customer_group_name' ) . ':*') !!}
-          {!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => __( 'lang_v1.customer_group_name' ) ]); !!}
+        {!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => __( 'lang_v1.customer_group_name' ) ]); !!}
       </div>
 
       <div class="form-group">
-            {!! Form::label('price_calculation_type', __( 'lang_v1.price_calculation_type' ) . ':') !!}
-            {!! Form::select('price_calculation_type',['percentage' => __('lang_v1.percentage'), 'selling_price_group' => __('lang_v1.selling_price_group')], 'percentage', ['class' => 'form-control']); !!}
+        {!! Form::label('price_calculation_type', __( 'lang_v1.price_calculation_type' ) . ':') !!}
+        {!! Form::select('price_calculation_type',['percentage' => __('lang_v1.percentage'), 'selling_price_group' => __('lang_v1.selling_price_group')], 'percentage', ['class' => 'form-control']); !!}
       </div>
 
       <div class="form-group percentage-field">
@@ -26,15 +26,15 @@
       </div>
 
       <div class="form-group selling_price_group-field hide">
-            {!! Form::label('selling_price_group_id', __( 'lang_v1.selling_price_group' ) . ':') !!}
-            {!! Form::select('selling_price_group_id', $price_groups, null, ['class' => 'form-control']); !!}
+        {!! Form::label('selling_price_group_id', __( 'lang_v1.selling_price_group' ) . ':') !!}
+        {!! Form::select('selling_price_group_id', $price_groups, null, ['class' => 'form-control']); !!}
       </div>
 
     </div>
 
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary">@lang( 'messages.save' )</button>
-      <button type="button" class="btn btn-default" data-dismiss="modal">@lang( 'messages.close' )</button>
+      <button type="submit" class="btn btn-primary btn-sm">@lang( 'messages.save' )</button>
+      <button type="button" class="btn btn-danger btn-sm close" data-dismiss="modal">@lang( 'messages.close' )</button>
     </div>
 
     {!! Form::close() !!}
