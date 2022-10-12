@@ -129,10 +129,10 @@ class ContactController extends Controller
                         $html .= '<li><a href="' . action('ContactController@show', [$row->id]) . '"><i class="fas fa-eye" aria-hidden="true"></i>' . __("messages.view") . '</a></li>';
                     }
                     if (auth()->user()->can('supplier.update')) {
-                        $html .= '<li><a href="' . action('ContactController@edit', [$row->id]) . '" class="edit_contact_button"><i class="glyphicon glyphicon-edit"></i>' .  __("messages.edit") . '</a></li>';
+                        $html .= '<li><a href="' . action('ContactController@edit', [$row->id]) . '" class="edit_contact_button"><i class="fa fa-edit"></i>' .  __("messages.edit") . '</a></li>';
                     }
                     if (auth()->user()->can('supplier.delete')) {
-                        $html .= '<li><a href="' . action('ContactController@destroy', [$row->id]) . '" class="delete_contact_button"><i class="glyphicon glyphicon-trash"></i>' . __("messages.delete") . '</a></li>';
+                        $html .= '<li><a href="' . action('ContactController@destroy', [$row->id]) . '" class="delete_contact_button"><i class="fa fa-trash"></i>' . __("messages.delete") . '</a></li>';
                     }
 
                     if (auth()->user()->can('customer.update')) {
@@ -286,10 +286,10 @@ class ContactController extends Controller
                         $html .= '<li><a href="' . action('ContactController@show', [$row->id]) . '"><i class="fas fa-eye" aria-hidden="true"></i>' . __("messages.view") . '</a></li>';
                     }
                     if (auth()->user()->can('customer.update')) {
-                        $html .= '<li><a href="' . action('ContactController@edit', [$row->id]) . '" class="edit_contact_button"><i class="glyphicon glyphicon-edit"></i>' .  __("messages.edit") . '</a></li>';
+                        $html .= '<li><a href="' . action('ContactController@edit', [$row->id]) . '" class="edit_contact_button"><i class="fa fa-edit"></i>' .  __("messages.edit") . '</a></li>';
                     }
                     if (!$row->is_default && auth()->user()->can('customer.delete')) {
-                        $html .= '<li><a href="' . action('ContactController@destroy', [$row->id]) . '" class="delete_contact_button"><i class="glyphicon glyphicon-trash"></i>' . __("messages.delete") . '</a></li>';
+                        $html .= '<li><a href="' . action('ContactController@destroy', [$row->id]) . '" class="delete_contact_button"><i class="fa fa-trash"></i>' . __("messages.delete") . '</a></li>';
                     }
 
                     if (auth()->user()->can('customer.update')) {
