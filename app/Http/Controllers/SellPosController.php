@@ -304,10 +304,8 @@ class SellPosController extends Controller
                 $input['status'] = 'draft';
                 $input['sub_status'] = 'proforma';
             }
-//dd($input);
             //Check Customer credit limit
             $is_credit_limit_exeeded = $this->transactionUtil->isCustomerCreditLimitExeeded($input);
-//dd($is_credit_limit_exeeded);
 
             if ($is_credit_limit_exeeded !== false) {
                 $credit_limit_amount = $this->transactionUtil->num_f($is_credit_limit_exeeded, true);
@@ -325,6 +323,17 @@ class SellPosController extends Controller
             }
 
             if (!empty($input['products'])) {
+                 if ($input['tax_id'] != null){
+                     foreach ($input['products'] as $key => $value) {
+                         $input['products'][$key]['unit_price_inc_tax'] = $value['unit_price_inc_tax_new'] / 1.15;
+                         $product['unit_price'] = $input['products'][$key]['unit_price_inc_tax'];
+                     }
+                 }else{
+                     foreach ($input['products'] as $key => $value) {
+                         $product['unit_price'] = $value['unit_price_inc_tax_new'];
+                     }
+                 }
+//                dd($product['unit_price']);
                 $business_id = $request->session()->get('user.business_id');
 
                 //Check if subscribed or not, then check for users quota
@@ -450,6 +459,10 @@ class SellPosController extends Controller
                 if ($input['status'] == 'final') {
                     //update product stock
                     foreach ($input['products'] as $product) {
+                        if ($product['tax_id']==null) {
+                            $new_price = $product['unit_price_inc_tax_new']/1.15;
+                            $product['unit_price_inc_tax'] = $new_price;
+                        }
                         $decrease_qty = $this->productUtil
                             ->num_uf($product['quantity']);
                         if (!empty($product['base_unit_multiplier'])) {

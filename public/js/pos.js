@@ -27,7 +27,7 @@ $(document).ready(function() {
             $('input#search_product')
                 .prop('disabled', false)
                 .focus();
-          
+
         } else {
             $('input#search_product').prop('disabled', true);
 
@@ -51,7 +51,7 @@ $(document).ready(function() {
         //Set default price group
         if ($('#default_price_group').length) {
             var dpg = default_price_group ?
-            default_price_group : 0;
+                default_price_group : 0;
             $('#default_price_group').val(dpg);
         }
 
@@ -80,7 +80,7 @@ $(document).ready(function() {
                 };
             },
         },
-        templateResult: function (data) { 
+        templateResult: function (data) {
             var template = '';
             if (data.supplier_business_name) {
                 template += data.supplier_business_name + "<br>";
@@ -126,7 +126,7 @@ $(document).ready(function() {
         } else {
             $('#pay_term_type').val('');
         }
-        
+
         update_shipping_address(data);
         $('#advance_balance_text').text(__currency_trans_from_en(data.balance), true);
         $('#advance_balance').val(data.balance);
@@ -150,7 +150,7 @@ $(document).ready(function() {
                     var price_group = '';
                     var search_fields = [];
                     $('.search_fields:checked').each(function(i){
-                      search_fields[i] = $(this).val();
+                        search_fields[i] = $(this).val();
                     });
 
                     if ($('#price_group').length > 0) {
@@ -172,8 +172,8 @@ $(document).ready(function() {
                 response: function(event, ui) {
                     if (ui.content.length == 1) {
                         ui.item = ui.content[0];
-                        if ((ui.item.enable_stock == 1 && ui.item.qty_available > 0) || 
-                                (ui.item.enable_stock == 0)) {
+                        if ((ui.item.enable_stock == 1 && ui.item.qty_available > 0) ||
+                            (ui.item.enable_stock == 0)) {
                             $(this)
                                 .data('ui-autocomplete')
                                 ._trigger('select', 'autocompleteselect', ui);
@@ -208,10 +208,10 @@ $(document).ready(function() {
                 },
             })
             .autocomplete('instance')._renderItem = function(ul, item) {
-                var is_overselling_allowed = false;
-                if($('input#is_overselling_allowed').length) {
-                    is_overselling_allowed = true;
-                }
+            var is_overselling_allowed = false;
+            if($('input#is_overselling_allowed').length) {
+                is_overselling_allowed = true;
+            }
             if (item.enable_stock == 1 && item.qty_available <= 0 && !is_overselling_allowed) {
                 var string = '<li class="ui-state-disabled">' + item.name;
                 if (item.type == 'variable') {
@@ -268,22 +268,92 @@ $(document).ready(function() {
         var tr = $(this).parents('tr');
 
         var unit_price_inc_tax = __read_number(tr.find('input.pos_unit_price_inc_tax'));
-        var line_total = entered_qty * unit_price_inc_tax;
+        var dd = tr.find('input#pos_line_include_tax').val();
+        // console.log('unit_price_inc_tax', dd/1.15)
+        var pos_unit_price_inc_without_tax = __read_number(tr.find('input.pos_unit_price_inc_without_tax'));
+        if (pos_unit_price_inc_without_tax != 0){
+            var pos_line_include_tax = __read_number(tr.find('input#pos_line_include_tax'));
+            console.log('pos_line_include_tax', pos_line_include_tax)
+            var line_total = entered_qty * pos_line_include_tax;
 
-        __write_number(tr.find('input.pos_line_total'), line_total, false, 2);
-        tr.find('span.pos_line_total_text').text(__currency_trans_from_en(line_total, true));
+            var line_total_ = entered_qty * unit_price_inc_tax;
 
-        //Change modifier quantity
-        tr.find('.modifier_qty_text').each( function(){
-            $(this).text(__currency_trans_from_en(entered_qty, false));
-        });
-        tr.find('.modifiers_quantity').each( function(){
-            $(this).val(entered_qty);
-        });
+            var order_tax = pos_order_tax(line_total_, '0')
 
-        pos_total_row();
+            var total_tax = 15/100;
+            var pv_value = pv(total_tax, 1, 0, line_total);
+            pv_value = Math.abs(pv_value);
+            console.log('pv_value', pv_value)
+            var ddd = line_total - pv_value;
+            console.log('ddd', ddd)
+            line_total = line_total;
+            console.log('line_total', line_total)
+// var lll = line_total/entered_qty;
+            var subtotal_include_tax = __read_number(tr.find('input#subtotal_include_tax')).value = entered_qty * pos_line_include_tax;
+            // var subtotal_include_not_tax = __read_number(tr.find('input#subtotal_include_not_tax')).value = entered_qty * unit_price_inc_tax;
+            // var pos_unit_price_inc_tax_ = __read_number(tr.find('input.pos_unit_price_inc_tax')).value = lll;
+            // unit_price_inc_tax = pos_unit_price_inc_tax_;
+            // var test = document.getElementById('subtotal_include_tax').value = entered_qty * pos_line_include_tax;
+            __write_number(tr.find('input#subtotal_include_tax'), subtotal_include_tax, false, 2);
+            // __write_number(tr.find('input#subtotal_include_not_tax'), subtotal_include_not_tax, false, 2);
 
-        adjustComboQty(tr);
+
+            __write_number(tr.find('input.pos_line_total'), line_total, false, 3);
+            tr.find('span.pos_line_total_text').text(__currency_trans_from_en(line_total, true));
+
+            //Change modifier quantity
+            tr.find('.modifier_qty_text').each( function(){
+                $(this).text(__currency_trans_from_en(entered_qty, false));
+            });
+            tr.find('.modifiers_quantity').each( function(){
+                $(this).val(entered_qty);
+            });
+
+            pos_total_row();
+
+            adjustComboQty(tr);
+        }else{
+            // console.log('here', dd)
+            var pos_line_include_tax = __read_number(tr.find('input#pos_line_include_tax'));
+
+            var line_total = entered_qty * pos_line_include_tax;
+
+            var line_total_ = entered_qty * unit_price_inc_tax;
+
+            var order_tax = pos_order_tax(line_total_, '0')
+
+            var total_tax = 15/100;
+            var pv_value = pv(total_tax, 1, 0, line_total);
+            pv_value = Math.abs(pv_value);
+
+            var ddd = line_total - pv_value;
+
+            line_total = line_total - ddd;
+// var lll = line_total/entered_qty;
+            var subtotal_include_tax = __read_number(tr.find('input#subtotal_include_tax')).value = entered_qty * pos_line_include_tax;
+            var subtotal_include_not_tax = __read_number(tr.find('input#subtotal_include_not_tax')).value = entered_qty * unit_price_inc_tax;
+            // var pos_unit_price_inc_tax_ = __read_number(tr.find('input.pos_unit_price_inc_tax')).value = lll;
+            // unit_price_inc_tax = pos_unit_price_inc_tax_;
+            // var test = document.getElementById('subtotal_include_tax').value = entered_qty * pos_line_include_tax;
+            __write_number(tr.find('input#subtotal_include_tax'), subtotal_include_tax, false, 2);
+            __write_number(tr.find('input#subtotal_include_not_tax'), subtotal_include_not_tax, false, 2);
+
+            console.log('line_total', line_total)
+            __write_number(tr.find('input.pos_line_total'), line_total, false, 3);
+            tr.find('span.pos_line_total_text').text(__currency_trans_from_en(line_total, true));
+
+            //Change modifier quantity
+            tr.find('.modifier_qty_text').each( function(){
+                $(this).text(__currency_trans_from_en(entered_qty, false));
+            });
+            tr.find('.modifiers_quantity').each( function(){
+                $(this).val(entered_qty);
+            });
+
+            pos_total_row();
+
+            adjustComboQty(tr);
+        }
     });
 
     //If change in unit price update price including tax and line total
@@ -301,10 +371,12 @@ $(document).ready(function() {
         var quantity = __read_number(tr.find('input.pos_quantity'));
 
         var unit_price_inc_tax = __add_percent(discounted_unit_price, tax_rate);
+
+
         var line_total = quantity * unit_price_inc_tax;
 
-        __write_number(tr.find('input.pos_unit_price_inc_tax'), unit_price_inc_tax);
-        __write_number(tr.find('input.pos_line_total'), line_total, false, 2);
+        __write_number(tr.find('input.pos_unit_price_inc_tax'), unit_price_inc_tax, false, 3);
+        __write_number(tr.find('input.pos_line_total'), line_total, false, 3);
         tr.find('span.pos_line_total_text').text(__currency_trans_from_en(line_total, true));
         pos_each_row(tr);
         pos_total_row();
@@ -353,7 +425,7 @@ $(document).ready(function() {
             y = Math.pow(1 + rate, nper);
             pv_value = - ( x * ( fv * rate - pmt + y * pmt )) / rate;
         }
-        pv_value = conv_number(pv_value,2);
+        pv_value = conv_number(pv_value,4);
         return (pv_value);
     }
 
@@ -378,51 +450,107 @@ $(document).ready(function() {
     //If change price including tax, update unit price
     $('table#pos_table tbody').on('keyup', 'input#pos_line_include_tax', function() {
         var unit_price_inc_tax = __read_number($(this));
-        // unit_price_inc_tax = unit_price_inc_tax - (15/100)*unit_price_inc_tax;
-        var discount = pos_discount(unit_price_inc_tax);
-        if ($('#reward_point_enabled').length) {
-            total_customer_reward = $('#rp_redeemed_amount').val();
-            discount = parseFloat(discount) + parseFloat(total_customer_reward);
-
-            if ($('input[name="is_direct_sale"]').length <= 0) {
-                $('span#total_discount').text(__currency_trans_from_en(discount, false));
-            }
-        }
-        //
-        // var order_tax = pos_order_tax(unit_price_inc_tax, discount);
-        var order_tax = 15;
-        var total_tax = order_tax/100;
-        var percent = total_tax * unit_price_inc_tax;
-        console.log('total_tax', total_tax);
-        var pv_value = pv(total_tax, 1, 0, unit_price_inc_tax);
-        pv_value = Math.abs(pv_value);
-        console.log('pv_value', pv_value);
-        unit_price_inc_tax = pv_value;
-        unit_price_inc_tax.toFixed(4);
-        console.log(unit_price_inc_tax)
-        if (iraqi_selling_price_adjustment) {
-            unit_price_inc_tax = round_to_iraqi_dinnar(unit_price_inc_tax);
-            __write_number($(this), unit_price_inc_tax);
-        }
-
         var tr = $(this).parents('tr');
+        var pos_line_include_without_tax = __read_number(tr.find('input.pos_line_include_without_tax'));
+        if (pos_line_include_without_tax != 0){
+            // unit_price_inc_tax = unit_price_inc_tax - (15/100)*unit_price_inc_tax;pos_line_include_without_tax
+            var discount = pos_discount(unit_price_inc_tax);
+            if ($('#reward_point_enabled').length) {
+                total_customer_reward = $('#rp_redeemed_amount').val();
+                discount = parseFloat(discount) + parseFloat(total_customer_reward);
 
-        var tax_rate = tr
-            .find('select.tax_id')
-            .find(':selected')
-            .data('rate');
-        var quantity = __read_number(tr.find('input.pos_quantity'));
+                if ($('input[name="is_direct_sale"]').length <= 0) {
+                    $('span#total_discount').text(__currency_trans_from_en(discount, false));
+                }
+            }
+            //
 
-        var line_total = quantity * unit_price_inc_tax;
-        var discounted_unit_price = __get_principle(unit_price_inc_tax, tax_rate);
-        var unit_price = get_unit_price_from_discounted_unit_price(tr, discounted_unit_price);
+            // var order_tax = pos_order_tax(unit_price_inc_tax, discount);
+            // var total_tax = 15/100;
+            // var percent = total_tax * unit_price_inc_tax;
+            // var pv_value = pv(total_tax, 1, 0, unit_price_inc_tax);
+            // pv_value = Math.abs(pv_value);
+            // // console.log('pv_value', pv_value);
+            // unit_price_inc_tax = pv_value;
 
-        __write_number(tr.find('input.pos_unit_price'), unit_price);
-        __write_number(tr.find('input.pos_line_total'), line_total, false, 2);
-        tr.find('span.pos_line_total_text').text(__currency_trans_from_en(line_total, true));
+            // console.log('order_tax', order_tax)
+            if (iraqi_selling_price_adjustment) {
+                unit_price_inc_tax = round_to_iraqi_dinnar(unit_price_inc_tax);
+                __write_number($(this), unit_price_inc_tax, 3);
+            }
 
-        pos_each_row(tr);
-        pos_total_row();
+            var tr = $(this).parents('tr');
+
+            var tax_rate = tr
+                .find('select.tax_id')
+                .find(':selected')
+                .data('rate');
+            var quantity = __read_number(tr.find('input.pos_quantity'));
+            var pos_line_include_tax = __read_number(tr.find('input#pos_line_include_tax'));
+
+            var line_total = quantity * unit_price_inc_tax;
+            var discounted_unit_price = __get_principle(unit_price_inc_tax, tax_rate);
+            var unit_price = get_unit_price_from_discounted_unit_price(tr, discounted_unit_price);
+            var subtotal_include_tax = __read_number(tr.find('input#subtotal_include_tax')).value = quantity * pos_line_include_tax;
+            // var test = document.getElementById('subtotal_include_tax').value = entered_qty * pos_line_include_tax;
+            __write_number(tr.find('input#subtotal_include_tax'), subtotal_include_tax, false, 2);
+
+            __write_number(tr.find('input.pos_unit_price'), unit_price);
+            __write_number(tr.find('input.pos_line_total'), line_total, false, 3);
+            tr.find('span.pos_line_total_text').text(__currency_trans_from_en(line_total, true));
+
+            pos_each_row(tr);
+            pos_total_row();
+        }else{
+            // unit_price_inc_tax = unit_price_inc_tax - (15/100)*unit_price_inc_tax;pos_line_include_without_tax
+            var discount = pos_discount(unit_price_inc_tax);
+            if ($('#reward_point_enabled').length) {
+                total_customer_reward = $('#rp_redeemed_amount').val();
+                discount = parseFloat(discount) + parseFloat(total_customer_reward);
+
+                if ($('input[name="is_direct_sale"]').length <= 0) {
+                    $('span#total_discount').text(__currency_trans_from_en(discount, false));
+                }
+            }
+            //
+
+            // var order_tax = pos_order_tax(unit_price_inc_tax, discount);
+            var total_tax = 15/100;
+            var percent = total_tax * unit_price_inc_tax;
+            var pv_value = pv(total_tax, 1, 0, unit_price_inc_tax);
+            pv_value = Math.abs(pv_value);
+            // console.log('pv_value', pv_value);
+            unit_price_inc_tax = pv_value;
+
+            // console.log('order_tax', order_tax)
+            if (iraqi_selling_price_adjustment) {
+                unit_price_inc_tax = round_to_iraqi_dinnar(unit_price_inc_tax);
+                __write_number($(this), unit_price_inc_tax, 3);
+            }
+
+            var tr = $(this).parents('tr');
+
+            var tax_rate = tr
+                .find('select.tax_id')
+                .find(':selected')
+                .data('rate');
+            var quantity = __read_number(tr.find('input.pos_quantity'));
+            var pos_line_include_tax = __read_number(tr.find('input#pos_line_include_tax'));
+
+            var line_total = quantity * unit_price_inc_tax;
+            var discounted_unit_price = __get_principle(unit_price_inc_tax, tax_rate);
+            var unit_price = get_unit_price_from_discounted_unit_price(tr, discounted_unit_price);
+            var subtotal_include_tax = __read_number(tr.find('input#subtotal_include_tax')).value = quantity * pos_line_include_tax;
+            // var test = document.getElementById('subtotal_include_tax').value = entered_qty * pos_line_include_tax;
+            __write_number(tr.find('input#subtotal_include_tax'), subtotal_include_tax, false, 2);
+
+            __write_number(tr.find('input.pos_unit_price'), unit_price);
+            __write_number(tr.find('input.pos_line_total'), line_total, false, 3);
+            tr.find('span.pos_line_total_text').text(__currency_trans_from_en(line_total, true));
+
+            pos_each_row(tr);
+            pos_total_row();
+        }
     });
     //If change in unit price including tax, update unit price
     $('table#pos_table tbody').on('change', 'input.pos_unit_price_inc_tax', function() {
@@ -446,7 +574,7 @@ $(document).ready(function() {
         var unit_price = get_unit_price_from_discounted_unit_price(tr, discounted_unit_price);
 
         __write_number(tr.find('input.pos_unit_price'), unit_price);
-        __write_number(tr.find('input.pos_line_total'), line_total, false, 2);
+        __write_number(tr.find('input.pos_line_total'), line_total, false, 3);
         tr.find('span.pos_line_total_text').text(__currency_trans_from_en(line_total, true));
 
         pos_each_row(tr);
@@ -535,8 +663,8 @@ $(document).ready(function() {
             var unit_price_inc_tax = __add_percent(discounted_unit_price, tax_rate);
             var line_total = quantity * unit_price_inc_tax;
 
-            __write_number(tr.find('input.pos_unit_price_inc_tax'), unit_price_inc_tax);
-            __write_number(tr.find('input.pos_line_total'), line_total, false, 2);
+            __write_number(tr.find('input.pos_unit_price_inc_tax'), unit_price_inc_tax, false, 3);
+            __write_number(tr.find('input.pos_line_total'), line_total, false, 3);
             tr.find('span.pos_line_total_text').text(__currency_trans_from_en(line_total, true));
             pos_each_row(tr);
             pos_total_row();
@@ -720,9 +848,9 @@ $(document).ready(function() {
         var payment_method_dropdown = $('#payment_rows_div')
             .find('.payment_types_dropdown')
             .first();
-        
-            payment_method_dropdown.val(pay_method);
-            payment_method_dropdown.change();
+
+        payment_method_dropdown.val(pay_method);
+        payment_method_dropdown.change();
         if (pay_method == 'card') {
             $('div#card_details_modal').modal('show');
         } else if (pay_method == 'suspend') {
@@ -990,7 +1118,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.add_new_customer', function() {
-       $('#customer_id').select2('close');
+        $('#customer_id').select2('close');
         var name = $(this).data('name');
         $('.contact_modal')
             .find('input#name')
@@ -1120,7 +1248,7 @@ $(document).ready(function() {
         }
 
         if ($(this).attr('id') == 'save-and-print') {
-            $('#is_save_and_print').val(1);           
+            $('#is_save_and_print').val(1);
         } else {
             $('#is_save_and_print').val(0);
         }
@@ -1353,12 +1481,12 @@ $(document).ready(function() {
             suffixKeyCodes: [13], // enter-key expected at the end of a scan
             reactToPaste: true, // Compatibility to built-in scanners in paste-mode (as opposed to keyboard-mode)
             onScan: function(sCode, iQty) {
-                console.log('Scanned: ' + iQty + 'x ' + sCode); 
+                console.log('Scanned: ' + iQty + 'x ' + sCode);
                 $('input#weighing_scale_barcode').val(sCode);
                 $('button#weighing_scale_submit').trigger('click');
             },
             onScanError: function(oDebug) {
-                console.log(oDebug); 
+                console.log(oDebug);
             },
             minLength: 2
             // onKeyDetect: function(iKeyCode){ // output all potentially relevant key events - great for debugging!
@@ -1519,29 +1647,29 @@ function pos_product_row(variation_id = null, purchase_line_id = null, weighing_
 
         //Search for variation id in each row of pos table
         $('#pos_table tbody').find('tr').each(function() {
-                var row_v_id = $(this).find('.row_variation_id').val();
-                var enable_sr_no = $(this).find('.enable_sr_no').val();
-                var modifiers_exist = false;
-                if ($(this).find('input.modifiers_exist').length > 0) {
-                    modifiers_exist = true;
-                }
+            var row_v_id = $(this).find('.row_variation_id').val();
+            var enable_sr_no = $(this).find('.enable_sr_no').val();
+            var modifiers_exist = false;
+            if ($(this).find('input.modifiers_exist').length > 0) {
+                modifiers_exist = true;
+            }
 
-                if (row_v_id == variation_id && enable_sr_no !== '1' && !modifiers_exist &&  !is_added ) {
-                    add_via_ajax = false;
-                    is_added = true;
+            if (row_v_id == variation_id && enable_sr_no !== '1' && !modifiers_exist &&  !is_added ) {
+                add_via_ajax = false;
+                is_added = true;
 
-                    //Increment product quantity
-                    qty_element = $(this).find('.pos_quantity');
-                    var qty = __read_number(qty_element);
-                    __write_number(qty_element, qty + 1);
-                    qty_element.change();
+                //Increment product quantity
+                qty_element = $(this).find('.pos_quantity');
+                var qty = __read_number(qty_element);
+                __write_number(qty_element, qty + 1);
+                qty_element.change();
 
-                    round_row_to_iraqi_dinnar($(this));
+                round_row_to_iraqi_dinnar($(this));
 
-                    $('input#search_product')
-                        .focus()
-                        .select();
-                }
+                $('input#search_product')
+                    .focus()
+                    .select();
+            }
         });
     }
 
@@ -1563,13 +1691,13 @@ function pos_product_row(variation_id = null, purchase_line_id = null, weighing_
         }
 
         //If default price group present
-        if ($('#default_price_group').length > 0 && 
+        if ($('#default_price_group').length > 0 &&
             !price_group) {
             price_group = $('#default_price_group').val();
         }
 
         //If types of service selected give more priority
-        if ($('#types_of_service_price_group').length > 0 && 
+        if ($('#types_of_service_price_group').length > 0 &&
             $('#types_of_service_price_group').val()) {
             price_group = $('#types_of_service_price_group').val();
         }
@@ -1601,7 +1729,8 @@ function pos_product_row(variation_id = null, purchase_line_id = null, weighing_
                     pos_each_row(this_row);
 
                     //For initial discount if present
-                    var line_total = __read_number(this_row.find('input.pos_line_total'));
+                    // var line_total = __read_number(this_row.find('input.pos_line_total'));
+                    var line_total = 100;
                     this_row.find('span.pos_line_total_text').text(line_total);
 
                     pos_total_row();
@@ -1742,7 +1871,7 @@ function calculate_billing_details(price_total) {
     //Add packaging charge
     var packing_charge = 0;
     if ($('#types_of_service_id').length > 0 &&
-            $('#types_of_service_id').val()) {
+        $('#types_of_service_id').val()) {
         packing_charge = __calculate_amount($('#packing_charge_type').val(),
             __read_number($('input#packing_charge')), price_total);
 
@@ -1750,7 +1879,7 @@ function calculate_billing_details(price_total) {
     }
 
     var total_payable = price_total + order_tax - discount + shipping_charges + packing_charge;
-
+    // total_payable -= order_tax
     var rounding_multiple = $('#amount_rounding_method').val() ? parseFloat($('#amount_rounding_method').val()) : 0;
     var round_off_data = __round(total_payable, rounding_multiple);
     var total_payable_rounded = round_off_data.number;
@@ -1867,53 +1996,53 @@ function isValidPosForm() {
 
 function reset_pos_form(){
 
-	//If on edit page then redirect to Add POS page
-	if($('form#edit_pos_sell_form').length > 0){
-		setTimeout(function() {
-			window.location = $("input#pos_redirect_url").val();
-		}, 4000);
-		return true;
-	}
-	
-	if(pos_form_obj[0]){
-		pos_form_obj[0].reset();
-	}
-	if(sell_form[0]){
-		sell_form[0].reset();
-	}
-	set_default_customer();
-	set_location();
+    //If on edit page then redirect to Add POS page
+    if($('form#edit_pos_sell_form').length > 0){
+        setTimeout(function() {
+            window.location = $("input#pos_redirect_url").val();
+        }, 4000);
+        return true;
+    }
 
-	$('tr.product_row').remove();
-	$('span.total_quantity, span.price_total, span#total_discount, span#order_tax, span#total_payable, span#shipping_charges_amount').text(0);
-	$('span.total_payable_span', 'span.total_paying', 'span.balance_due').text(0);
+    if(pos_form_obj[0]){
+        pos_form_obj[0].reset();
+    }
+    if(sell_form[0]){
+        sell_form[0].reset();
+    }
+    set_default_customer();
+    set_location();
 
-	$('#modal_payment').find('.remove_payment_row').each( function(){
-		$(this).closest('.payment_row').remove();
-	});
+    $('tr.product_row').remove();
+    $('span.total_quantity, span.price_total, span#total_discount, span#order_tax, span#total_payable, span#shipping_charges_amount').text(0);
+    $('span.total_payable_span', 'span.total_paying', 'span.balance_due').text(0);
+
+    $('#modal_payment').find('.remove_payment_row').each( function(){
+        $(this).closest('.payment_row').remove();
+    });
 
     if ($('#is_credit_sale').length) {
         $('#is_credit_sale').val(0);
     }
 
-	//Reset discount
-	__write_number($('input#discount_amount'), $('input#discount_amount').data('default'));
-	$('input#discount_type').val($('input#discount_type').data('default'));
+    //Reset discount
+    __write_number($('input#discount_amount'), $('input#discount_amount').data('default'));
+    $('input#discount_type').val($('input#discount_type').data('default'));
 
-	//Reset tax rate
-	$('input#tax_rate_id').val($('input#tax_rate_id').data('default'));
-	__write_number($('input#tax_calculation_amount'), $('input#tax_calculation_amount').data('default'));
+    //Reset tax rate
+    $('input#tax_rate_id').val($('input#tax_rate_id').data('default'));
+    __write_number($('input#tax_calculation_amount'), $('input#tax_calculation_amount').data('default'));
 
-	$('select.payment_types_dropdown').val('cash').trigger('change');
-	$('#price_group').trigger('change');
+    $('select.payment_types_dropdown').val('cash').trigger('change');
+    $('#price_group').trigger('change');
 
-	//Reset shipping
-	__write_number($('input#shipping_charges'), $('input#shipping_charges').data('default'));
-	$('input#shipping_details').val($('input#shipping_details').data('default'));
+    //Reset shipping
+    __write_number($('input#shipping_charges'), $('input#shipping_charges').data('default'));
+    $('input#shipping_details').val($('input#shipping_details').data('default'));
 
-	if($('input#is_recurring').length > 0){
-		$('input#is_recurring').iCheck('update');
-	};
+    if($('input#is_recurring').length > 0){
+        $('input#is_recurring').iCheck('update');
+    };
     if($('#invoice_layout_id').length > 0){
         $('#invoice_layout_id').trigger('change');
     };
@@ -1927,7 +2056,7 @@ function reset_pos_form(){
     if ($("#repair_defects").length > 0) {
         tagify_rd.removeAllTags();
     }
-    
+
     $(document).trigger('sell_form_reset');
 }
 
@@ -2087,9 +2216,9 @@ $('table#pos_table tbody').on('change', 'input.pos_line_total', function() {
     var subtotal = __read_number($(this));
     var tr = $(this).parents('tr');
     var quantity_element = tr.find('input.pos_quantity');
-    var unit_price_inc_tax = __read_number(tr.find('input.pos_unit_price_inc_tax'));
-    var quantity = subtotal / unit_price_inc_tax;
-    __write_number(quantity_element, quantity);
+    // var unit_price_inc_tax = __read_number(tr.find('input.pos_unit_price_inc_tax'));
+    // var quantity = subtotal / unit_price_inc_tax;
+    // __write_number(quantity_element, quantity);
 
     if (sell_form_validator) {
         sell_form_validator.element(quantity_element);
@@ -2167,7 +2296,7 @@ function getCustomerRewardPoints() {
     if ($('#reward_point_enabled').length <= 0) {
         return false;
     }
-    var is_edit = $('form#edit_sell_form').length || 
+    var is_edit = $('form#edit_sell_form').length ||
     $('form#edit_pos_sell_form').length ? true : false;
     if (is_edit && !customer_set) {
         return false;
@@ -2178,7 +2307,7 @@ function getCustomerRewardPoints() {
     $.ajax({
         method: 'POST',
         url: '/sells/pos/get-reward-details',
-        data: { 
+        data: {
             customer_id: customer_id
         },
         dataType: 'json',
@@ -2297,7 +2426,7 @@ $(document).on('change', '#types_of_service_id', function(){
         $.ajax({
             method: 'POST',
             url: '/sells/pos/get-types-of-service-details',
-            data: { 
+            data: {
                 types_of_service_id: types_of_service_id,
                 location_id: location_id
             },
@@ -2316,7 +2445,7 @@ $(document).on('change', '#types_of_service_id', function(){
                 }
                 $('#types_of_service_id').val(types_of_service_id);
                 $('.types_of_service_modal').html(result.modal_html);
-                
+
                 if (prev_price_group != result.price_group_id) {
                     if ($('form#edit_pos_sell_form').length > 0) {
                         $('table#pos_table tbody').html('');
@@ -2357,14 +2486,14 @@ $(document).on('click', '.service_modal_btn', function(e) {
 });
 
 $(document).on('change', '.payment_types_dropdown', function(e) {
-    var default_accounts = $('select#select_location_id').length ? 
-                $('select#select_location_id')
-                .find(':selected')
-                .data('default_payment_accounts') : $('#location_id').data('default_payment_accounts');
+    var default_accounts = $('select#select_location_id').length ?
+        $('select#select_location_id')
+            .find(':selected')
+            .data('default_payment_accounts') : $('#location_id').data('default_payment_accounts');
     var payment_type = $(this).val();
     var payment_row = $(this).closest('.payment_row');
     if (payment_type && payment_type != 'advance') {
-        var default_account = default_accounts && default_accounts[payment_type]['account'] ? 
+        var default_account = default_accounts && default_accounts[payment_type]['account'] ?
             default_accounts[payment_type]['account'] : '';
         var row_index = payment_row.find('.payment_row_index').val();
 
@@ -2394,9 +2523,9 @@ $(document).on('change', '.payment_types_dropdown', function(e) {
     } else {
         amount_element.rules("remove", "max-value");
         if (account_dropdown) {
-            account_dropdown.prop('disabled', false); 
+            account_dropdown.prop('disabled', false);
             account_dropdown.closest('.form-group').removeClass('hide');
-        }    
+        }
     }
 });
 
@@ -2457,7 +2586,7 @@ function validate_discount_field() {
             },
         });
     } else {
-        discount_element.rules("remove", "max-value");      
+        discount_element.rules("remove", "max-value");
     }
     discount_element.trigger('change');
 }
@@ -2538,7 +2667,7 @@ function update_shipping_address(data) {
         let shipping_custom_field_5 = data.shipping_custom_field_details != null ? data.shipping_custom_field_details.shipping_custom_field_5 : '';
         $('#shipping_custom_field_5').val(shipping_custom_field_5);
     }
-    
+
     //update export fields
     if (data.is_export) {
         $('#is_export').prop('checked', true);
@@ -2566,7 +2695,7 @@ function update_shipping_address(data) {
         $('#is_export').prop('checked', false);
         $('div.export_div').hide();
     }
-    
+
     $('#shipping_address_modal').val(data.shipping_address);
     $('#shipping_address').val(data.shipping_address);
 }
@@ -2602,10 +2731,10 @@ function set_so_values(so) {
 $("#sales_order_ids").on("select2:unselect", function (e) {
     var sales_order_id = e.params.data.id;
     $('table#pos_table tbody').find('tr').each( function(){
-        if (typeof($(this).data('so_id')) !== 'undefined' 
+        if (typeof($(this).data('so_id')) !== 'undefined'
             && $(this).data('so_id') == sales_order_id) {
             $(this).remove();
-        pos_total_row();
+            pos_total_row();
         }
     });
 });
@@ -2613,7 +2742,7 @@ $("#sales_order_ids").on("select2:unselect", function (e) {
 $(document).on('click', '#add_expense', function(){
     $.ajax({
         url: '/expenses/create',
-        data: { 
+        data: {
             location_id: $('#select_location_id').val()
         },
         dataType: 'html',
@@ -2654,7 +2783,7 @@ $(document).on('submit', 'form#add_expense_modal_form', function(e) {
         dataType: 'json',
         data: data,
         success: function(result) {
-             if (result.success == true) {
+            if (result.success == true) {
                 $('#expense_modal').modal('hide');
                 toastr.success(result.msg);
             } else {

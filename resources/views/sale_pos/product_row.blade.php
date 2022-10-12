@@ -2,7 +2,7 @@
     $common_settings = session()->get('business.common_settings');
 @endphp
 <tr class="product_row" data-row_index="{{$row_count}}" @if(!empty($so_line)) data-so_id="{{$so_line->transaction_id}}" @endif>
-   {{--Product name--}}
+    {{--Product name--}}
     <td>
         @if(!empty($so_line))
             <input type="hidden"
@@ -10,17 +10,17 @@
                    value="{{$so_line->id}}">
         @endif
         @php
-//            $product_name = $product->product_name . '<br/>' . $product->sub_sku ;
-            $product_name = $product->product_name ;
-            if(!empty($product->brand)){ $product_name .= ' ' . $product->brand ;}
+            //            $product_name = $product->product_name . '<br/>' . $product->sub_sku ;
+                        $product_name = $product->product_name ;
+                        if(!empty($product->brand)){ $product_name .= ' ' . $product->brand ;}
         @endphp
 
         @if( ($edit_price || $edit_discount) && empty($is_direct_sell) )
             <div title="@lang('lang_v1.pos_edit_product_price_help')">
-		<span class="text-link text-info cursor-pointer" data-toggle="modal" data-target="#row_edit_product_price_modal_{{$row_count}}">
-			{!! $product_name !!}
-            &nbsp;<i class="fa fa-info-circle"></i>
-		</span>
+            <span class="text-link text-info cursor-pointer" data-toggle="modal" data-target="#row_edit_product_price_modal_{{$row_count}}">
+                {!! $product_name !!}
+                &nbsp;<i class="fa fa-info-circle"></i>
+            </span>
             </div>
         @else
             {!! $product_name !!}
@@ -84,7 +84,7 @@
             </div>
         @endif
 
-    <!-- Description modal end -->
+        <!-- Description modal end -->
         @if(in_array('modifiers' , $enabled_modules))
             <div class="modifiers_html">
                 @if(!empty($product->product_ms))
@@ -157,13 +157,13 @@
                 </select>
             @endif
         @endif
-            @if(!$is_direct_sell)
-                @if(!empty($is_direct_sell))
-                    <br>
-                    <textarea class="form-control" name="products[{{$row_count}}][sell_line_note]" rows="2">{{$sell_line_note}}</textarea>
-                    {{--<p class="help-block"><small>@lang('lang_v1.sell_line_description_help')</small></p>--}}
-                @endif
+        @if(!$is_direct_sell)
+            @if(!empty($is_direct_sell))
+                <br>
+                <textarea class="form-control" name="products[{{$row_count}}][sell_line_note]" rows="2">{{$sell_line_note}}</textarea>
+                {{--<p class="help-block"><small>@lang('lang_v1.sell_line_description_help')</small></p>--}}
             @endif
+        @endif
     </td>
 
     {{-- quantity --}}
@@ -218,24 +218,24 @@
                    class="form-control pos_quantity input_number mousetrap input_quantity"
                    value="{{@format_quantity($product->quantity_ordered)}}" name="products[{{$row_count}}][quantity]" data-allow-overselling="@if(empty($pos_settings['allow_overselling'])){{'false'}}@else{{'true'}}@endif"
                    @if($allow_decimal)
-                   data-decimal=1
+                       data-decimal=1
                    @else
-                   data-decimal=0
+                       data-decimal=0
                    data-rule-abs_digit="true"
                    data-msg-abs_digit="@lang('lang_v1.decimal_value_not_allowed')"
                    @endif
                    data-rule-required="true"
                    data-msg-required="@lang('validation.custom-messages.this_field_is_required')"
                    @if($product->enable_stock && empty($pos_settings['allow_overselling']) && empty($is_sales_order) )
-                   data-rule-max-value="{{$max_qty_rule}}" data-qty_available="{{$product->qty_available}}" data-msg-max-value="{{$max_qty_msg}}"
+                       data-rule-max-value="{{$max_qty_rule}}" data-qty_available="{{$product->qty_available}}" data-msg-max-value="{{$max_qty_msg}}"
                    data-msg_max_default="@lang('validation.custom-messages.quantity_not_available', ['qty'=> $product->formatted_qty_available, 'unit' => $product->unit  ])"
-                @endif
+                    @endif
             >
             <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat quantity-up"><i class="fa fa-plus text-success"></i></button></span>
         </div>
 
         <input type="hidden" name="products[{{$row_count}}][product_unit_id]" value="{{$product->unit_id}}">
-      @if(count($sub_units) > 0)
+        @if(count($sub_units) > 0)
             <br>
             <select name="products[{{$row_count}}][sub_unit_id]" class="form-control input-sm sub_unit">
                 @foreach($sub_units as $key => $value)
@@ -309,9 +309,9 @@
                 $pos_unit_price = $so_line->unit_price_before_discount;
             }
         @endphp
-         <td @if(!auth()->user()->can('edit_product_price_from_sale_screen')) hide @endif>
+        <td @if(!auth()->user()->can('edit_product_price_from_sale_screen')) hide @endif>
             <input type="text" name="products[{{$row_count}}][unit_price]" class="form-control pos_unit_price input_number mousetrap" value="{{@num_format($pos_unit_price)}}">
-         </td>
+        </td>
         @if(!$is_direct_sell)
             <td @if(!$edit_discount) hide @endif>
                 {!! Form::text("products[$row_count][line_discount_amount]", @num_format($discount_amount), ['class' => 'form-control input_number row_discount_amount']); !!}<br>
@@ -320,12 +320,12 @@
                     <p class="help-block">{!! __('lang_v1.applied_discount_text', ['discount_name' => $discount->name, 'starts_at' => $discount->formated_starts_at, 'ends_at' => $discount->formated_ends_at]) !!}</p>
                 @endif
             </td>
-         @endif
+        @endif
 
-    <td class="text-center {{$hide_tax}}">
-        {!! Form::hidden("products[$row_count][item_tax]", @num_format($item_tax), ['class' => 'item_tax']); !!}
-        {!! Form::select("products[$row_count][tax_id]", $tax_dropdown['tax_rates'], $tax_id, ['placeholder' => 'Select', 'class' => 'form-control tax_id'], $tax_dropdown['attributes']); !!}
-    </td>
+        <td class="text-center {{$hide_tax}}">
+            {!! Form::hidden("products[$row_count][item_tax]", @num_format($item_tax), ['class' => 'item_tax']); !!}
+            {!! Form::select("products[$row_count][tax_id]", $tax_dropdown['tax_rates'], $tax_id, ['placeholder' => 'Select', 'class' => 'form-control tax_id'], $tax_dropdown['attributes']); !!}
+        </td>
 
     @else
         @if(!empty($warranties))
@@ -344,11 +344,11 @@
     @endif
 
     {{--Unit price --}}
-  <td class="{{$hide_tax}}">
-         <input type="text"   name="products[{{$row_count}}][unit_price_inc_tax]" class="form-control pos_unit_price_inc_tax input_number" value="{{@num_format($unit_price_inc_tax)}}" @if($edit_price) readonly @endif @if(!empty($pos_settings['enable_msp'])) data-rule-min-value="{{$unit_price_inc_tax}}" data-msg-min-value="{{__('lang_v1.minimum_selling_price_error_msg', ['price' => @num_format($unit_price_inc_tax)])}}" @endif>
-         <input type="hidden" name="products[{{$row_count}}][default_purchase_price]" class="form-control default_purchase_price input_number" value="{{@num_format($product->last_purchased_price)}}" >
+    <td class="{{$hide_tax}}">
+        <input type="text"   name="products[{{$row_count}}][unit_price_inc_tax]" class="form-control pos_unit_price_inc_tax input_number" value="{{@num_format($unit_price_inc_tax)}}" @if($edit_price) readonly @endif @if(!empty($pos_settings['enable_msp'])) data-rule-min-value="{{$unit_price_inc_tax}}" data-msg-min-value="{{__('lang_v1.minimum_selling_price_error_msg', ['price' => @num_format($unit_price_inc_tax)])}}" @endif>
+        <input type="hidden" name="products[{{$row_count}}][default_purchase_price]" class="form-control default_purchase_price input_number" value="{{@num_format($product->last_purchased_price)}}" >
 
-     </td>
+    </td>
 
 
     @if(!empty($common_settings['enable_product_warranty']) && !empty($is_direct_sell))
@@ -361,39 +361,62 @@
             <span class="display_currency pos_line_total_text @if(!empty($pos_settings['is_pos_subtotal_editable'])) hide @endif" data-currency_symbol="true">{{$product->quantity_ordered*$unit_price_inc_tax}}</span>
             <br>
             @if(!$is_direct_sell)
-            {!! Form::select("products[$row_count][warranty_id]", $warranties, $warranty_id, ['placeholder' => __('messages.please_select'), 'class' => 'form-control']); !!}
+                {!! Form::select("products[$row_count][warranty_id]", $warranties, $warranty_id, ['placeholder' => __('messages.please_select'), 'class' => 'form-control']); !!}
             @endif
         </td>
     @endif
 
 
     {{--Added by eng ali to show unit price in pos--}}
-   {{-- @if(empty($is_direct_sell))
-    <td>
-        {{$product->sell_price_inc_tax}}
-        <span class="display_currency pos_line_total_text " data-currency_symbol="true">{{$product->quantity_ordered*$unit_price_inc_tax}}</span>
-    </td>
-    @endif--}}
+    {{-- @if(empty($is_direct_sell))
+     <td>
+         {{$product->sell_price_inc_tax}}
+         <span class="display_currency pos_line_total_text " data-currency_symbol="true">{{$product->quantity_ordered*$unit_price_inc_tax}}</span>
+     </td>
+     @endif--}}
 
 
 
 
     {{--Total --}}
     @if(!$is_direct_sell)
-    <td class="text-center">
-        <input type="text"   name="products[{{$row_count}}][unit_price_inc_tax]" class="form-control pos_unit_price_inc_tax" value="{{@num_format($unit_price_inc_tax)}}" @if($edit_price) @endif @if(!empty($pos_settings['enable_msp'])) data-rule-min-value="{{$unit_price_inc_tax}}" data-msg-min-value="{{__('lang_v1.minimum_selling_price_error_msg', ['price' => @num_format($unit_price_inc_tax)])}}" @endif>
-        <input type="hidden" name="products[{{$row_count}}][default_purchase_price]" class="form-control default_purchase_price input_number" value="{{@num_format($product->last_purchased_price)}}" >
-        <label style="color: #ff000d">{{ __('sale.including_tax') }}</label>
-        <input type="text" id="pos_line_include_tax" value="0">
-    </td>
+        <td class="text-center">
+            {{--        <label style="color: #ff000d">{{ __('sale.including_tax') }}</label>--}}
+            @if($product->tax_id != null)
+                <input type="hidden" name="tax_id" value="{{$product->tax_id}}">
+                <input type="text" style="display: none" name="products[{{$row_count}}][unit_price_inc_tax]" class="form-control pos_unit_price_inc_tax" value="{{@num_format($unit_price_inc_tax)}}" @if($edit_price) @endif @if(!empty($pos_settings['enable_msp'])) data-rule-min-value="{{$unit_price_inc_tax}}" data-msg-min-value="{{__('lang_v1.minimum_selling_price_error_msg', ['price' => @num_format($unit_price_inc_tax)])}}" @endif>
+                <input type="hidden" name="products[{{$row_count}}][default_purchase_price]" class="form-control default_purchase_price input_number" value="{{@num_format($product->last_purchased_price)}}" >
+                <input type="text" name="products[{{$row_count}}][unit_price_inc_tax_new]" id="pos_line_include_tax" value="{{ $product->sell_price_inc_tax }}">
+                <label style="color: #ff000d">{{ __('sale.including_tax') }}</label>
+            @else
+                <input type="hidden" name="tax_id" value="{{$product->tax_id}}">
+                <input type="text" style="display: none" name="products[{{$row_count}}][unit_price_inc_tax]" class="form-control pos_unit_price_inc_tax pos_unit_price_inc_without_tax" value="{{@num_format($unit_price_inc_tax)}}" @if($edit_price) @endif @if(!empty($pos_settings['enable_msp'])) data-rule-min-value="{{$unit_price_inc_tax}}" data-msg-min-value="{{__('lang_v1.minimum_selling_price_error_msg', ['price' => @num_format($unit_price_inc_tax)])}}" @endif>
+                <input type="hidden" name="products[{{$row_count}}][default_purchase_price]" class="form-control default_purchase_price input_number" value="{{@num_format($product->last_purchased_price)}}" >
+                <input type="text" name="products[{{$row_count}}][unit_price_inc_tax_new]" id="pos_line_include_tax" class="pos_line_include_without_tax" value="{{ $product->sell_price_inc_tax }}">
+                {{--                <label style="color: #ff000d">{{ __('sale.including_tax') }}</label>--}}
+            @endif
+
+        </td>
     @endif
     <td>
         @php
             $subtotal_type = !empty($pos_settings['is_pos_subtotal_editable']) ? 'text' : 'hidden';
-       @endphp
-{{--        <span ><strong>@lang('sale.subtotal')</strong></span>--}}
-        <input type="{{$subtotal_type}}" class="form-control pos_line_total @if(!empty($pos_settings['is_pos_subtotal_editable'])) input_number @endif" value="{{@num_format($product->quantity_ordered*$unit_price_inc_tax )}}">
-        <span class="display_currency pos_line_total_text @if(!empty($pos_settings['is_pos_subtotal_editable'])) hide @endif" data-currency_symbol="true">{{$product->quantity_ordered*$unit_price_inc_tax}}</span>
+        @endphp
+        {{--        <span ><strong>@lang('sale.subtotal')</strong></span>--}}
+        @if(empty($pos_settings['is_pos_subtotal_editable']))
+            @if($product->tax_id != null)
+                <input type="text" id="subtotal_include_tax" value="{{ @num_format($product->quantity_ordered*$product->sell_price_inc_tax  )}}" readonly style="cursor: not-allowed">
+            @else
+                <input type="text" id="subtotal_include_tax" value="{{ @num_format($product->quantity_ordered*$product->sell_price_inc_tax  )}}" readonly style="cursor: not-allowed">
+            @endif
+        @else
+            <a href="{{ URL::to('business/settings') }}" target="_blank">
+                <span>Got to Business Settings > POS >  Subtotal Editable (uncheck)</span>
+            </a>
+        @endif
+        <input type="{{$subtotal_type}}" style="display:none;" class="form-control pos_line_total @if(!empty($pos_settings['is_pos_subtotal_editable'])) input_number @endif" value="{{@num_format($product->quantity_ordered*$unit_price_inc_tax )}}">
+        {{--        <span class="display_currency pos_line_total_text @if(!empty($pos_settings['is_pos_subtotal_editable'])) hide @endif" data-currency_symbol="true">{{$product->quantity_ordered*$unit_price_inc_tax}}</span>--}}
+        {{--        <span class="display_currency pos_line_total_text @if(!empty($pos_settings['is_pos_subtotal_editable'])) hide @endif" data-currency_symbol="true">{{$product->quantity_ordered*$unit_price_inc_tax}}</span>--}}
     </td>
 
     <td class="text-center " style="padding-top: 10px;" >

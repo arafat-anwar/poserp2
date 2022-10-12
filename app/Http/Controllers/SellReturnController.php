@@ -61,39 +61,39 @@ class SellReturnController extends Controller
         if (request()->ajax()) {
             $sells = Transaction::leftJoin('contacts', 'transactions.contact_id', '=', 'contacts.id')
 
-                    ->join(
-                        'business_locations AS bl',
-                        'transactions.location_id',
-                        '=',
-                        'bl.id'
-                    )
-                    ->join(
-                        'transactions as T1',
-                        'transactions.return_parent_id',
-                        '=',
-                        'T1.id'
-                    )
-                    ->leftJoin(
-                        'transaction_payments AS TP',
-                        'transactions.id',
-                        '=',
-                        'TP.transaction_id'
-                    )
-                    ->where('transactions.business_id', $business_id)
-                    ->where('transactions.type', 'sell_return')
-                    ->where('transactions.status', 'final')
-                    ->select(
-                        'transactions.id',
-                        'transactions.transaction_date',
-                        'transactions.invoice_no',
-                        'contacts.name',
-                        'transactions.final_total',
-                        'transactions.payment_status',
-                        'bl.name as business_location',
-                        'T1.invoice_no as parent_sale',
-                        'T1.id as parent_sale_id',
-                        DB::raw('SUM(TP.amount) as amount_paid')
-                    );
+                ->join(
+                    'business_locations AS bl',
+                    'transactions.location_id',
+                    '=',
+                    'bl.id'
+                )
+                ->join(
+                    'transactions as T1',
+                    'transactions.return_parent_id',
+                    '=',
+                    'T1.id'
+                )
+                ->leftJoin(
+                    'transaction_payments AS TP',
+                    'transactions.id',
+                    '=',
+                    'TP.transaction_id'
+                )
+                ->where('transactions.business_id', $business_id)
+                ->where('transactions.type', 'sell_return')
+                ->where('transactions.status', 'final')
+                ->select(
+                    'transactions.id',
+                    'transactions.transaction_date',
+                    'transactions.invoice_no',
+                    'contacts.name',
+                    'transactions.final_total',
+                    'transactions.payment_status',
+                    'bl.name as business_location',
+                    'T1.invoice_no as parent_sale',
+                    'T1.id as parent_sale_id',
+                    DB::raw('SUM(TP.amount) as amount_paid')
+                );
 
             $permitted_locations = auth()->user()->permitted_locations();
             if ($permitted_locations != 'all') {
@@ -124,7 +124,7 @@ class SellReturnController extends Controller
                 $start = request()->start_date;
                 $end =  request()->end_date;
                 $sells->whereDate('transactions.transaction_date', '>=', $start)
-                        ->whereDate('transactions.transaction_date', '<=', $end);
+                    ->whereDate('transactions.transaction_date', '<=', $end);
             }
 
             $sells->groupBy('transactions.id');
@@ -291,18 +291,22 @@ class SellReturnController extends Controller
         }
 
         $sell = Transaction::where('business_id', $business_id)
-                            ->with(['sell_lines', 'location', 'return_parent', 'contact', 'tax', 'sell_lines.sub_unit', 'sell_lines.product', 'sell_lines.product.unit'])
-                            ->find($id);
+            ->with(['sell_lines', 'location', 'return_parent', 'contact', 'tax', 'sell_lines.sub_unit', 'sell_lines.product', 'sell_lines.product.unit'])
+            ->find($id);
 
         foreach ($sell->sell_lines as $key => $value) {
+
             if (!empty($value->sub_unit_id)) {
                 $formated_sell_line = $this->transactionUtil->recalculateSellLineTotals($business_id, $value);
                 $sell->sell_lines[$key] = $formated_sell_line;
             }
-
+            $v1 = $value['unit_price_inc_tax']*0.15;
+            $v2 = round($value['unit_price_inc_tax']+ $v1, 2);
+            $v3 = $v2/1.15;
+            $value['unit_price_inc_tax'] = $v3;
             $sell->sell_lines[$key]->formatted_qty = $this->transactionUtil->num_f($value->quantity, false, null, true);
         }
-
+//dd($sell->sell_lines);
         return view(viewSource().'sell_return.add')
             ->with(compact('sell'));
     }
@@ -335,19 +339,19 @@ class SellReturnController extends Controller
                 DB::beginTransaction();
 
                 $sell_return =  $this->transactionUtil->addSellReturn($input, $business_id, $user_id);
-
+//dd($sell_return);
                 $receipt = $this->receiptContent($business_id, $sell_return->location_id, $sell_return->id);
 
                 DB::commit();
 
                 $output = ['success' => 1,
-                            'msg' => __('lang_v1.success'),
-                            'receipt' => $receipt
-                        ];
+                    'msg' => __('lang_v1.success'),
+                    'receipt' => $receipt
+                ];
             }
         } catch (\Exception $e) {
             DB::rollBack();
-
+//dd($e);
             if (get_class($e) == \App\Exceptions\PurchaseSellMismatch::class) {
                 $msg = $e->getMessage();
             } else {
@@ -356,8 +360,8 @@ class SellReturnController extends Controller
             }
 
             $output = ['success' => 0,
-                            'msg' => $msg
-                        ];
+                'msg' => $msg
+            ];
         }
 
         return $output;
@@ -377,20 +381,20 @@ class SellReturnController extends Controller
 
         $business_id = request()->session()->get('user.business_id');
         $sell = Transaction::where('business_id', $business_id)
-                                ->where('id', $id)
-                                ->with(
-                                    'contact',
-                                    'return_parent',
-                                    'tax',
-                                    'sell_lines',
-                                    'sell_lines.product',
-                                    'sell_lines.variations',
-                                    'sell_lines.sub_unit',
-                                    'sell_lines.product',
-                                    'sell_lines.product.unit',
-                                    'location'
-                                )
-                                ->first();
+            ->where('id', $id)
+            ->with(
+                'contact',
+                'return_parent',
+                'tax',
+                'sell_lines',
+                'sell_lines.product',
+                'sell_lines.variations',
+                'sell_lines.sub_unit',
+                'sell_lines.product',
+                'sell_lines.product.unit',
+                'location'
+            )
+            ->first();
 
         foreach ($sell->sell_lines as $key => $value) {
             if (!empty($value->sub_unit_id)) {
@@ -423,9 +427,9 @@ class SellReturnController extends Controller
         }
 
         $activities = Activity::forSubject($sell->return_parent)
-           ->with(['causer', 'subject'])
-           ->latest()
-           ->get();
+            ->with(['causer', 'subject'])
+            ->latest()
+            ->get();
 
         return view(viewSource().'sell_return.show')
             ->with(compact('sell', 'sell_taxes', 'total_discount', 'activities'));
@@ -456,8 +460,8 @@ class SellReturnController extends Controller
                     ->first();
 
                 $sell_lines = TransactionSellLine::where('transaction_id',
-                                            $sell_return->return_parent_id)
-                                    ->get();
+                    $sell_return->return_parent_id)
+                    ->get();
 
                 if (!empty($sell_return)) {
                     $transaction_payments = $sell_return->payment_lines;
@@ -486,8 +490,8 @@ class SellReturnController extends Controller
 
                 DB::commit();
                 $output = ['success' => 1,
-                            'msg' => __('lang_v1.success'),
-                        ];
+                    'msg' => __('lang_v1.success'),
+                ];
             } catch (\Exception $e) {
                 DB::rollBack();
 
@@ -499,8 +503,8 @@ class SellReturnController extends Controller
                 }
 
                 $output = ['success' => 0,
-                                'msg' => $msg
-                            ];
+                    'msg' => $msg
+                ];
             }
 
             return $output;
@@ -524,11 +528,11 @@ class SellReturnController extends Controller
         $printer_type = null
     ) {
         $output = ['is_enabled' => false,
-                    'print_type' => 'browser',
-                    'html_content' => null,
-                    'printer_config' => [],
-                    'data' => []
-                ];
+            'print_type' => 'browser',
+            'html_content' => null,
+            'printer_config' => [],
+            'data' => []
+        ];
 
         $business_details = $this->businessUtil->getDetails($business_id);
         $location_details = BusinessLocation::find($location_id);
@@ -575,14 +579,14 @@ class SellReturnController extends Controller
         if (request()->ajax()) {
             try {
                 $output = ['success' => 0,
-                        'msg' => trans("messages.something_went_wrong")
-                        ];
+                    'msg' => trans("messages.something_went_wrong")
+                ];
 
                 $business_id = $request->session()->get('user.business_id');
 
                 $transaction = Transaction::where('business_id', $business_id)
-                                ->where('id', $transaction_id)
-                                ->first();
+                    ->where('id', $transaction_id)
+                    ->first();
 
                 if (empty($transaction)) {
                     return $output;
@@ -595,8 +599,8 @@ class SellReturnController extends Controller
                 }
             } catch (\Exception $e) {
                 $output = ['success' => 0,
-                        'msg' => trans("messages.something_went_wrong")
-                        ];
+                    'msg' => trans("messages.something_went_wrong")
+                ];
             }
 
             return $output;
