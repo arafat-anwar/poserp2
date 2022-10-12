@@ -20,7 +20,7 @@
         @can('roles.create')
             @slot('tool')
                 <div class="box-tools">
-                    <a class="btn btn-block btn-primary" 
+                    <a class="btn btn-block btn-primary"
                     href="{{action('RoleController@create')}}" >
                     <i class="fa fa-plus"></i> @lang( 'messages.add' )</a>
                 </div>

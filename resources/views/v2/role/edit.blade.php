@@ -5,7 +5,6 @@
   @section('title', __('role.add_role'))
 @endif
 @section('content')
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
         @if($role->id)
@@ -1669,4 +1668,5 @@
         @endcomponent
     </section>
     <!-- /.content -->
+
 @endsection
