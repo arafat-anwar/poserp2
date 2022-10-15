@@ -287,7 +287,11 @@ class ProductController extends Controller
                     return $product;
                 })
                 ->editColumn('image', function ($row) {
-                    return '<div style="display: flex;"><img src="' . $row->image_url . '" alt="Product image" class="product-thumbnail-small"></div>';
+                    return '<div class="d-flex align-items-center">
+                                <a href="' . action('ProductController@view', [$row->id]) . '" class="symbol symbol-50px">
+                                    <span class="symbol-label" style="background-image: url('.$row->image_url.')"></span>
+                                </a>
+                            </div>';
                 })
                 ->editColumn('type', '@lang("lang_v1." . $type)')
                 ->addColumn('mass_delete', function ($row) {

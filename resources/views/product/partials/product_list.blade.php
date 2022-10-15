@@ -2,13 +2,17 @@
     $colspan = 15;
     $custom_labels = json_decode(session('business.custom_labels'), true);
 @endphp
-<table class="table table-bordered table-striped ajax_view hide-footer" id="product_table">
+<table class="table align-middle table-row-dashed fs-6 gy-5" id="product_table">
     <thead>
-        <tr>
-            <th><input type="checkbox" id="select-all-row" data-table-id="product_table"></th>
-            <th>&nbsp;</th>
-            <th>@lang('messages.action')</th>
-            <th>@lang('sale.product')</th>
+        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+            <th class="w-10px pe-2" >
+                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                    <input class="form-check-input" type="checkbox" id="select-all-row" data-table-id="product_table">
+                </div>
+            </th>
+            <th class="min-w-50px">&nbsp;</th>
+            <th class="text-end min-w-70px">@lang('messages.action')</th>
+            <th >@lang('sale.product')</th>
             <th>@lang('purchase.business_location') @show_tooltip(__('lang_v1.product_business_location_tooltip'))</th>
             @can('view_purchase_price')
                 @php

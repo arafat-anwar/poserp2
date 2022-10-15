@@ -144,12 +144,12 @@
 
            <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#product_list_tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-cubes" aria-hidden="true"></i> @lang('lang_v1.all_products')</a>
+                <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#product_list_tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-cubes" aria-hidden="true"></i> @lang('lang_v1.all_products')</a>
                     </li>
                     @can('stock_report.view')
-                    <li>
+                    <li class="nav-item">
                         <a href="#product_stock_report" data-toggle="tab" aria-expanded="true"><i class="fa fa-hourglass-half" aria-hidden="true"></i> @lang('report.stock_report')</a>
                     </li>
                     @endcan
@@ -158,7 +158,7 @@
 
 
                 <div class="tab-content">
-                    <div class="tab-pane active" id="product_list_tab">
+                    <div class="tab-pane fade show active" id="product_list_tab">
 
                         {{--@can('product.update_all_prices')
 
