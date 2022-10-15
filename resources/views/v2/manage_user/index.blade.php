@@ -40,6 +40,10 @@
 @stop
 @section('javascript')
 <script type="text/javascript">
+
+    $(document).on('click', '.user_modal .close', function () {
+        $('.user_modal').modal('toggle');
+    });
     //Roles table
     $(document).ready( function(){
         var users_table = $('#users_table').DataTable({

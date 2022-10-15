@@ -45,11 +45,11 @@ class SalesCommissionAgentController extends Controller
                 ->addColumn(
                     'action',
                     '@can("user.update")
-                    <button type="button" data-href="{{action(\'SalesCommissionAgentController@edit\', [$id])}}" data-container=".commission_agent_modal" class="btn btn-xs btn-modal btn-primary"><i class="glyphicon glyphicon-edit"></i> @lang("messages.edit")</button>
+                    <button type="button" data-href="{{action(\'SalesCommissionAgentController@edit\', [$id])}}" data-container=".commission_agent_modal" class="btn btn-sm btn-modal btn-primary"><i class="fa fa-edit"></i> @lang("messages.edit")</button>
                         &nbsp;
                         @endcan
                         @can("user.delete")
-                        <button data-href="{{action(\'SalesCommissionAgentController@destroy\', [$id])}}" class="btn btn-xs btn-danger delete_commsn_agnt_button"><i class="glyphicon glyphicon-trash"></i> @lang("messages.delete")</button>
+                        <button data-href="{{action(\'SalesCommissionAgentController@destroy\', [$id])}}" class="btn btn-sm btn-danger delete_commsn_agnt_button"><i class="fa fa-trash"></i> @lang("messages.delete")</button>
                         @endcan'
                 )
                 ->filterColumn('full_name', function ($query, $keyword) {

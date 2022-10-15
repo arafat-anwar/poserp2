@@ -31,8 +31,8 @@
     </div>
 
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary">@lang( 'messages.update' )</button>
-      <button type="button" class="btn btn-default" data-dismiss="modal">@lang( 'messages.close' )</button>
+      <button type="submit" class="btn btn-sm btn-primary">@lang( 'messages.update' )</button>
+      <button type="button" class="btn btn-sm btn-danger close" data-dismiss="modal">@lang( 'messages.close' )</button>
     </div>
 
     {!! Form::close() !!}
