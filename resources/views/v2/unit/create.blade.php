@@ -20,22 +20,22 @@
 
     <div class="modal-body scroll-y px-3 px-lg-10 pt-0 pb-3">
       <div class="row g-3 mb-1 mt-1">
-        <div class="form-group col-sm-12">
-          {!! Form::label('actual_name', __( 'unit.name' ), 'class="required d-flex align-items-center fs-6 fw-semibold mb-2 mt-2"') !!}
+        <div class="col-sm-12">
+          {!! Form::label('actual_name', __( 'unit.name' ), 'class="required d-flex align-items-center fs-6 fw-semibold mb-1 mt-1"') !!}
             {!! Form::text('actual_name', null, ['class' => 'form-control', 'required', 'placeholder' => __( 'unit.name' )]); !!}
         </div>
 
-        <div class="form-group col-sm-12">
-          {!! Form::label('short_name', __( 'unit.short_name' ), 'class="required d-flex align-items-center fs-6 fw-semibold mb-2 mt-2"') !!}
+        <div class="col-sm-12">
+          {!! Form::label('short_name', __( 'unit.short_name' ), 'class="required d-flex align-items-center fs-6 fw-semibold mb-1 mt-1"') !!}
             {!! Form::text('short_name', null, ['class' => 'form-control', 'placeholder' => __( 'unit.short_name' ), 'required']); !!}
         </div>
 
-        <div class="form-group col-sm-12">
-          {!! Form::label('allow_decimal', __( 'unit.allow_decimal' ), 'class="required d-flex align-items-center fs-6 fw-semibold mb-2 mt-2"') !!}
+        <div class="col-sm-12">
+          {!! Form::label('allow_decimal', __( 'unit.allow_decimal' ), 'class="required d-flex align-items-center fs-6 fw-semibold mb-1 mt-1"') !!}
             {!! Form::select('allow_decimal', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'required', 'class' => 'form-control']); !!}
         </div>
         @if(!$quick_add)
-          <div class="form-group col-sm-12">
+          <div class="col-sm-12">
             <div class="form-group">
                 <div class="checkbox">
                   <label class="align-items-center fs-6 fw-semibold mb-2 mt-2">
@@ -44,7 +44,7 @@
                 </div>
             </div>
           </div>
-          <div class="form-group col-sm-12 hide" id="base_unit_div">
+          <div class="col-sm-12 hide" id="base_unit_div">
             <table class="table">
               <tr>
                 <th style="vertical-align: middle;">1 <span id="unit_name">@lang('product.unit')</span></th>
