@@ -18,29 +18,29 @@
       </div>
     </div>
 
-    <div class="modal-body">
-      <div class="row">
+    <div class="modal-body scroll-y px-3 px-lg-10 pt-0 pb-3">
+      <div class="row g-3 mb-1 mt-1">
         <div class="form-group col-sm-12">
-          {!! Form::label('actual_name', __( 'unit.name' ) . ':*') !!}
+          {!! Form::label('actual_name', __( 'unit.name' ), 'class="required d-flex align-items-center fs-6 fw-semibold mb-2 mt-2"') !!}
             {!! Form::text('actual_name', null, ['class' => 'form-control', 'required', 'placeholder' => __( 'unit.name' )]); !!}
         </div>
 
         <div class="form-group col-sm-12">
-          {!! Form::label('short_name', __( 'unit.short_name' ) . ':*') !!}
+          {!! Form::label('short_name', __( 'unit.short_name' ), 'class="required d-flex align-items-center fs-6 fw-semibold mb-2 mt-2"') !!}
             {!! Form::text('short_name', null, ['class' => 'form-control', 'placeholder' => __( 'unit.short_name' ), 'required']); !!}
         </div>
 
         <div class="form-group col-sm-12">
-          {!! Form::label('allow_decimal', __( 'unit.allow_decimal' ) . ':*') !!}
+          {!! Form::label('allow_decimal', __( 'unit.allow_decimal' ), 'class="required d-flex align-items-center fs-6 fw-semibold mb-2 mt-2"') !!}
             {!! Form::select('allow_decimal', ['1' => __('messages.yes'), '0' => __('messages.no')], null, ['placeholder' => __( 'messages.please_select' ), 'required', 'class' => 'form-control']); !!}
         </div>
         @if(!$quick_add)
           <div class="form-group col-sm-12">
             <div class="form-group">
                 <div class="checkbox">
-                  <label>
-                     {!! Form::checkbox('define_base_unit', 1, false,[ 'class' => 'toggler', 'data-toggle_id' => 'base_unit_div' ]); !!} @lang( 'lang_v1.add_as_multiple_of_base_unit' )
-                  </label> @show_tooltip(__('lang_v1.multi_unit_help'))
+                  <label class="align-items-center fs-6 fw-semibold mb-2 mt-2">
+                     {!! Form::checkbox('define_base_unit', 1, false,[ 'class' => 'toggler form-check-input', 'data-toggle_id' => 'base_unit_div' ]); !!} &nbsp;&nbsp;@lang( 'lang_v1.add_as_multiple_of_base_unit' )
+                  </label>  @show_tooltip(__('lang_v1.multi_unit_help'))
                 </div>
             </div>
           </div>
