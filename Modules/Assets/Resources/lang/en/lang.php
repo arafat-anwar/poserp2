@@ -1,5 +1,20 @@
 <?php
 return [
+    'assets_title' => 'Asset Title',
+    'asset_notes' => 'Asset Notes',
+    'asset_add' => 'Asset Add',
+    'asset_code' => 'Asset Code',
+    'asset_quantity' => 'Asset Quantity',
+    'asset_description' => 'Asset Description',
+    'asset_location' => 'Asset Location',
+    'asset_purchase_date' => 'Asset Purchase Date',
+    'asset_type' => 'Asset Type',
+    'asset_consume_rate' => 'Asset Consume Rate',
+    'asset_price' => 'Asset Price',
+    'asset_curentprice' => 'Asset Current price',
+    'asset_changedate' => 'Asset Change Date',
+    'asset_status' => 'Asset Status',
+    'asset_type_consumed' => 'Asset Type Consumed',
     'repair' => 'Repair',
     'status_name' => 'Status Name',
     'color' => 'Color',
@@ -162,4 +177,5 @@ return [
     'common_completed_status_tooltip' => 'Status which are marked as completed will be displayed here.',
     'common_pending_status_tooltip' => 'Status which are not marked as completed will be displayed here.',
     'send_email' => 'Send Email',
+    'assets' => 'Assets',
 ];

@@ -13,7 +13,7 @@
 
 <!-- Main content -->
 <section class="content">
-    @component('components.widget', ['class' => 'box-solid'])
+    @component('v2.components.widget', ['class' => 'box-solid'])
         {!! Form::open(['url' => action('ContactController@contactMap'), 'method' => 'get']) !!}
             <div class="col-md-6">
                 <div class="form-group">
@@ -28,7 +28,7 @@
             </div>
         {!! Form::close() !!}
     @endcomponent
-    @component('components.widget', ['class' => 'box-solid'])
+    @component('v2.components.widget', ['class' => 'box-solid'])
         <script async defer src="https://maps.googleapis.com/maps/api/js?key={{$api_key}}"></script>
         <div id="map" style="height: 450px;"></div>
     @endcomponent

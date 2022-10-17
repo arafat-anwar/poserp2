@@ -29,37 +29,37 @@
     
     <div class="row">
         <div class="col-sm-12">
-            @component('components.widget', ['class' => 'box-primary'])
+            @component('v2.components.widget', ['class' => 'box-primary'])
                 {!! Form::open(['url' => action('ContactController@postImportContacts'), 'method' => 'post', 'enctype' => 'multipart/form-data' ]) !!}
-                    <div class="row">
-                        <div class="col-sm-6">
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                {!! Form::label('name', __( 'product.file_to_import' ) . ':') !!}
-                                {!! Form::file('contacts_csv', ['accept'=> '.xls', 'required' => 'required']); !!}
-                              </div>
-                        </div>
-                        <div class="col-sm-4">
-                        <br>
-                            <button type="submit" class="btn btn-primary">@lang('messages.submit')</button>
-                        </div>
+                <div class="row mt-6">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {!! Form::label('name', __( 'product.file_to_import' ) . ':') !!}
+                            {!! Form::file('contacts_csv', ['accept'=> '.xls', 'required' => 'required','class'=>'form-control']); !!}
                         </div>
                     </div>
+                    <div class="col-sm-3 mt-6">
+                        <button type="submit" class="btn btn-primary btn-sm">@lang('messages.submit')</button>
+                    </div>
+                    <div class="col-sm-3 mt-6">
+                        <a href="{{ asset('files/import_contacts_csv_template.xls') }}" class="btn btn-success btn-sm" download><i class="fa fa-download"></i> @lang('lang_v1.download_template_file')</a>
+                    </div>
+                </div>
 
                 {!! Form::close() !!}
                 <br><br>
                 <div class="row">
-                    <div class="col-sm-4">
-                        <a href="{{ asset('files/import_contacts_csv_template.xls') }}" class="btn btn-success" download><i class="fa fa-download"></i> @lang('lang_v1.download_template_file')</a>
-                    </div>
+                    
                 </div>
             @endcomponent
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-6">
         <div class="col-sm-12">
-            @component('components.widget', ['class' => 'box-primary', 'title' => __('lang_v1.instructions')])
+            @component('v2.components.widget', ['class' => 'box-primary', 'title' => __('lang_v1.instructions')])
+                <br>
                 <strong>@lang('lang_v1.instruction_line1')</strong><br>
+                    
                     @lang('lang_v1.instruction_line2')
                     <br><br>
                 <table class="table table-striped">

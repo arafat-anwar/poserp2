@@ -15,7 +15,7 @@
         <div class="box-header">
             <h3 class="box-title">&nbsp;</h3>
         	<div class="box-tools">
-                <a href="{{action('\Modules\Superadmin\Http\Controllers\PageController@create')}}" 
+                <a href="{{action('\Modules\Superadmin\Http\Controllers\PageController@create')}}"
                     class="btn btn-block btn-primary">
                 	<i class="fa fa-plus"></i> @lang( 'messages.add' )</a>
             </div>
@@ -43,10 +43,10 @@
                                     <span class="badge bg-info" title="@lang('superadmin::lang.menu_order')">
                                         {{$page->menu_order}}
                                     </span>
-									
+
 									<a href="{{action('\Modules\Superadmin\Http\Controllers\PageController@edit', [$page->id])}}" class="btn btn-box-tool" title="edit"><i class="fa fa-edit"></i></a>
 									<a href="{{action('\Modules\Superadmin\Http\Controllers\PageController@destroy', [$page->id])}}" class="btn btn-box-tool delete_page" title="delete"><i class="fa fa-trash"></i></a>
-	              					
+
 								</div>
 							</div>
 							<!-- /.box-header -->

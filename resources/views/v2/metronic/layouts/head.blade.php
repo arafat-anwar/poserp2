@@ -27,8 +27,10 @@
 	
 	<!--begin::Global Stylesheets Bundle(used by all pages)-->
 	<link href="{{ asset('metronic/assets') }}/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="{{ asset('metronic/assets') }}/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('metronic/assets') }}/css/style.bundle.css" rel="stylesheet" type="text/css" />{{-- 
+	<link href="{{ asset('metronic/assets') }}/css/style.bundle.v2.css?v=7.2.9" rel="stylesheet" type="text/css" /> --}}
 	<link href="{{ asset('metronic/assets') }}/css/style.custom.css" rel="stylesheet" type="text/css" />
+	{{-- <link href="{{ asset('css') }}/vendor.css" rel="stylesheet" type="text/css" /> --}}
 	<!--end::Global Stylesheets Bundle-->
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
