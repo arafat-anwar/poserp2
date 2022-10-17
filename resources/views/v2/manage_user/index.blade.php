@@ -46,6 +46,7 @@
     });
     //Roles table
     $(document).ready( function(){
+
         var users_table = $('#users_table').DataTable({
             processing: true,
             serverSide: true,
@@ -56,13 +57,14 @@
                 "searchable": false
             } ],
             "columns":[
-            {"data":"username"},
-            {"data":"full_name"},
-            {"data":"role"},
-            {"data":"email"},
-            {"data":"action"}
+                {"data":"username"},
+                {"data":"full_name"},
+                {"data":"role"},
+                {"data":"email"},
+                {"data":"action"}
             ]
         });
+        
         $(document).on('click', 'button.delete_user_button', function(){
             swal({
               title: LANG.sure,
@@ -70,7 +72,7 @@
               icon: "warning",
               buttons: true,
               dangerMode: true,
-          }).then((willDelete) => {
+        }).then((willDelete) => {
             if (willDelete) {
                 var href = $(this).data('href');
                 var data = $(this).serialize();
@@ -90,10 +92,6 @@
                 });
             }
         });
-      });
-        
     });
-    
-    
 </script>
 @endsection

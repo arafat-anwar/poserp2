@@ -23,7 +23,6 @@
 	
 	<!--begin::Vendor Stylesheets(used by this page)-->
 	<link href="{{ asset('metronic/assets') }}/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="{{ asset('metronic/assets') }}/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Vendor Stylesheets-->
 	
 	<!--begin::Global Stylesheets Bundle(used by all pages)-->
@@ -35,7 +34,7 @@
 	<!--end::Global Stylesheets Bundle-->
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap.min.css"/>
+	<link href="{{ asset('metronic/assets') }}/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 
 	@include('v2.metronic.layouts.css')
 </head>

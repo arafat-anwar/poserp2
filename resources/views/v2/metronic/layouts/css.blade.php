@@ -57,9 +57,20 @@
    }
 
    .dataTables_paginate{
-      padding-right: 10px !important;
-      margin-top: -45px !important;
-  }
+		padding-right: 10px !important;
+		margin-top: -45px !important;
+	}
+
+	.dataTables_length{
+		margin-left:  -75px;
+	}
+	.dataTables_scrollFoot{
+		background: #b1c3e5;;
+	}
+
+	.table td:first-child, .table th:first-child, .table tr:first-child {
+	    padding-left: 15px !important;
+	}
 
   .nav-tabs {
     border-bottom: 1px solid #E4E6EF !important;
