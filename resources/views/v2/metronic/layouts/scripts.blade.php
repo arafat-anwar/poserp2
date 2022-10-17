@@ -16,7 +16,6 @@
 <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
-<script src="{{ asset('metronic/assets') }}/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used by this page)-->
 <script src="{{ asset('metronic/assets') }}/js/widgets.bundle.js"></script>
@@ -164,15 +163,17 @@
     });
 </script>
 
+<script src="{{ asset('metronic/assets') }}/plugins/custom/datatables/datatables.bundle.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.dt-buttons').addClass('mb-2');
-        $('.dataTables_info').css('padding-left', '10px !important');
-        $.each($('.dt-buttons').find('a'), function(index, val) {
-            $(this).removeClass('btn-default').addClass('btn-dark');
+        $.each($('.dataTable'), function(index, val) {
+            $(this).addClass('align-middle table-row-dashed fs-6 gy-5 no-footer');
+            $(this).find('thead').addClass('bg-dark text-white');
+            $(this).find('.previous').find('a').html('hello');
+            $(this).find('.next').find('a').html('world');
         });
-        $.each($('.paginate_button'), function(index, val) {
-            $(this).addClass('btn-dark');
-        });
+        $('.dataTables_filter').find('input').css('border', '1px solid #bbb !important;');
+        $('.dataTables_wrapper').addClass('bg-white p-4 pt-5');
+        $('.dt-buttons').addClass('mt-4');
     });
 </script>

@@ -60,4 +60,15 @@
 		padding-right: 10px !important;
 		margin-top: -45px !important;
 	}
+
+	.dataTables_length{
+		margin-left:  -75px;
+	}
+	.dataTables_scrollFoot{
+		background: #b1c3e5;;
+	}
+
+	.table td:first-child, .table th:first-child, .table tr:first-child {
+	    padding-left: 15px !important;
+	}
 </style>
