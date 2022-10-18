@@ -1,4 +1,3 @@
-
 <div class="accordion accordion-toggle-arrow" id="accordionExample1">
   <div class="card">
     <div class="card-header">
@@ -11,9 +10,9 @@
   @endphp
     <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
       <div class="card-body">
-         
+
             {{$slot}}
-         
+
       </div>
     </div>
   </div>
