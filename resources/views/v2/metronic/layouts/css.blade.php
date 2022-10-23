@@ -235,4 +235,11 @@ input[type=radio], input[type=checkbox] {
     background: #f5f8fa;
     border-radius: 0px
 }
+.btn-xs
+{
+    padding: 1px 5px !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    border-radius: 3px !important;
+}
 </style>

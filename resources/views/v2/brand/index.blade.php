@@ -16,7 +16,7 @@
 
 <!-- Main content -->
 <section class="content">
-    @component('components.widget', ['class' => 'box-primary', 'title' => __( 'brand.all_your_brands' )])
+    @component('v2.components.widget', ['class' => 'box-primary', 'title' => __( 'brand.all_your_brands' )])
         @can('brand.create')
             @slot('tool')
                 <div class="box-tools">
@@ -38,6 +38,25 @@
 
                         </tr>
                     </thead>
+                    <tbody>
+                        @if(isset($brands[0]))
+                        @foreach($brands as $brand)
+                        <tr>
+                            <th>{{$brand->name}}</th>
+                            <th>{!!$brand->description!!}</th>
+                            <th>
+                                @can("brand.update")
+                                <button data-href="{{action('BrandController@edit', [$brand->id])}}" class="btn btn-xs btn-primary edit_brand_button"><i class="glyphicon glyphicon-edit"></i> @lang("messages.edit")</button>
+                                &nbsp;
+                                @endcan
+                                @can("brand.delete")
+                                <button data-href="{{action('BrandController@destroy', [$brand->id])}}" class="btn btn-xs btn-danger delete_brand_button"><i class="glyphicon glyphicon-trash"></i> @lang("messages.delete")</button>
+                                @endcan
+                            </th>
+                        </tr>
+                        @endforeach
+                        @endif
+                    </tbody>
                 </table>
             </div>
         @endcan

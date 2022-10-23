@@ -40,3 +40,11 @@
 <!-- /.content -->
 
 @endsection
+@section('javascript')
+
+<script type="text/javascript">
+    $('.closeModal').click(function() {
+        $('.commission_agent_modal').modal('hide');
+    });
+</script>
+@endsection

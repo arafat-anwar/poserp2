@@ -66,7 +66,7 @@
 
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary">@lang( 'messages.save' )</button>
-      <button type="button" class="btn btn-light" data-dismiss="modal">@lang( 'messages.close' )</button>
+      <button type="button" class="btn btn-danger closeModal" data-dismiss="modal">@lang( 'messages.close' )</button>
     </div>
 
     {!! Form::close() !!}
