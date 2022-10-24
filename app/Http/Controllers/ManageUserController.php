@@ -39,7 +39,7 @@ class ManageUserController extends Controller
         }
 
         $view = 'manage_user.index';
-        if (request()->ajax() || frontendVersion() != 1) {
+        if (request()->ajax() || frontendVersion() == 2) {
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
 

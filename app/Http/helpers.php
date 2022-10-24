@@ -110,15 +110,13 @@ function frontendVersion(){
 }
 
 function viewSource(){
-    if(frontendVersion() == 1){
-        return '';
-    }else{
+    if(frontendVersion() == 2){
         return 'v2.';
     }
 }
 
 function getDatatableContents($datatable, $view){
-    if(frontendVersion() != 1){
+    if(frontendVersion() == 2){
         $data = [
             'rows' => json_decode($datatable->getContent())->data
         ];

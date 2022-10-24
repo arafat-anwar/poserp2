@@ -38,7 +38,7 @@ class BrandController extends Controller
         }
         
         $view = 'brand.index';
-        if (request()->ajax() || frontendVersion() != 1) {
+        if (request()->ajax() || frontendVersion() == 2) {
             $business_id = request()->session()->get('user.business_id');
 
             $brands = Brands::where('business_id', $business_id)
@@ -56,8 +56,8 @@ class BrandController extends Controller
                 @endcan'
             )
             ->removeColumn('id')
-            ->rawColumns(frontendVersion() != 1 ? ['action', 'name'] : [2])
-            ->make(frontendVersion() != 1);
+            ->rawColumns(frontendVersion() == 2 ? ['action', 'name'] : [2])
+            ->make(frontendVersion() == 2);
 
             return getDatatableContents($datatable, $view);
         }
