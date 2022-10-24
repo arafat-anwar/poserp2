@@ -36,23 +36,15 @@ class BrandController extends Controller
         if (!auth()->user()->can('brand.view') && !auth()->user()->can('brand.create')) {
             abort(403, 'Unauthorized action.');
         }
-
-        if (frontendVersion() != 1) {
-            $business_id = request()->session()->get('user.business_id');
-
-            $brands = Brands::where('business_id', $business_id)
-            ->select(['name', 'description', 'id'])->paginate(30);
-
-            return view(viewSource().'brand.index', compact('business_id','brands'));
-        }
         
-        if (request()->ajax()) {
+        $view = 'brand.index';
+        if (request()->ajax() || frontendVersion() != 1) {
             $business_id = request()->session()->get('user.business_id');
 
             $brands = Brands::where('business_id', $business_id)
             ->select(['name', 'description', 'id']);
 
-            return Datatables::of($brands)
+            $datatable = Datatables::of($brands)
             ->addColumn(
                 'action',
                 '@can("brand.update")
@@ -64,11 +56,13 @@ class BrandController extends Controller
                 @endcan'
             )
             ->removeColumn('id')
-            ->rawColumns([2])
-            ->make(false);
+            ->rawColumns(frontendVersion() != 1 ? ['action', 'name'] : [2])
+            ->make(frontendVersion() != 1);
+
+            return getDatatableContents($datatable, $view);
         }
 
-        return view(viewSource().'brand.index');
+        return view(viewSource().$view);
     }
 
     /**

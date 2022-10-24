@@ -116,3 +116,18 @@ function viewSource(){
         return 'v2.';
     }
 }
+
+function getDatatableContents($datatable, $view){
+    if(frontendVersion() != 1){
+        $data = [
+            'rows' => json_decode($datatable->getContent())->data
+        ];
+        return view(viewSource().$view, $data);
+    }
+
+    return $datatable;
+}
+
+function glyphiconToFa($value){
+    return str_replace('glyphicon', 'fa', $value);
+}

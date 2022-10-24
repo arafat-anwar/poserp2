@@ -21,29 +21,21 @@
             <div class="card">
                 @include('v2.metronic.tools.datatable-header')
                 <div class="card-body pt-0">
-                    <table class="table align-middle table-row-dashed fs-6 gy-5 metronic-datatable" data-export-file-name="Brands">
+                    <table class="table metronic-datatable" data-export-file-name="Brands">
                         <thead>
-                            <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                <th class="min-w-100px">@lang( 'brand.brands' )</th>
-                                <th class="min-w-100px">@lang( 'brand.note' )</th>
-                                <th class="min-w-100px">@lang( 'messages.action' )</th>
+                            <tr>
+                                <th>@lang( 'brand.brands' )</th>
+                                <th>@lang( 'brand.note' )</th>
+                                <th>@lang( 'messages.action' )</th>
                             </tr>
                         </thead>
-                        <tbody class="fw-semibold text-gray-600">
-                            @if(isset($brands[0]))
-                            @foreach($brands as $brand)
+                        <tbody>
+                            @if(isset($rows[0]))
+                            @foreach($rows as $key => $row)
                             <tr>
-                                <th>{{$brand->name}}</th>
-                                <th>{!!$brand->description!!}</th>
-                                <th>
-                                    @can("brand.update")
-                                        <button data-href="{{action('BrandController@edit', [$brand->id])}}" class="btn btn-sm btn-primary edit_brand_button"><i class="fa fa-edit"></i> @lang("messages.edit")</button>
-                                        &nbsp;
-                                    @endcan
-                                    @can("brand.delete")
-                                        <button data-href="{{action('BrandController@destroy', [$brand->id])}}" class="btn btn-sm btn-danger delete_brand_button"><i class="fa fa-trash"></i> @lang("messages.delete")</button>
-                                    @endcan
-                                </th>
+                                <td>{{ $row->name }}</td>
+                                <td>{{ $row->description }}</td>
+                                <td>{!! glyphiconToFa($row->action) !!}</td>
                             </tr>
                             @endforeach
                             @endif

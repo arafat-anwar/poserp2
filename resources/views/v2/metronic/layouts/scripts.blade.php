@@ -25,8 +25,19 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var table = $(".metronic-datatable");
-        var datatable = table.DataTable({ info: !1, order: [], pageLength: 10 });
+        
+        //metronic datatable custom classes start
+        table.addClass('align-middle table-row-dashed fs-6 gy-5');
+        table.find('thead').find('tr').addClass('text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0');
+        table.find('thead').find('tr').find('th').addClass('min-w-100px');
+        table.find('tbody').addClass('fw-semibold text-gray-600');
+        //metronic datatable custom classes end
 
+        //metronic datatable declaration
+        var datatable = table.DataTable({ info: !1, order: [], pageLength: 10 });
+        //metronic datatable declaration
+
+        //metronic datatable export button defination start
         new $.fn.dataTable.Buttons(table, {
             buttons: [
                 { extend: "copyHtml5", title: table.attr('data-export-file-name') },
@@ -35,14 +46,18 @@
                 { extend: "pdfHtml5", title: table.attr('data-export-file-name') },
             ],
         }).container().appendTo($("#metronic-datatable-export"));
+        //metronic datatable export button defination end
 
+        //metronic datatable export start
         $.each($('#metronic-datatable-export-menu [data-metronic-datatable-export]'), function(index, val) {
             var ex = $(this);
             ex.click(function(event) {
                 $('.dt-buttons .buttons-' + ex.attr('data-metronic-datatable-export')).click();
             });
         });
+        //metronic datatable export end
 
+        //metronic datatable search Start
         $.each($('[data-metronic-datatable-filter="search"]'), function(index, val) {
             var field = $(this);
             field.on('keyup', function(event) {
@@ -50,5 +65,6 @@
                 datatable.search(field.val()).draw();
             });
         });
+        //metronic datatable search End
     });
 </script>

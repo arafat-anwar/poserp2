@@ -185,6 +185,4 @@ input[type=radio], input[type=checkbox] {
     background: #f5f8fa;
     border-radius: 0px
 }
-
-
 </style>

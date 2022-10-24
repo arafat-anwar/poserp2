@@ -38,7 +38,8 @@ class ManageUserController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        if (request()->ajax()) {
+        $view = 'manage_user.index';
+        if (request()->ajax() || frontendVersion() != 1) {
             $business_id = request()->session()->get('user.business_id');
             $user_id = request()->session()->get('user.id');
 
@@ -48,38 +49,40 @@ class ManageUserController extends Controller
                         ->select(['id', 'username',
                             DB::raw("CONCAT(COALESCE(surname, ''), ' ', COALESCE(first_name, ''), ' ', COALESCE(last_name, '')) as full_name"), 'email', 'allow_login']);
 
-            return Datatables::of($users)
-                ->editColumn('username', '{{$username}} @if(empty($allow_login)) <span class="label bg-gray">@lang("lang_v1.login_not_allowed")</span>@endif')
-                ->addColumn(
-                    'role',
-                    function ($row) {
-                        $role_name = $this->moduleUtil->getUserRoleName($row->id);
-                        return $role_name;
-                    }
-                )
-                ->addColumn(
-                    'action',
-                    '@can("user.update")
-                        <a href="{{action(\'ManageUserController@edit\', [$id])}}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> @lang("messages.edit")</a>
-                        &nbsp;
-                    @endcan
-                    @can("user.view")
-                    <a href="{{action(\'ManageUserController@show\', [$id])}}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> @lang("messages.view")</a>
+            $datatable = Datatables::of($users)
+            ->editColumn('username', '{{$username}} @if(empty($allow_login)) <span class="label bg-gray">@lang("lang_v1.login_not_allowed")</span>@endif')
+            ->addColumn(
+                'role',
+                function ($row) {
+                    $role_name = $this->moduleUtil->getUserRoleName($row->id);
+                    return $role_name;
+                }
+            )
+            ->addColumn(
+                'action',
+                '@can("user.update")
+                    <a href="{{action(\'ManageUserController@edit\', [$id])}}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> @lang("messages.edit")</a>
                     &nbsp;
-                    @endcan
-                    @can("user.delete")
-                        <button data-href="{{action(\'ManageUserController@destroy\', [$id])}}" class="btn btn-sm btn-danger delete_user_button"><i class="fa fa-trash"></i> @lang("messages.delete")</button>
-                    @endcan'
-                )
-                ->filterColumn('full_name', function ($query, $keyword) {
-                    $query->whereRaw("CONCAT(COALESCE(surname, ''), ' ', COALESCE(first_name, ''), ' ', COALESCE(last_name, '')) like ?", ["%{$keyword}%"]);
-                })
-                ->removeColumn('id')
-                ->rawColumns(['action', 'username'])
-                ->make(true);
+                @endcan
+                @can("user.view")
+                <a href="{{action(\'ManageUserController@show\', [$id])}}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> @lang("messages.view")</a>
+                &nbsp;
+                @endcan
+                @can("user.delete")
+                    <button data-href="{{action(\'ManageUserController@destroy\', [$id])}}" class="btn btn-sm btn-danger delete_user_button"><i class="fa fa-trash"></i> @lang("messages.delete")</button>
+                @endcan'
+            )
+            ->filterColumn('full_name', function ($query, $keyword) {
+                $query->whereRaw("CONCAT(COALESCE(surname, ''), ' ', COALESCE(first_name, ''), ' ', COALESCE(last_name, '')) like ?", ["%{$keyword}%"]);
+            })
+            ->removeColumn('id')
+            ->rawColumns(['action', 'username'])
+            ->make(true);
+
+            return getDatatableContents($datatable, $view);
         }
 
-        return view(viewSource().'manage_user.index');
+        return view(viewSource().$view);
     }
 
     /**
