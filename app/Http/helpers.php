@@ -115,11 +115,13 @@ function viewSource(){
     }
 }
 
-function getDatatableContents($datatable, $view){
+function getDatatableContents($datatable, $view, $sendData = []){
     if(frontendVersion() == 2){
         $data = [
             'rows' => json_decode($datatable->getContent())->data
         ];
+
+        $data = array_merge($data, $sendData);
         return view(viewSource().$view, $data);
     }
 

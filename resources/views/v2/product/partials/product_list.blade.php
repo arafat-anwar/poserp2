@@ -2,13 +2,15 @@
     $colspan = 15;
     $custom_labels = json_decode(session('business.custom_labels'), true);
 @endphp
-<table class="table table-bordered table-striped ajax_view hide-footer" id="product_table">
+<div class="card">
+    @include('v2.metronic.tools.datatable-header')
+    <div class="card-body pt-0">
+        <table class="table metronic-datatable" data-export-file-name="Products">
     <thead>
         <tr>
             <th><input type="checkbox" id="select-all-row" data-table-id="product_table"></th>
-            <th>&nbsp;</th>
+            <th class="min-w-200px">@lang('sale.product')</th>
             <th>@lang('messages.action')</th>
-            <th>@lang('sale.product')</th>
             <th>@lang('purchase.business_location') @show_tooltip(__('lang_v1.product_business_location_tooltip'))</th>
             @can('view_purchase_price')
                 @php
@@ -34,7 +36,47 @@
             <th>{{ $custom_labels['product']['custom_field_4'] ?? __('lang_v1.product_custom_field4') }}</th>
         </tr>
     </thead>
-    <tfoot>
+    <tbody>
+        @if(isset($rows[0]))
+        @foreach($rows as $key => $row)
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <!--begin::Thumbnail-->
+                    <a href="#" class="symbol symbol-50px">
+                    <span class="symbol-label" style="background-image:url({{ $row->image_url }});"></span>
+                    </a>
+                    <!--end::Thumbnail-->
+                    <div class="ms-5">
+                    <!--begin::Title-->
+                    <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $row->product }}</a>
+                    <!--end::Title-->
+                    </div>
+                </div>
+            <td>{!! $row->action !!}</td>
+            <td>{{ $row->product_locations }}</td>
+            @can('view_purchase_price')
+            <td>{!! $row->purchase_price !!}</td>
+            @endcan
+            @can('access_default_selling_price')
+            <td>{!! $row->selling_price !!}</td>
+            @endcan
+            <td>{{ $row->current_stock }}</td>
+            <td>{{ $row->type }}</td>
+            <td>{{ $row->category }}</td>
+            <td>{{ $row->brand }}</td>
+            <td>{{ $row->tax }}</td>
+            <td>{{ $row->sku }}</td>
+            <td>{{ $row->product_custom_field1 }}</td>
+            <td>{{ $row->product_custom_field2 }}</td>
+            <td>{{ $row->product_custom_field3 }}</td>
+            <td>{{ $row->product_custom_field4 }}</td>
+        </tr>
+        @endforeach
+        @endif
+    </tbody>
+    {{-- <tfoot>
         <tr>
             <td colspan="{{$colspan}}">
             <div style="display: flex; width: 100%;">
@@ -66,5 +108,7 @@
                     </div>
                 </td>
             </tr>
-        </tfoot>
+        </tfoot> --}}
     </table>
+    </div>
+</div>

@@ -169,15 +169,15 @@
 
                         @endcan--}}
                         <br><br>
-                        @include('product.partials.product_list')
-                        {{--@include('product.update_all_prices')--}}
+                        @include('v2.product.partials.product_list')
+                        {{--@include('v2.product.update_all_prices')--}}
                     </div>
 
                     <div class="tab-pane " id="product_stock_report">
 
                         @can('stock_report.view')
 
-                                @include('report.partials.stock_report_table')
+                                @include('v2.report.partials.stock_report_table')
 
                         @endcan
                     </div>
@@ -203,7 +203,7 @@
     aria-labelledby="gridSystemModalLabel">
 </div>
 
-@include('product.partials.edit_product_location_modal')
+@include('v2.product.partials.edit_product_location_modal')
 
 </section>
 <!-- /.content -->
