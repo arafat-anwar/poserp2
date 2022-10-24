@@ -37,41 +37,38 @@ class BrandController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        if (viewSource()=='v2.') {
+        if (frontendVersion() != 1) {
+            $business_id = request()->session()->get('user.business_id');
 
-                $business_id = request()->session()->get('user.business_id');
+            $brands = Brands::where('business_id', $business_id)
+            ->select(['name', 'description', 'id'])->paginate(30);
 
-                $brands = Brands::where('business_id', $business_id)
-                ->select(['name', 'description', 'id'])->paginate(30);
+            return view(viewSource().'brand.index', compact('business_id','brands'));
+        }
+        
+        if (request()->ajax()) {
+            $business_id = request()->session()->get('user.business_id');
 
-            return view(viewSource().'brand.index',compact('business_id','brands'));
-        }else{
-               if (request()->ajax()) {
-                $business_id = request()->session()->get('user.business_id');
+            $brands = Brands::where('business_id', $business_id)
+            ->select(['name', 'description', 'id']);
 
-                $brands = Brands::where('business_id', $business_id)
-                ->select(['name', 'description', 'id']);
-
-                return Datatables::of($brands)
-                ->addColumn(
-                    'action',
-                    '@can("brand.update")
-                    <button data-href="{{action(\'BrandController@edit\', [$id])}}" class="btn btn-xs btn-primary edit_brand_button"><i class="glyphicon glyphicon-edit"></i> @lang("messages.edit")</button>
-                    &nbsp;
-                    @endcan
-                    @can("brand.delete")
-                    <button data-href="{{action(\'BrandController@destroy\', [$id])}}" class="btn btn-xs btn-danger delete_brand_button"><i class="glyphicon glyphicon-trash"></i> @lang("messages.delete")</button>
-                    @endcan'
-                )
-                ->removeColumn('id')
-                ->rawColumns([2])
-                ->make(false);
-            }
-
-            return view(viewSource().'brand.index');
+            return Datatables::of($brands)
+            ->addColumn(
+                'action',
+                '@can("brand.update")
+                <button data-href="{{action(\'BrandController@edit\', [$id])}}" class="btn btn-xs btn-primary edit_brand_button"><i class="glyphicon glyphicon-edit"></i> @lang("messages.edit")</button>
+                &nbsp;
+                @endcan
+                @can("brand.delete")
+                <button data-href="{{action(\'BrandController@destroy\', [$id])}}" class="btn btn-xs btn-danger delete_brand_button"><i class="glyphicon glyphicon-trash"></i> @lang("messages.delete")</button>
+                @endcan'
+            )
+            ->removeColumn('id')
+            ->rawColumns([2])
+            ->make(false);
         }
 
-        
+        return view(viewSource().'brand.index');
     }
 
     /**

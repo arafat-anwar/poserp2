@@ -3,20 +3,10 @@
 
 @section('content')
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>@lang( 'brand.brands' )
-        <small>@lang( 'brand.manage_your_brands' )</small>
-    </h1>
-    <!-- <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-    </ol> -->
-</section>
-
 <!-- Main content -->
 <section class="content">
-    @component('v2.components.widget', ['class' => 'box-primary', 'title' => __( 'brand.all_your_brands' )])
+    <div class="col-md-10 offset-md-1 mt-2">
+        @component('v2.components.widget', ['class' => 'box-primary', 'title' => __( 'brand.all_your_brands' )])
         @can('brand.create')
             @slot('tool')
                 <div class="box-tools">
@@ -28,39 +18,43 @@
             @endslot
         @endcan
         @can('brand.view')
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="brands_table">
-                    <thead>
-                        <tr>
-                            <th>@lang( 'brand.brands' )</th>
-                            <th>@lang( 'brand.note' )</th>
-                            <th>@lang( 'messages.action' )</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if(isset($brands[0]))
-                        @foreach($brands as $brand)
-                        <tr>
-                            <th>{{$brand->name}}</th>
-                            <th>{!!$brand->description!!}</th>
-                            <th>
-                                @can("brand.update")
-                                <button data-href="{{action('BrandController@edit', [$brand->id])}}" class="btn btn-xs btn-primary edit_brand_button"><i class="glyphicon glyphicon-edit"></i> @lang("messages.edit")</button>
-                                &nbsp;
-                                @endcan
-                                @can("brand.delete")
-                                <button data-href="{{action('BrandController@destroy', [$brand->id])}}" class="btn btn-xs btn-danger delete_brand_button"><i class="glyphicon glyphicon-trash"></i> @lang("messages.delete")</button>
-                                @endcan
-                            </th>
-                        </tr>
-                        @endforeach
-                        @endif
-                    </tbody>
-                </table>
+            <div class="card">
+                @include('v2.metronic.tools.datatable-header')
+                <div class="card-body pt-0">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5 metronic-datatable" data-export-file-name="Brands">
+                        <thead>
+                            <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                <th class="min-w-100px">@lang( 'brand.brands' )</th>
+                                <th class="min-w-100px">@lang( 'brand.note' )</th>
+                                <th class="min-w-100px">@lang( 'messages.action' )</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fw-semibold text-gray-600">
+                            @if(isset($brands[0]))
+                            @foreach($brands as $brand)
+                            <tr>
+                                <th>{{$brand->name}}</th>
+                                <th>{!!$brand->description!!}</th>
+                                <th>
+                                    @can("brand.update")
+                                        <button data-href="{{action('BrandController@edit', [$brand->id])}}" class="btn btn-sm btn-primary edit_brand_button"><i class="fa fa-edit"></i> @lang("messages.edit")</button>
+                                        &nbsp;
+                                    @endcan
+                                    @can("brand.delete")
+                                        <button data-href="{{action('BrandController@destroy', [$brand->id])}}" class="btn btn-sm btn-danger delete_brand_button"><i class="fa fa-trash"></i> @lang("messages.delete")</button>
+                                    @endcan
+                                </th>
+                            </tr>
+                            @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
             </div>
         @endcan
     @endcomponent
+    </div>
+    
 
     <div class="modal fade brands_modal" tabindex="-1" role="dialog" 
     	aria-labelledby="gridSystemModalLabel">
