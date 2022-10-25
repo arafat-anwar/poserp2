@@ -75,27 +75,27 @@
                         @foreach($rows as $key => $row)
                         <tr>
                             <td>{!! $row->action !!}</td>
-                            <td>{{ $row->transaction_date }}</td>
-                            <td>{{ $row->invoice_no_text }}</td>
-                            <td>{{ $row->conatct_name }}</td>
-                            <td>{{ $row->mobile }}</td>
-                            <td>{{ $row->business_location }}</td>
-                            <td>{{ $row->payment_status }}</td>
-                            <td>{{ $row->payment_methods }}</td>
-                            <td>{{ $row->final_total }}</td>
-                            <td>{{ $row->return_due }}</td>
-                            <td>{{ $row->total_paid }}</td>
-                            <td>{{ $row->total_remaining }}</td>
-                            <td>{{ $row->shipping_status }}</td>
-                            <td>{{ $row->total_items }}</td>
-                            <td>{{ $row->types_of_service_name }}</td>
-                            <td>{{ $row->service_custom_field_1 }}</td>
-                            <td>{{ $row->added_by }}</td>
-                            <td>{{ $row->additional_notes }}</td>
-                            <td>{{ $row->staff_note }}</td>
-                            <td>{{ $row->shipping_details }}</td>
-                            <td>{{ $row->table_name }}</td>
-                            <td>{{ $row->waiter }}</td>
+                            <td>{!! $row->transaction_date !!}</td>
+                            <td>{!! $row->invoice_no_text !!}</td>
+                            <td>{!! $row->conatct_name !!}</td>
+                            <td>{!! $row->mobile !!}</td>
+                            <td>{!! $row->business_location !!}</td>
+                            <td>{!! $row->payment_status !!}</td>
+                            <td>{!! $row->payment_methods !!}</td>
+                            <td>{!! $row->final_total !!}</td>
+                            <td>{!! $row->return_due !!}</td>
+                            <td>{!! $row->total_paid !!}</td>
+                            <td>{!! $row->total_remaining !!}</td>
+                            <td>{!! $row->shipping_status !!}</td>
+                            <td>{!! $row->total_items !!}</td>
+                            <td>{!! $row->types_of_service_name !!}</td>
+                            <td>{!! $row->service_custom_field_1 !!}</td>
+                            <td>{!! $row->added_by !!}</td>
+                            <td>{!! $row->additional_notes !!}</td>
+                            <td>{!! $row->staff_note !!}</td>
+                            <td>{!! $row->shipping_details !!}</td>
+                            <td>{!! $row->table_name !!}</td>
+                            <td>{!! $row->waiter !!}</td>
                         </tr>
                         @endforeach
                     @endif
