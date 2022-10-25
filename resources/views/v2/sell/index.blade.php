@@ -12,7 +12,7 @@
 <!-- Main content -->
 <section class="content no-print">
     @component('components.filters', ['title' => __('report.filters')])
-        @include('sell.partials.sell_list_filters')
+        @include('v2.sell.partials.sell_list_filters')
         @if($is_woocommerce)
             <div class="col-md-3">
                 <div class="form-group">
@@ -39,50 +39,84 @@
         @php
             $custom_labels = json_decode(session('business.custom_labels'), true);
          @endphp
-            <table class="table table-bordered table-striped ajax_view" id="sell_table">
-                <thead>
-                    <tr>
-                        <th>@lang('messages.action')</th>
-                        <th>@lang('messages.date')</th>
-                        <th>@lang('sale.invoice_no')</th>
-                        <th>@lang('sale.customer_name')</th>
-                        <th>@lang('lang_v1.contact_no')</th>
-                        <th>@lang('sale.location')</th>
-                        <th>@lang('sale.payment_status')</th>
-                        <th>@lang('lang_v1.payment_method')</th>
-                        <th>@lang('sale.total_amount')</th>
-                        <th>@lang('lang_v1.sell_return_due')</th>
-                        <th>@lang('sale.total_paid')</th>
-                        <th>@lang('lang_v1.sell_due')</th>
+                <div class="card">
+                    @include('v2.metronic.tools.datatable-header')
+                    <div class="card-body pt-0">
+                        <table class="table metronic-datatable" data-export-file-name="Sell">
+                    <thead>
+                        <tr>
+                            <th>@lang('messages.action')</th>
+                            <th>@lang('messages.date')</th>
+                            <th>@lang('sale.invoice_no')</th>
+                            <th>@lang('sale.customer_name')</th>
+                            <th>@lang('lang_v1.contact_no')</th>
+                            <th>@lang('sale.location')</th>
+                            <th>@lang('sale.payment_status')</th>
+                            <th>@lang('lang_v1.payment_method')</th>
+                            <th>@lang('sale.total_amount')</th>
+                            <th>@lang('lang_v1.sell_return_due')</th>
+                            <th>@lang('sale.total_paid')</th>
+                            <th>@lang('lang_v1.sell_due')</th>
 
-                        <th>@lang('lang_v1.shipping_status')</th>
-                        <th>@lang('lang_v1.total_items')</th>
-                        <th>@lang('lang_v1.types_of_service')</th>
-                        <th>{{ $custom_labels['types_of_service']['custom_field_1'] ?? __('lang_v1.service_custom_field_1' )}}</th>
-                        <th>@lang('lang_v1.added_by')</th>
-                        <th>@lang('sale.sell_note')</th>
-                        <th>@lang('sale.staff_note')</th>
-                        <th>@lang('sale.shipping_details')</th>
-                        <th>@lang('restaurant.table')</th>
-                        <th>@lang('restaurant.service_staff')</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-                <tfoot>
-                    <tr class="bg-gray font-17 footer-total text-center">
-                        <td colspan="6"><strong>@lang('sale.total'):</strong></td>
-                        <td class="footer_payment_status_count"></td>
-                        <td class="payment_method_count"></td>
-                        <td class="footer_sale_total"></td>
-                        <td class="footer_total_paid"></td>
-                        <td class="footer_total_remaining"></td>
-                        <td class="footer_total_sell_return_due"></td>
-                        <td colspan="2"></td>
-                        <td class="service_type_count"></td>
-                        <td colspan="7"></td>
-                    </tr>
-                </tfoot>
-            </table>
+                            <th>@lang('lang_v1.shipping_status')</th>
+                            <th>@lang('lang_v1.total_items')</th>
+                            <th>@lang('lang_v1.types_of_service')</th>
+                            <th>{{ $custom_labels['types_of_service']['custom_field_1'] ?? __('lang_v1.service_custom_field_1' )}}</th>
+                            <th>@lang('lang_v1.added_by')</th>
+                            <th>@lang('sale.sell_note')</th>
+                            <th>@lang('sale.staff_note')</th>
+                            <th>@lang('sale.shipping_details')</th>
+                            <th>@lang('restaurant.table')</th>
+                            <th>@lang('restaurant.service_staff')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if(isset($rows[0]))
+                        @foreach($rows as $key => $row)
+                        <tr>
+                            <td>{!! $row->action !!}</td>
+                            <td>{{ $row->transaction_date }}</td>
+                            <td>{{ $row->invoice_no_text }}</td>
+                            <td>{{ $row->conatct_name }}</td>
+                            <td>{{ $row->mobile }}</td>
+                            <td>{{ $row->business_location }}</td>
+                            <td>{{ $row->payment_status }}</td>
+                            <td>{{ $row->payment_methods }}</td>
+                            <td>{{ $row->final_total }}</td>
+                            <td>{{ $row->return_due }}</td>
+                            <td>{{ $row->total_paid }}</td>
+                            <td>{{ $row->total_remaining }}</td>
+                            <td>{{ $row->shipping_status }}</td>
+                            <td>{{ $row->total_items }}</td>
+                            <td>{{ $row->types_of_service_name }}</td>
+                            <td>{{ $row->service_custom_field_1 }}</td>
+                            <td>{{ $row->added_by }}</td>
+                            <td>{{ $row->additional_notes }}</td>
+                            <td>{{ $row->staff_note }}</td>
+                            <td>{{ $row->shipping_details }}</td>
+                            <td>{{ $row->table_name }}</td>
+                            <td>{{ $row->waiter }}</td>
+                        </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
+    {{--                <tfoot>--}}
+    {{--                    <tr class="bg-gray font-17 footer-total text-center">--}}
+    {{--                        <td colspan="6"><strong>@lang('sale.total'):</strong></td>--}}
+    {{--                        <td class="footer_payment_status_count"></td>--}}
+    {{--                        <td class="payment_method_count"></td>--}}
+    {{--                        <td class="footer_sale_total"></td>--}}
+    {{--                        <td class="footer_total_paid"></td>--}}
+    {{--                        <td class="footer_total_remaining"></td>--}}
+    {{--                        <td class="footer_total_sell_return_due"></td>--}}
+    {{--                        <td colspan="2"></td>--}}
+    {{--                        <td class="service_type_count"></td>--}}
+    {{--                        <td colspan="7"></td>--}}
+    {{--                    </tr>--}}
+    {{--                </tfoot>--}}
+                </table>
+                    </div>
+                </div>
         @endif
     @endcomponent
 </section>
